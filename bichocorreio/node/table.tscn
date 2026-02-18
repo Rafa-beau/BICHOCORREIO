@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dvvt4w2yisrts"]
+
+[ext_resource type="Script" uid="uid://c5abtumrgwqf5" path="res://script/table.gd" id="1_0l202"]
+[ext_resource type="PackedScene" uid="uid://dpxfyx5fug3lr" path="res://node/drawer.tscn" id="1_n0tx1"]
+[ext_resource type="Texture2D" uid="uid://bpmwuxrmfne1t" path="res://assets/table.jpg" id="2_mthqe"]
+[ext_resource type="PackedScene" uid="uid://cf61r5srgxc36" path="res://node/stamp_box.tscn" id="4_mthqe"]
+
+[node name="Table" type="Node2D" unique_id=1511156028]
+script = ExtResource("1_0l202")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
+position = Vector2(576, 323.99997)
+scale = Vector2(1.882353, 1.5882353)
+texture = ExtResource("2_mthqe")
+
+[node name="Drawer" parent="." unique_id=1174447515 instance=ExtResource("1_n0tx1")]
+
+[node name="StampBox" parent="." unique_id=904528510 instance=ExtResource("4_mthqe")]
+position = Vector2(178, 353)
+
+[connection signal="body_entered" from="Drawer" to="." method="_on_drawer_body_entered"]

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cb0on76tdbam5"]
+
+[ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/card.gd" id="1_b70dl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
+size = Vector2(639, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
+size = Vector2(75.5, 89)
+
+[node name="Card" type="Area2D" unique_id=647703974]
+script = ExtResource("1_b70dl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552224773]
+position = Vector2(320.5, 150)
+shape = SubResource("RectangleShape2D_rjgdm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=624667224]
+offset_right = 640.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="Stamp" type="ColorRect" parent="." unique_id=1551326070]
+offset_top = 211.0
+offset_right = 76.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(1, 1, 0.6117647, 1)
+
+[node name="StampPlace" type="Area2D" parent="." unique_id=82034314]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StampPlace" unique_id=25307432]
+position = Vector2(38.25, 255.5)
+shape = SubResource("RectangleShape2D_b70dl")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

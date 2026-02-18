@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c3php6t3os8ec"]
+
+[ext_resource type="Script" uid="uid://bxy71stepqi7a" path="res://script/stamp.gd" id="1_bgkt2"]
+[ext_resource type="Texture2D" uid="uid://c3bxgl36x514" path="res://assets/carimbo.png" id="1_wqoqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgkt2"]
+size = Vector2(57, 63.5)
+
+[node name="Stamp" type="Area2D" unique_id=1293601547]
+priority = 1
+script = ExtResource("1_bgkt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112240098]
+position = Vector2(29.5, 31.25)
+shape = SubResource("RectangleShape2D_bgkt2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=733386268]
+position = Vector2(29, 31.000004)
+scale = Vector2(0.13037114, 0.11816406)
+texture = ExtResource("1_wqoqg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1422932303]
+offset_left = 7.0
+offset_top = 57.0
+offset_right = 51.0
+offset_bottom = 60.0
+mouse_filter = 2
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
