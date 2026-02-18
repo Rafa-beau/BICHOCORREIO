@@ -16,6 +16,6 @@ texture = ExtResource("2_mthqe")
 [node name="Drawer" parent="." unique_id=1174447515 instance=ExtResource("1_n0tx1")]
 
 [node name="StampBox" parent="." unique_id=904528510 instance=ExtResource("4_mthqe")]
-position = Vector2(178, 353)
+position = Vector2(606, 322)
 
 [connection signal="body_entered" from="Drawer" to="." method="_on_drawer_body_entered"]

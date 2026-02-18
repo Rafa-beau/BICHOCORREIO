@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var color: StampColor
-@onready var container = $GridContainer
 var on_drag = false
 
 func _ready():
@@ -17,12 +16,12 @@ func _ready():
 	for i in range(slots.size()):
 		var current_stampslot = slots[i]
 		var stamp_color = color_palette_array[i]
-		current_stampslot.apply_color(stamp_color)
+		current_stampslot.apply_color(stamp_color, i)
 
 enum StampColor {
 	RED,
-	YELLOW,
 	ORANGE,
+	YELLOW,
 	GREEN,
 	BLUE,
 	PURPLE,
@@ -33,8 +32,8 @@ enum StampColor {
 
 const Color_Values = {
 	StampColor.RED: Color.RED,
-	StampColor.YELLOW: Color.YELLOW,
 	StampColor.ORANGE: Color.ORANGE,
+	StampColor.YELLOW: Color.YELLOW,
 	StampColor.GREEN: Color.GREEN,
 	StampColor.BLUE: Color.BLUE,
 	StampColor.PURPLE: Color.PURPLE,

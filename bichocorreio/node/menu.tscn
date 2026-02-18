@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c8vkeuto5ftdq"]
+
+[ext_resource type="Script" uid="uid://drq8t3lnvqexm" path="res://script/menu.gd" id="1_h0wty"]
+[ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="2_6t2dl"]
+
+[node name="Menu" type="Control" unique_id=290282353]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h0wty")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1217506792]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+color = Color(0.42745098, 0.16862746, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=576041024]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 49.0
+offset_right = 891.0
+offset_bottom = 187.0
+theme = ExtResource("2_6t2dl")
+text = "BICHOCORREÇÃO"
+
+[node name="Button" type="Button" parent="." unique_id=1171957681]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 181.0
+offset_right = 865.0
+offset_bottom = 372.0
+theme = ExtResource("2_6t2dl")
+text = "Jogar!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
