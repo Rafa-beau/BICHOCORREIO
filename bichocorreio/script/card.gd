@@ -3,7 +3,12 @@ extends Area2D
 var dragging = false
 var stamped = false
 var stuck = false
+var remove = false
+var start_pos: Vector2
+var min_drag = 10.0
 var offset
+
+var original_position: Vector2
 
 @export var cur_color: CardColor
 @export var stamp_mark: PackedScene
@@ -42,11 +47,14 @@ func _ready():
 
 # arrastar
 
+	
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and not stuck and MOUSE_BUTTON_LEFT:
-		dragging = event.pressed
-		if event.pressed:
-			offset = global_position - get_global_mouse_position()
+	if event is InputEventMouseButton:
+		
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			dragging = event.pressed
+			if event.pressed:
+				offset = global_position - get_global_mouse_position()
 
 # Saber se mouse ta segurando
 
@@ -58,20 +66,26 @@ func _unhandled_input(event):
 				stuck = true
 			else:
 				stuck = false
+			
 
 func _process(delta):
 	if dragging == true:
 		global_position = get_global_mouse_position() + offset
 		var target_pos = get_global_mouse_position() + offset
 		global_position = target_pos
+		
+	# input pra teste
+	if remove == true:
+		if Input.is_action_pressed("sumir-carta"):
+			remove_card()
  
 # arrastar melhor, gaveta
 
 func start_drag():
 	dragging = true
 	offset = Vector2(-150, -40)
-
 # sera?
+
 
 # carimbador maluco
 
@@ -83,5 +97,32 @@ func receive_stamp(stamp_color: Color, stamp_index: int) -> void:
 			add_child(mark)
 			stamped = true
 			stuck = false
+			remove = true
 		else:
 			print("No, bad stamp")
+			
+
+### logica de passar ou consfiscar ###
+
+# fazer a carta sumir
+func remove_card():
+	queue_free()
+
+
+# teste
+#funfou nao so pra avisar
+func handle_drag(end_pos: Vector2):
+	var delta = end_pos - start_pos
+	if delta.length() < min_drag:
+		print("so clique")
+		return
+		
+	if abs(delta.y) > abs(delta.x):
+		if delta.y > 0:
+			print("baixo")
+		else:
+			print("cima")
+	
+	
+	
+	

@@ -1,0 +1,43 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1771533719
+icon.svg::CompressedTexture2D::5953774560922858170::1771533685::1771533721::1::::<><><>0<>0<>1dc4c57166deeecd93f8f2a393ac86a4<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://assets/::1771533685
+armario.png::CompressedTexture2D::8992351030323602390::1771533685::1771533721::1::::<><><>0<>0<>c37057517c97796ef93b6c69894f1e41<>res://.godot/imported/armario.png-5c68eadbb421324267b9e5aa7332fbe0.ctex::
+caixaCarimbo.png::CompressedTexture2D::4752875484280909561::1771533685::1771533721::1::::<><><>0<>0<>478e9e632fadb755beeebed1b26392b2<>res://.godot/imported/caixaCarimbo.png-3b5663d37380bfcde2e5a27770c4ac9e.ctex::
+carimbo.png::CompressedTexture2D::198282388089824881::1771533685::1771533721::1::::<><><>0<>0<>881f4f6ad3f8a8fbb5a00ca57e3c9ecf<>res://.godot/imported/carimbo.png-905e131bc9ad1137a5c9f37bea605a53.ctex::
+carimbos.png::CompressedTexture2D::8171382544498222437::1771533685::1771533721::1::::<><><>0<>0<>3b22c1d61108bea1b6d9a4aa60177363<>res://.godot/imported/carimbos.png-b7e4fac573f824f9c21e49fa8847a1e1.ctex::
+lixeira.png::CompressedTexture2D::4284648018382074221::1771533685::1771533721::1::::<><><>0<>0<>5e589391742f67633cefe10ab7e34d36<>res://.godot/imported/lixeira.png-a142d9dd714fc97db9909b527d4f593b.ctex::
+marcas.png::CompressedTexture2D::1542794141415900900::1771533685::1771533721::1::::<><><>0<>0<>0ceda5c92abcc4874bb9108b157f50c3<>res://.godot/imported/marcas.png-b75cd54e709e06f023a327d2eb25235b.ctex::
+table.jpg::CompressedTexture2D::3465398595882415887::1771533685::1771533721::1::::<><><>0<>0<>810f9d3332e1d7a7b7c2c60cb76dd702<>res://.godot/imported/table.jpg-15edfda024cf47ff2568bd4975cd3a11.ctex::
+::res://assets/carimbos/::1771533685
+Carimbo azul.png::CompressedTexture2D::9126561648519942395::1771533685::1771533721::1::::<><><>0<>0<>5bd0bb158f5cc6001556c862dcf8bdb0<>res://.godot/imported/Carimbo azul.png-60e76d3871c50da0d864e93ae2c50ed4.ctex::
+Carimbo branco.png::CompressedTexture2D::3108133322146690793::1771533685::1771533721::1::::<><><>0<>0<>cc0b2a3409dc1753215eac7424c12ad8<>res://.godot/imported/Carimbo branco.png-62d6f94bc81d6d5edbee4cdb3378df8e.ctex::
+Carimbo laranja.png::CompressedTexture2D::6943022339234268981::1771533685::1771533721::1::::<><><>0<>0<>0feab0e3d5371923fb242c8c0d794105<>res://.godot/imported/Carimbo laranja.png-25265b152b28d7ef6df9c6db5b65ff89.ctex::
+Carimbo marrom.png::CompressedTexture2D::5524360110072561380::1771533685::1771533721::1::::<><><>0<>0<>4bd5dae3334980572d4580fbf5c9d654<>res://.godot/imported/Carimbo marrom.png-51a3e2925aa48689fea16204985d115b.ctex::
+Carimbo preto.png::CompressedTexture2D::7153711594314800507::1771533685::1771533721::1::::<><><>0<>0<>c5ac60bafa5688f5a2137fca21c2bfce<>res://.godot/imported/Carimbo preto.png-639e4731c9a559abb922792ec1fc2a7b.ctex::
+Carimbo rosa.png::CompressedTexture2D::388769795987619777::1771533685::1771533721::1::::<><><>0<>0<>f3dba64c40e1e2b29e0e4d32dae12773<>res://.godot/imported/Carimbo rosa.png-6ba2ea5c9dbd29cdefb3354938e1eef5.ctex::
+Carimbo roxo.png::CompressedTexture2D::1765877778384278528::1771533685::1771533721::1::::<><><>0<>0<>bbd8179f0ad0afd9831fa009d031bd9d<>res://.godot/imported/Carimbo roxo.png-42c390833f1dc0ea69c1385daced0c36.ctex::
+Carimbo verde.png::CompressedTexture2D::3361522630916274013::1771533685::1771533721::1::::<><><>0<>0<>ad586c00292dd6d04a72fb630e2a6255<>res://.godot/imported/Carimbo verde.png-4cd4c6e96de70357d390a3ad87a9878a.ctex::
+Carimbo vermelho.png::CompressedTexture2D::9021540416255852071::1771533685::1771533721::1::::<><><>0<>0<>7ed107d909fff011eecef396a1625d96<>res://.godot/imported/Carimbo vermelho.png-1ee75bd1dbcf8ee40ca38d4ed98aaa40.ctex::
+::res://node/::1771533685
+card.tscn::PackedScene::4895514637598686350::1771533685::0::1::::<><><>0<>0<><>::uid://b6771g3wmau7c::::res://script/card.gd<>uid://b4lx325c5xhqv::::res://node/stamp_mark.tscn
+drawer.tscn::PackedScene::8259923092646071815::1771533685::0::1::::<><><>0<>0<><>::uid://dp4lllqujgph6::::res://script/drawer.gd<>uid://cb0on76tdbam5::::res://node/card.tscn<>uid://d1d7yccjtktg5::::res://assets/armario.png
+menu.tscn::PackedScene::7133040533874501706::1771533685::0::1::::<><><>0<>0<><>::uid://drq8t3lnvqexm::::res://script/menu.gd<>uid://cms3j4e75bn8d::::res://themes/label.tres
+stamp_box.tscn::PackedScene::5189391900548839703::1771533685::0::1::::<><><>0<>0<><>::uid://b8ylfusf8pbj2::::res://assets/caixaCarimbo.png<>uid://s51v814hditi::::res://script/stamp_box.gd<>uid://s6ojgoo3q0uh::::res://node/funcs/stampslot.tscn
+stamp_mark.gd::GDScript::1816311875099741377::1771533685::0::1::::<>Node2D<><>0<>0<><>::
+stamp_mark.tscn::PackedScene::4446053262160123433::1771533685::0::1::::<><><>0<>0<><>::uid://doojqhan3sn7b::::res://assets/carimbos.png<>uid://043nkimtkyr6::::res://node/stamp_mark.gd
+table.tscn::PackedScene::8677786309524334380::1771533685::0::1::::<><><>0<>0<><>::uid://c5abtumrgwqf5::::res://script/table.gd<>uid://dpxfyx5fug3lr::::res://node/drawer.tscn<>uid://bpmwuxrmfne1t::::res://assets/table.jpg<>uid://cf61r5srgxc36::::res://node/stamp_box.tscn
+::res://node/funcs/::1771533685
+stampslot.tscn::PackedScene::1328261343345845011::1771533685::0::1::::<><><>0<>0<><>::uid://5xkvjrxhb1li::::res://script/stampslot.gd<>uid://c3php6t3os8ec::::res://node/Stamps/stamp.tscn
+::res://node/Stamps/::1771533685
+stamp.tscn::PackedScene::6769548120286728894::1771533685::0::1::::<><><>0<>0<><>::uid://bxy71stepqi7a::::res://script/stamp.gd<>uid://c3bxgl36x514::::res://assets/carimbo.png
+::res://script/::1771533685
+card.gd::GDScript::4630324658422336018::1771533685::0::1::::<>Area2D<><>0<>0<><>::
+drawer.gd::GDScript::8272649794565618569::1771533685::0::1::::drawer<>Area2D<><>0<>0<><>::
+menu.gd::GDScript::8387541516102306906::1771533685::0::1::::<>Control<><>0<>0<><>::
+stamp.gd::GDScript::4052299502849347088::1771533685::0::1::::<>Area2D<><>0<>0<><>::
+stampslot.gd::GDScript::2153791169110279038::1771533685::0::1::::<>Node2D<><>0<>0<><>::
+stamp_box.gd::GDScript::1326948436352886102::1771533685::0::1::::<>Node2D<><>0<>0<><>::
+table.gd::GDScript::6878602393390092600::1771533685::0::1::::<>Node2D<><>0<>0<><>::
+::res://themes/::1771533685
+label.tres::Theme::5653983969408722689::1771533685::0::1::::<><><>0<>0<><>::
