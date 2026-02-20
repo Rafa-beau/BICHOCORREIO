@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c4qnutp2plkyf"]
+
+[node name="UpgShelf" type="Control" unique_id=866237627]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=1202546787]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=201103814]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.3764706, 0.14509805, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Control" unique_id=1099055087]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 416.0
+offset_right = 1149.0
+offset_bottom = 456.0
+color = Color(0.15058032, 0.07717516, 2.4065375e-08, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Control" unique_id=658548096]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 1152.0
+offset_bottom = 170.0
+color = Color(0.15058032, 0.07717516, 2.4065375e-08, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1234570690]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -1.0
+offset_right = 102.0
+offset_bottom = 131.0
