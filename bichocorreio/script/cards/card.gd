@@ -50,11 +50,8 @@ func _ready():
 	
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			dragging = event.pressed
-			if event.pressed:
-				offset = global_position - get_global_mouse_position()
+			dragging = true
 
 # Saber se mouse ta segurando
 
@@ -69,18 +66,15 @@ func _unhandled_input(event):
 			
 
 func _process(delta):
-	if dragging == true:
-		global_position = get_global_mouse_position() + offset
-		var target_pos = get_global_mouse_position() + offset
-		global_position = target_pos
+	#if dragging == true:
+		#global_position = get_global_mouse_position() + offset
+		#var target_pos = get_global_mouse_position() + offset
+		#global_position = target_pos
 		
 	# input pra teste
 	if remove == true:
 		if Input.is_action_pressed("sumir-carta"):
 			remove_card()
- 
-# arrastar melhor, gaveta
-
 
 # carimbador maluco
 
