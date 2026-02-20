@@ -1,2 +1,8 @@
 res://node/card.tscn
+res://script/window/fullscrean.gd
 res://script/card.gd
+res://script/drawer.gd
+res://node/funcs/stampslot.tscn
+res://node/menu.tscn
+res://script/utils/Utils.gd
+res://script/table.gd

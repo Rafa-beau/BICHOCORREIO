@@ -81,11 +81,6 @@ func _process(delta):
  
 # arrastar melhor, gaveta
 
-func start_drag():
-	dragging = true
-	offset = Vector2(-150, -40)
-# sera?
-
 
 # carimbador maluco
 
@@ -109,19 +104,6 @@ func remove_card():
 	queue_free()
 
 
-# teste
-#funfou nao so pra avisar
-func handle_drag(end_pos: Vector2):
-	var delta = end_pos - start_pos
-	if delta.length() < min_drag:
-		print("so clique")
-		return
-		
-	if abs(delta.y) > abs(delta.x):
-		if delta.y > 0:
-			print("baixo")
-		else:
-			print("cima")
 	
 	
 	

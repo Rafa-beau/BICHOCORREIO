@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cf61r5srgxc36"]
 
 [ext_resource type="Texture2D" uid="uid://b8ylfusf8pbj2" path="res://assets/caixaCarimbo.png" id="1_winvt"]
-[ext_resource type="Script" uid="uid://s51v814hditi" path="res://script/stamp_box.gd" id="1_ygbqr"]
+[ext_resource type="Script" uid="uid://s51v814hditi" path="res://script/stamps/stamp_box.gd" id="1_ygbqr"]
 [ext_resource type="PackedScene" uid="uid://s6ojgoo3q0uh" path="res://node/funcs/stampslot.tscn" id="2_6bire"]
+
 
 [node name="StampBox" type="Node2D" unique_id=904528510]
 script = ExtResource("1_ygbqr")

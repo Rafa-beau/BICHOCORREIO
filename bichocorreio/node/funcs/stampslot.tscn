@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://s6ojgoo3q0uh"]
 
-[ext_resource type="Script" uid="uid://5xkvjrxhb1li" path="res://script/stampslot.gd" id="1_kouu8"]
+[ext_resource type="Script" uid="uid://5xkvjrxhb1li" path="res://script/stamps/stampslot.gd" id="1_kouu8"]
 [ext_resource type="PackedScene" uid="uid://c3php6t3os8ec" path="res://node/Stamps/stamp.tscn" id="2_7qtiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsaqu"]

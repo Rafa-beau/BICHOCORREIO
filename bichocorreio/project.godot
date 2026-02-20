@@ -15,8 +15,13 @@ run/main_scene="uid://c8vkeuto5ftdq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Utils="*uid://bhmowga67o17k"
+
 [display]
 
+window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [input]
@@ -34,3 +39,4 @@ sumir-carta={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/msaa_2d=3
