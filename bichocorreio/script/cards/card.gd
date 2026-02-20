@@ -66,10 +66,6 @@ func _unhandled_input(event):
 			
 
 func _process(delta):
-	#if dragging == true:
-		#global_position = get_global_mouse_position() + offset
-		#var target_pos = get_global_mouse_position() + offset
-		#global_position = target_pos
 		
 	# input pra teste
 	if remove == true:
