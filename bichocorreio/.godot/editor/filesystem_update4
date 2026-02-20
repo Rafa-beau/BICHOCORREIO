@@ -6,3 +6,6 @@ res://node/funcs/stampslot.tscn
 res://node/menu.tscn
 res://script/utils/Utils.gd
 res://script/table.gd
+res://node/table.tscn
+res://script/managers/TurnManager.gd
+res://script/cards/card.gd
