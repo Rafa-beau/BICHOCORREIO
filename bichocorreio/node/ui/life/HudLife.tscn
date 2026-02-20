@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dmsynnmv0iovo"]
+
+[ext_resource type="Texture2D" uid="uid://5xisa34aycxx" path="res://assets/coracao.webp" id="1_32eq7"]
+[ext_resource type="Script" uid="uid://v5h0sxxnmvua" path="res://script/ui/Player/HudLife.gd" id="1_cmyx7"]
+
+[node name="HudLife" type="CanvasLayer" unique_id=164941465]
+script = ExtResource("1_cmyx7")
+
+[node name="HeartContainer" type="HBoxContainer" parent="." unique_id=1853398174]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HeartContainer" unique_id=2066277283]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+texture = ExtResource("1_32eq7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HeartContainer" unique_id=2041982628]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+texture = ExtResource("1_32eq7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HeartContainer" unique_id=613858822]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+texture = ExtResource("1_32eq7")
+expand_mode = 3
+stretch_mode = 5
