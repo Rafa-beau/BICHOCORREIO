@@ -14,13 +14,9 @@ func _ready() -> void:
 func call_card():
 	current_card = Utils.spawn_card(card_scene, Vector2(198, 85), parent)
 
-func snap_card() -> void:
-	card.snap_to_table(self)
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("Card"):
 		current_card = area
-		
 
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	var des_accept = Vector2(1500, 85)
