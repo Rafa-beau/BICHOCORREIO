@@ -1,20 +1,41 @@
 [gd_scene format=3 uid="uid://dvvt4w2yisrts"]
 
 [ext_resource type="Script" uid="uid://c5abtumrgwqf5" path="res://script/ui/table.gd" id="1_0l202"]
-[ext_resource type="Texture2D" uid="uid://bpmwuxrmfne1t" path="res://assets/table.jpg" id="2_mthqe"]
-[ext_resource type="Script" uid="uid://o1ge4j5dre6w" path="res://script/managers/TurnManager.gd" id="4_e76hu"]
+[ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/table.png" id="2_mthqe"]
 [ext_resource type="PackedScene" uid="uid://cf61r5srgxc36" path="res://node/stamp_box.tscn" id="4_mthqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
+size = Vector2(538, 322.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
+size = Vector2(606, 227)
 
 [node name="Table" type="Node2D" unique_id=1511156028]
 script = ExtResource("1_0l202")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
-position = Vector2(576, 323.99997)
-scale = Vector2(1.882353, 1.5882353)
+position = Vector2(576, 324)
+scale = Vector2(0.59999996, 0.6000001)
 texture = ExtResource("2_mthqe")
 
 [node name="StampBox" parent="." unique_id=904528510 instance=ExtResource("4_mthqe")]
 position = Vector2(606, 322)
 
-[node name="TurnScript" type="Node2D" parent="." unique_id=1854446919]
-script = ExtResource("4_e76hu")
+[node name="accept" type="Area2D" parent="." unique_id=578764493]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accept" unique_id=1061130770]
+position = Vector2(882, 161.25)
+shape = SubResource("RectangleShape2D_e76hu")
+
+[node name="confiscate" type="Area2D" parent="." unique_id=1006347816]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="confiscate" unique_id=19972230]
+position = Vector2(304, 535.5)
+shape = SubResource("RectangleShape2D_7w2ib")
+
+[connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
+[connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]
+[connection signal="mouse_entered" from="accept" to="." method="_on_accept_mouse_entered"]
+[connection signal="body_shape_exited" from="confiscate" to="." method="_on_confiscate_body_shape_exited"]
+[connection signal="input_event" from="confiscate" to="." method="_on_confiscate_input_event"]
+[connection signal="mouse_entered" from="confiscate" to="." method="_on_confiscate_mouse_entered"]
