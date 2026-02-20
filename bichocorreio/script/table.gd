@@ -12,7 +12,12 @@ func _ready() -> void:
 	call_card()
 
 func call_card():
-	current_card = Utils.spawn_card(card_scene, Vector2(198, 85), parent)
+	var des_summon = Vector2(198, 85)
+	
+	current_card = Utils.spawn_card(card_scene, Vector2(198, -2000), parent)
+	
+	var tween = create_tween()
+	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("Card"):
@@ -25,8 +30,8 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 		if event.is_action_released("click"):
 			if current_card.stuck == false or current_card.cur_color == current_card.CardColor.BLACK:
 				var tween = create_tween()
-				tween.tween_property(current_card, "position", des_accept, 0.25)
-				await get_tree().create_timer(0.35).timeout
+				tween.tween_property(current_card, "position", des_accept, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+				await get_tree().create_timer(0.60).timeout
 				current_card.queue_free()
 				call_card()
 				pull = false
@@ -44,8 +49,8 @@ func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: in
 		if event.is_action_released("click"):
 			if current_card.stuck == false or current_card.cur_color == current_card.CardColor.BLACK:
 				var tween = create_tween()
-				tween.tween_property(current_card, "position", des_confis, 0.25)
-				await get_tree().create_timer(0.35).timeout
+				tween.tween_property(current_card, "position", des_confis, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+				await get_tree().create_timer(0.60).timeout
 				current_card.queue_free()
 				call_card()
 				pull = false
