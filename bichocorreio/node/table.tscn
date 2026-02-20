@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvvt4w2yisrts"]
 
-[ext_resource type="Script" uid="uid://c5abtumrgwqf5" path="res://script/ui/table.gd" id="1_0l202"]
+[ext_resource type="Script" uid="uid://xiw65vp3v28v" path="res://script/table.gd" id="1_7w2ib"]
 [ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/table.png" id="2_mthqe"]
 [ext_resource type="Script" uid="uid://b2672wrwjrji7" path="res://script/PlayerLifeConnector.gd" id="4_e76hu"]
 [ext_resource type="PackedScene" uid="uid://cf61r5srgxc36" path="res://node/stamp_box.tscn" id="4_mthqe"]
@@ -14,7 +14,7 @@ size = Vector2(538, 328)
 size = Vector2(609, 227)
 
 [node name="Table" type="Node2D" unique_id=1511156028]
-script = ExtResource("1_0l202")
+script = ExtResource("1_7w2ib")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
 position = Vector2(576, 324)
