@@ -17,6 +17,7 @@ func call_card():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("Card"):
 		current_card = area
+		
 
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	var des_accept = Vector2(1500, 85)
