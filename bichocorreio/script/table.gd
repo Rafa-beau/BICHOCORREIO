@@ -16,6 +16,7 @@ func call_card():
 	
 	current_card = Utils.spawn_card(card_scene, Vector2(198, -2000), parent)
 	
+<<<<<<< HEAD
 	CardManager.current_card = current_card
 	
 	
@@ -23,6 +24,10 @@ func call_card():
 	var tween = create_tween()
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	SignalManager.call_card.emit()
+=======
+	var tween = create_tween()
+	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+>>>>>>> 3c4e1ec8eb7cae25888fb90fe9a360eebbefcdc1
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("Card"):
