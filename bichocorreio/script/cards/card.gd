@@ -8,12 +8,12 @@ var start_pos: Vector2
 var min_drag = 10.0
 var offset
 
+
 var original_position: Vector2
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var stamp_sprite: Sprite2D = $Sprite2D
 
 @export var cur_color: CardColor
-@export var stamp_mark: PackedScene
 
 enum CardColor {
 	RED,
@@ -46,7 +46,8 @@ const Color_Values = {
 func _ready():
 	cur_color = CardColor.values().pick_random()
 	$ColorRect.modulate = Color_Values[cur_color]
-	sprite.texture = null
+	stamp_sprite.texture = null
+
 
 # arrastar
 
@@ -78,9 +79,14 @@ func _process(delta):
 
 # carimbador thur
 func stamb_receive(stamp_path: String):
+	if not StampManager.can_stamp():
+		print("cabou a tinta")
+		return
 	if not stamped:
 		
-		sprite.texture = load(stamp_path)
+		stamp_sprite.modulate.a = StampManager.get_next_opacity()
+		stamp_sprite.texture = load(stamp_path)
+		
 		
 		SignalManager.stamp.emit()
 		
@@ -116,10 +122,17 @@ func remove_card():
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			stamb_receive("res://assets/carimbos/carimboAPROVADO.png")
-			await get_tree().create_timer(0.10).timeout
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			stamb_receive("res://assets/carimbos/carimboREPROVADO.png")
+		if StampManager.current_color == Color.GREEN:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				stamb_receive("res://assets/carimbos/carimboAPROVADO.png")
+				await get_tree().create_timer(0.10).timeout
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				stamb_receive("res://assets/carimbos/carimboREPROVADO.png")
+			return
+		if StampManager.current_color == Color.BLUE:
+			print("Azul")
+			return
+		
+			
 		
 			

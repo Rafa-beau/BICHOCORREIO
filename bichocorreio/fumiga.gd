@@ -1,19 +1,25 @@
 extends Sprite2D
 
 var can_follow = true
-# Called when the node enters the scene tree for the first time.
+
+var current_color: String
 func _ready() -> void:
 	z_index = 10
 	visible = false
+
+	
 	
 	SignalManager.call_card.connect(enable_stamp)
 	SignalManager.call_card.connect(disable_cursor)
 	SignalManager.stamp.connect(disable_stamp)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	
+	
 func _process(delta: float) -> void:
 	if can_follow == true:
 		global_position = get_global_mouse_position()
-	
+
+
+
 func disable_cursor():
 	await get_tree().create_timer(0.1).timeout
 	Utils.disable_cursor()

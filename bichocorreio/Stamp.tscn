@@ -16,13 +16,13 @@ func _process(delta: float) -> void:
 func _on_green_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print(\"verde\")
+			SignalManager.stamp_pick.emit(\"green\")
 
 
 func _on_blue_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print(\"azul\")
+			SignalManager.stamp_pick.emit(\"blue\")
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]

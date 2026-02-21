@@ -1,1 +1,7 @@
 res://script/table.gd
+res://Stamp.tscn
+res://script/managers/SignalManager.gd
+res://fumiga.gd
+res://script/cards/card.gd
+res://node/table.tscn
+res://script/managers/StampManager.gd
