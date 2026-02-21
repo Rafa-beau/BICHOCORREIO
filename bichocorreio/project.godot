@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Utils="*uid://bhmowga67o17k"
 CardManager="*uid://bl1jkhi8y4aoo"
 SignalManager="*uid://be5c4kycm4hff"
+StampManager="*uid://g1s2qj4igdyq"
 
 [display]
 

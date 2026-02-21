@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cb0on76tdbam5"]
 
 [ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/cards/card.gd" id="1_b70dl"]
-[ext_resource type="PackedScene" uid="uid://b4lx325c5xhqv" path="res://node/stamp_mark.tscn" id="2_kpnyg"]
+
+[sub_resource type="Resource" id="Resource_b70dl"]
+metadata/__load_path__ = "res://node/stamp_mark.tscn"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
 size = Vector2(349, 463)
@@ -14,7 +16,7 @@ load_path = "res://.godot/imported/carimboAPROVADO.png-f1df75ad4f8357c006d3d4550
 
 [node name="Card" type="Area2D" unique_id=647703974]
 script = ExtResource("1_b70dl")
-stamp_mark = ExtResource("2_kpnyg")
+stamp_mark = SubResource("Resource_b70dl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552224773]
 position = Vector2(175.5, 231.5)

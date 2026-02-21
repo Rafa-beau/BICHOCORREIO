@@ -11,7 +11,7 @@ var offset
 
 var original_position: Vector2
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var stamp_sprite: Sprite2D = $Sprite2D
 
 @export var cur_color: CardColor
 
@@ -46,7 +46,7 @@ const Color_Values = {
 func _ready():
 	cur_color = CardColor.values().pick_random()
 	$ColorRect.modulate = Color_Values[cur_color]
-	sprite.texture = null
+	stamp_sprite.texture = null
 
 # arrastar
 
@@ -71,22 +71,27 @@ func _process(delta):
 		if Input.is_action_pressed("sumir-carta"):
 			remove_card()
 
-
 # carimbador thur
-func stamb_receive(stamp_path: String):
+func stamp_receive(stamp_path: String):
+	if not StampManager.can_stamp():
+		print("cabou a tinta")
+		return
 	if not stamped:
 		
-		sprite.texture = load(stamp_path)
+		stamp_sprite.modulate.a = StampManager.get_next_opacity()
+		stamp_sprite.texture = load(stamp_path)
+		
 		
 		SignalManager.stamp.emit()
 		
 		Utils.enable_cursor()
 		
 		stamped = true
+		remove = true
+		
+	else:
+		print("Bad Stamb")
 
-
-
-### logica de passar ou consfiscar ###
 
 # fazer a carta sumir
 func remove_card():
@@ -94,10 +99,14 @@ func remove_card():
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			stamb_receive("res://assets/carimbos/carimboAPROVADO.png")
-			approved = true
-			await get_tree().create_timer(0.10).timeout
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			stamb_receive("res://assets/carimbos/carimboREPROVADO.png")
-			disapproved = true
+		if StampManager.current_color == Color.GREEN:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				stamp_receive("res://assets/carimbos/carimboAPROVADO.png")
+				await get_tree().create_timer(0.10).timeout
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				stamp_receive("res://assets/carimbos/carimboREPROVADO.png")
+			return
+		if StampManager.current_color == Color.BLUE:
+			print("Azul")
+			return
+		

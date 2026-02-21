@@ -1,1 +1,5 @@
-res://script/table.gd
+res://node/card.tscn
+res://script/managers/StampManager.gd
+res://node/menu.tscn
+res://script/managers/SignalManager.gd
+res://Stamp.tscn
