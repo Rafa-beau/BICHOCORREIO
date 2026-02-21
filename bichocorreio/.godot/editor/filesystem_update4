@@ -3,3 +3,6 @@ res://script/managers/StampManager.gd
 res://node/menu.tscn
 res://script/managers/SignalManager.gd
 res://Stamp.tscn
+res://script/cards/card.gd
+res://node/funcs/hud_coin.tscn
+res://script/table.gd

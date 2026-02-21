@@ -44,6 +44,7 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 				current_card.queue_free()
 				call_card()
 			else:
+				print(current_card.CardColor, current_card.stamped, current_card.approved)
 				player.take_damage(1)
 				current_card.queue_free()
 				call_card()

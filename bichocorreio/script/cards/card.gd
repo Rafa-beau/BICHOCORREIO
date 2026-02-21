@@ -87,7 +87,6 @@ func stamp_receive(stamp_path: String):
 		Utils.enable_cursor()
 		
 		stamped = true
-		remove = true
 		
 	else:
 		print("Bad Stamb")
@@ -103,8 +102,10 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				stamp_receive("res://assets/carimbos/carimboAPROVADO.png")
 				await get_tree().create_timer(0.10).timeout
+				approved = true
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				stamp_receive("res://assets/carimbos/carimboREPROVADO.png")
+				disapproved = true
 			return
 		if StampManager.current_color == Color.BLUE:
 			print("Azul")
