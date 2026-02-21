@@ -7,7 +7,10 @@
 size = Vector2(349, 463)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
-size = Vector2(76, 89)
+size = Vector2(202, 99)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kpnyg"]
+load_path = "res://.godot/imported/carimboAPROVADO.png-f1df75ad4f8357c006d3d4550d5a0f8e.ctex"
 
 [node name="Card" type="Area2D" unique_id=647703974]
 script = ExtResource("1_b70dl")
@@ -23,16 +26,22 @@ offset_bottom = 463.0
 mouse_filter = 2
 
 [node name="Stamp" type="ColorRect" parent="." unique_id=1551326070]
-offset_right = 76.0
-offset_bottom = 89.0
+offset_right = 202.0
+offset_bottom = 98.0
 mouse_filter = 2
-color = Color(1, 1, 0.6117647, 1)
+color = Color(1, 0.5686275, 0.6117647, 1)
 
 [node name="StampPlace" type="Area2D" parent="." unique_id=82034314]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StampPlace" unique_id=25307432]
-position = Vector2(38, 44.5)
+position = Vector2(101, 49.5)
 shape = SubResource("RectangleShape2D_b70dl")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=978036842]
+position = Vector2(96.500885, 46.93056)
+rotation = -0.17802358
+scale = Vector2(0.18680403, 0.18680403)
+texture = SubResource("CompressedTexture2D_kpnyg")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="area_entered" from="StampPlace" to="." method="_on_stamp_place_area_entered"]
+[connection signal="input_event" from="StampPlace" to="." method="_on_stamp_place_input_event"]

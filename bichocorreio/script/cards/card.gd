@@ -10,6 +10,8 @@ var offset
 
 var original_position: Vector2
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 @export var cur_color: CardColor
 @export var stamp_mark: PackedScene
 
@@ -38,12 +40,13 @@ const Color_Values = {
 	CardColor.WHITE: Color.WHITE,
 	CardColor.BLACK: Color.BLACK
 	}
-
+	
 # Cor aleatoria
 
 func _ready():
 	cur_color = CardColor.values().pick_random()
 	$ColorRect.modulate = Color_Values[cur_color]
+	sprite.texture = null
 
 # arrastar
 
@@ -72,20 +75,38 @@ func _process(delta):
 		if Input.is_action_pressed("sumir-carta"):
 			remove_card()
 
-# carimbador maluco
 
-func receive_stamp(stamp_color: Color, stamp_index: int) -> void:
+# carimbador thur
+func stamb_receive(stamp_path: String):
 	if not stamped:
-		if Color_Values[cur_color] == stamp_color:
-			var mark = stamp_mark.instantiate()
-			mark.get_node("Sprite2D").frame = stamp_index
-			add_child(mark)
-			stamped = true
-			stuck = false
-			remove = true
-		else:
-			print("No, bad stamp")
-			
+		
+		sprite.texture = load(stamp_path)
+		
+		SignalManager.stamp.emit()
+		
+		Utils.enable_cursor()
+		
+		stamped = true
+		stuck = false
+		remove = true
+		
+	else:
+		print("Bad Stamb")
+
+
+# carimbador maluco
+#func receive_stamp(stamp_color: Color, stamp_index: int) -> void:
+	#if not stamped:
+		#if Color_Values[cur_color] == stamp_color:
+			#var mark = stamp_mark.instantiate()
+			#mark.get_node("Sprite2D").frame = stamp_index
+			#add_child(mark)
+			#stamped = true
+			#stuck = false
+			#remove = true
+		#else:
+			#print("No, bad stamp")
+			#
 
 ### logica de passar ou consfiscar ###
 
@@ -93,8 +114,12 @@ func receive_stamp(stamp_color: Color, stamp_index: int) -> void:
 func remove_card():
 	queue_free()
 
-
-	
-	
-	
-	
+func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			stamb_receive("res://assets/carimbos/carimboAPROVADO.png")
+			await get_tree().create_timer(0.10).timeout
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			stamb_receive("res://assets/carimbos/carimboREPROVADO.png")
+		
+			

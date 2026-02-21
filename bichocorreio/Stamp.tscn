@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dshim37dpnki"]
+
+[sub_resource type="GDScript" id="GDScript_de3tt"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_green_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			print(\"verde\")
+
+
+func _on_blue_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			print(\"azul\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
+size = Vector2(187.5, 176)
+
+[node name="Node2D" type="Node2D" unique_id=1663195992]
+script = SubResource("GDScript_de3tt")
+
+[node name="Green" type="Node2D" parent="." unique_id=1131314628]
+
+[node name="Green" type="Area2D" parent="Green" unique_id=517625865]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Green/Green" unique_id=2043167398]
+position = Vector2(95.25, 87)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="ColorRect" type="ColorRect" parent="Green" unique_id=738996894]
+offset_right = 188.0
+offset_bottom = 179.0
+mouse_filter = 2
+color = Color(0, 1, 0.02745098, 1)
+
+[node name="Blue" type="Node2D" parent="." unique_id=267827425]
+position = Vector2(204, 0)
+
+[node name="Blue" type="Area2D" parent="Blue" unique_id=887329916]
+position = Vector2(-2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue/Blue" unique_id=1808835465]
+position = Vector2(95.25, 87)
+shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="ColorRect" type="ColorRect" parent="Blue" unique_id=36944738]
+offset_right = 188.0
+offset_bottom = 179.0
+mouse_filter = 2
+color = Color(0, 0.54901963, 1, 1)
+
+[connection signal="input_event" from="Green/Green" to="." method="_on_green_input_event"]
+[connection signal="input_event" from="Blue/Blue" to="." method="_on_blue_input_event"]

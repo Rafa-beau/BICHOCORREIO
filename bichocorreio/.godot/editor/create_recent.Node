@@ -1,5 +1,10 @@
-Node
+AnimationPlayer
+Sprite2D
 Node2D
+ColorRect
+CollisionShape2D
+Area2D
+Node
 TextureRect
 HBoxContainer
 CanvasLayer
