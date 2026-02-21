@@ -5,3 +5,5 @@ signal call_card
 
 signal pause
 signal despause
+
+signal coinup

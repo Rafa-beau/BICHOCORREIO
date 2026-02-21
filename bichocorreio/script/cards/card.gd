@@ -2,8 +2,9 @@ extends Area2D
 
 var dragging = false
 var stamped = false
-var stuck = false
 var remove = false
+var approved = false
+var disapproved = false
 var start_pos: Vector2
 var min_drag = 10.0
 var offset
@@ -13,7 +14,6 @@ var original_position: Vector2
 @onready var sprite: Sprite2D = $Sprite2D
 
 @export var cur_color: CardColor
-@export var stamp_mark: PackedScene
 
 enum CardColor {
 	RED,
@@ -62,10 +62,6 @@ func _unhandled_input(event):
 	if dragging:
 		if event is InputEventMouseButton and not event.pressed:
 			dragging = false
-			if not stamped:
-				stuck = true
-			else:
-				stuck = false
 			
 
 func _process(delta):
@@ -87,26 +83,8 @@ func stamb_receive(stamp_path: String):
 		Utils.enable_cursor()
 		
 		stamped = true
-		stuck = false
-		remove = true
-		
-	else:
-		print("Bad Stamb")
 
 
-# carimbador maluco
-#func receive_stamp(stamp_color: Color, stamp_index: int) -> void:
-	#if not stamped:
-		#if Color_Values[cur_color] == stamp_color:
-			#var mark = stamp_mark.instantiate()
-			#mark.get_node("Sprite2D").frame = stamp_index
-			#add_child(mark)
-			#stamped = true
-			#stuck = false
-			#remove = true
-		#else:
-			#print("No, bad stamp")
-			#
 
 ### logica de passar ou consfiscar ###
 
@@ -118,8 +96,8 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			stamb_receive("res://assets/carimbos/carimboAPROVADO.png")
+			approved = true
 			await get_tree().create_timer(0.10).timeout
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			stamb_receive("res://assets/carimbos/carimboREPROVADO.png")
-		
-			
+			disapproved = true

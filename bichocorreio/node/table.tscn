@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dshim37dpnki" path="res://Stamp.tscn" id="7_6rkjd"]
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
+[ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/funcs/hud_coin.tscn" id="9_qjd42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
 size = Vector2(657, 477)
@@ -53,6 +54,8 @@ position = Vector2(-24.000006, -60.000004)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("9_brvwj")
 script = ExtResource("8_qjd42")
+
+[node name="HudCoin" parent="." unique_id=1077457220 instance=ExtResource("9_qjd42")]
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

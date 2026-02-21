@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var card = ("res://node/card")
+@onready var player = get_node("Life/Player")
+
 var card_scene := preload("res://node/card.tscn")
 var parent = self
 var vel = 15
@@ -33,14 +35,18 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 	var des_accept = Vector2(1500, 85)
 	if pull == true and current_card :
 		if event.is_action_released("click"):
-			if current_card.stuck == false or current_card.cur_color == current_card.CardColor.BLACK:
-				pull = false
-				var tween = create_tween()
-				tween.tween_property(current_card, "position", des_accept, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-				await get_tree().create_timer(0.60).timeout
+			pull = false
+			var tween = create_tween()
+			tween.tween_property(current_card, "position", des_accept, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			await get_tree().create_timer(0.60).timeout
+			if current_card.cur_color != current_card.CardColor.BLACK and current_card.stamped == true and current_card.approved == true:
+				SignalManager.coinup.emit()
 				current_card.queue_free()
 				call_card()
-				
+			else:
+				player.take_damage(1)
+				current_card.queue_free()
+				call_card()
 
 func _on_accept_mouse_entered() -> void:
 	if current_card:
@@ -53,14 +59,18 @@ func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: in
 	var des_confis = Vector2(198, 1000)
 	if pull == true and current_card :
 		if event.is_action_released("click"):
-			if current_card.stuck == false or current_card.cur_color == current_card.CardColor.BLACK:
-				pull = false
-				var tween = create_tween()
-				tween.tween_property(current_card, "position", des_confis, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-				await get_tree().create_timer(0.60).timeout
+			pull = false
+			var tween = create_tween()
+			tween.tween_property(current_card, "position", des_confis, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			await get_tree().create_timer(0.60).timeout
+			if current_card.cur_color == current_card.CardColor.BLACK and current_card.stamped == true and current_card.disapproved == true:
+				SignalManager.coinup.emit()
 				current_card.queue_free()
 				call_card()
-				
+			else:
+				player.take_damage(1)
+				current_card.queue_free()
+				call_card()
 
 func _on_confiscate_mouse_entered() -> void:
 	if current_card:
