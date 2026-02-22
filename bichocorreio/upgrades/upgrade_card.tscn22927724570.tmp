@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://3nrxof30mhh7"]
+
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades.gdshader" id="1_7itkh"]
+[ext_resource type="Script" uid="uid://dj76ffpib5q7i" path="res://upgrades/upgrade_cart_control.gd" id="1_ap2g1"]
+[ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="2_ap2g1"]
+[ext_resource type="Texture2D" uid="uid://dri2igf2bwxry" path="res://assets/upgrades/1_TheMagician_5x.png" id="3_gkhd2"]
+[ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://upgrades/animate_upgrades.gd" id="3_kjbwr"]
+[ext_resource type="Texture2D" uid="uid://c3k32ngaa8h2u" path="res://assets/upgrades/2_theHighPriestess_5x.png" id="4_sk4u4"]
+[ext_resource type="Texture2D" uid="uid://j31wavk6ffja" path="res://assets/upgrades/3_theEmpress_5x.png" id="5_rbodq"]
+[ext_resource type="Texture2D" uid="uid://dn7i2q6pioyki" path="res://assets/carimbos/4_theEmperor_5x.png" id="6_ntdot"]
+[ext_resource type="Texture2D" uid="uid://t0u4oapjl1h4" path="res://assets/upgrades/5_theHierophant_5x.png" id="7_62vf1"]
+[ext_resource type="Shader" uid="uid://bxa43mlmj0kpb" path="res://upgrades/BURN_CARD.gdshader" id="8_sk4u4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rbodq"]
+noise_type = 5
+seed = 17
+frequency = 0.0035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ntdot"]
+noise = SubResource("FastNoiseLite_rbodq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62vf1"]
+shader = ExtResource("8_sk4u4")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_ntdot")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.0999999977648
+shader_parameter/burn_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hol4"]
+shader = ExtResource("1_7itkh")
+shader_parameter/shine_color = Vector4(1, 1, 1, 0.1)
+shader_parameter/shine_speed = 2.40000003576288
+shader_parameter/shine_size = 0.05999999865888
+
+[sub_resource type="Animation" id="Animation_sk4u4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ybfsw"]
+resource_name = "dissolve"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1.1892072, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k40d6"]
+_data = {
+&"RESET": SubResource("Animation_sk4u4"),
+&"dissolve": SubResource("Animation_ybfsw")
+}
+
+[node name="Control" type="Control" unique_id=102528172 node_paths=PackedStringArray("card", "animation")]
+z_index = 200
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ap2g1")
+card = NodePath("SubViewportContainer/SubViewport/TextureRect")
+textures = Array[Texture2D]([ExtResource("2_ap2g1"), ExtResource("3_gkhd2"), ExtResource("4_sk4u4"), ExtResource("5_rbodq"), ExtResource("6_ntdot"), ExtResource("7_62vf1")])
+animation = NodePath("AnimationPlayer")
+upgrade_name = null
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1453586234 node_paths=PackedStringArray("p")]
+material = SubResource("ShaderMaterial_62vf1")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(115, 202.5)
+script = ExtResource("3_kjbwr")
+p = NodePath("..")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=406180881]
+handle_input_locally = false
+size = Vector2i(230, 405)
+size_2d_override = Vector2i(1280, 1080)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=305049079]
+material = SubResource("ShaderMaterial_0hol4")
+offset_right = 230.0
+offset_bottom = 405.00006
+pivot_offset = Vector2(115, 202.5)
+texture = ExtResource("2_ap2g1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244340220]
+root_motion_local = true
+libraries/ = SubResource("AnimationLibrary_k40d6")
+
+[connection signal="gui_input" from="SubViewportContainer" to="." method="_on_sub_viewport_container_gui_input"]
+[connection signal="gui_input" from="SubViewportContainer" to="SubViewportContainer" method="_on_click"]
+[connection signal="mouse_entered" from="SubViewportContainer" to="SubViewportContainer" method="_on_hover"]
+[connection signal="mouse_exited" from="SubViewportContainer" to="SubViewportContainer" method="_on_dishover"]

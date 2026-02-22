@@ -4,15 +4,17 @@ var can_follow = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	z_index = 10
-	visible = false
+	visible = true
 	
-	SignalManager.call_card.connect(enable_stamp)
-	SignalManager.call_card.connect(disable_cursor)
-	SignalManager.stamp.connect(disable_stamp)
+
+	SignalManager.stamp.connect(stamp)
+	SignalManager.bad_stamp.connect(stamp)
+	SignalManager.stamp_pick.connect(stamp)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if can_follow == true:
 		global_position = get_global_mouse_position()
+		
 	
 func disable_cursor():
 	await get_tree().create_timer(0.1).timeout
@@ -30,11 +32,16 @@ func disable_stamp():
 	await get_tree().create_timer(0.30).timeout
 	visible = false
 
+func stamp(f = ""):
+	texture = load("res://assets/formiga_hit.png")
+	await get_tree().create_timer(0.13).timeout
+	texture = load("res://assets/formiga.png")
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				texture = load("res://assets/formiga_hit.png")
+				texture = load("res://assets/formiga_grab.png")
 			else:
 				await get_tree().create_timer(0.13).timeout
 				texture = load("res://assets/formiga.png")

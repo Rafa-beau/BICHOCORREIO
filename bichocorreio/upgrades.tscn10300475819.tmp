@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dpwuw2kawmdui"]
+
+[ext_resource type="Script" uid="uid://caa2xf1tmfoi" path="res://upgrades_menu.gd" id="1_alr6r"]
+[ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="1_k80ou"]
+[ext_resource type="Texture2D" uid="uid://dri2igf2bwxry" path="res://assets/upgrades/1_TheMagician_5x.png" id="3_myp64"]
+[ext_resource type="Texture2D" uid="uid://c3k32ngaa8h2u" path="res://assets/upgrades/2_theHighPriestess_5x.png" id="4_l7sqa"]
+[ext_resource type="Texture2D" uid="uid://j31wavk6ffja" path="res://assets/upgrades/3_theEmpress_5x.png" id="5_usx4g"]
+[ext_resource type="Texture2D" uid="uid://x080nuu3oywt" path="res://assets/upgrades/4_theEmperor_5x.png" id="6_ggyun"]
+[ext_resource type="Texture2D" uid="uid://t0u4oapjl1h4" path="res://assets/upgrades/5_theHierophant_5x.png" id="7_sq08g"]
+[ext_resource type="Texture2D" uid="uid://dn7i2q6pioyki" path="res://assets/carimbos/4_theEmperor_5x.png" id="8_l7sqa"]
+[ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://animate_upgrades.gd" id="8_usx4g"]
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades.gdshader" id="9_ggyun"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sq08g"]
+shader = ExtResource("9_ggyun")
+shader_parameter/shine_color = Vector4(1, 1, 1, 0.1)
+shader_parameter/shine_speed = 2.40000003576288
+shader_parameter/shine_size = 0.05999999865888
+
+[node name="Control" type="Control" unique_id=1552963297]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alr6r")
+upgrades = {
+0: ExtResource("1_k80ou"),
+1: ExtResource("3_myp64"),
+2: ExtResource("4_l7sqa"),
+3: ExtResource("5_usx4g"),
+4: ExtResource("6_ggyun"),
+5: ExtResource("7_sq08g")
+}
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1630020594]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -3.0
+offset_right = 1168.0
+offset_bottom = 663.0
+color = Color(0, 0, 0, 0.19215687)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1100245882]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.475
+anchor_top = 0.685
+anchor_right = 1.5
+anchor_bottom = 0.7
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-546, 194)
+theme_override_constants/separation = 100
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1305165860]
+layout_mode = 2
+script = ExtResource("8_usx4g")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control" unique_id=920491220]
+material = SubResource("ShaderMaterial_sq08g")
+layout_mode = 0
+offset_left = -990.0
+offset_right = -760.0
+offset_bottom = 405.0
+pivot_offset = Vector2(115, 202.5)
+texture = ExtResource("1_k80ou")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Control" unique_id=386645688]
+material = SubResource("ShaderMaterial_sq08g")
+layout_mode = 0
+offset_left = -660.0
+offset_right = -430.0
+offset_bottom = 405.0
+pivot_offset = Vector2(115, 202.5)
+texture = ExtResource("8_l7sqa")
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Control" unique_id=993905347]
+material = SubResource("ShaderMaterial_sq08g")
+layout_mode = 0
+offset_left = -330.0
+offset_right = -100.0
+offset_bottom = 405.0
+pivot_offset = Vector2(115, 202.5)
+texture = ExtResource("3_myp64")
+
+[connection signal="gui_input" from="HBoxContainer/Control/TextureRect" to="HBoxContainer/Control" method="_on_click_TextureRect1"]
+[connection signal="mouse_entered" from="HBoxContainer/Control/TextureRect" to="HBoxContainer/Control" method="_on_hover_TextureRect1"]
+[connection signal="mouse_exited" from="HBoxContainer/Control/TextureRect" to="HBoxContainer/Control" method="_on_dishover_TextureRect1"]
+[connection signal="gui_input" from="HBoxContainer/Control/TextureRect2" to="HBoxContainer/Control" method="_on_click_TextureRect2"]
+[connection signal="mouse_entered" from="HBoxContainer/Control/TextureRect2" to="HBoxContainer/Control" method="_on_hover_TextureRect2"]
+[connection signal="mouse_exited" from="HBoxContainer/Control/TextureRect2" to="HBoxContainer/Control" method="_on_dishover_TextureRect2"]
+[connection signal="gui_input" from="HBoxContainer/Control/TextureRect3" to="HBoxContainer/Control" method="_on_click_TextureRect3"]
+[connection signal="mouse_entered" from="HBoxContainer/Control/TextureRect3" to="HBoxContainer/Control" method="_on_hover_TextureRect3"]
+[connection signal="mouse_exited" from="HBoxContainer/Control/TextureRect3" to="HBoxContainer/Control" method="_on_dishover_TextureRect3"]

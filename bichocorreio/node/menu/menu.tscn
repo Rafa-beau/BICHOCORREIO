@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://c8vkeuto5ftdq"]
+
+[ext_resource type="Script" uid="uid://drq8t3lnvqexm" path="res://script/ui/menu.gd" id="1_267q8"]
+[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="3_267q8"]
+[ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="3_ly7kv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8idm0"]
+shader = ExtResource("3_267q8")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/pixel_size = 14.0
+shader_parameter/resolution = Vector2(400, 400)
+shader_parameter/dither_offset = Vector2(2, 0)
+shader_parameter/bayer_size = 1
+shader_parameter/interpolate = true
+shader_parameter/invert = true
+shader_parameter/falloff = 6.58800030967012
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_y2wa0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jpf8g"]
+resource_name = "transition_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.02800004883, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l2yxd"]
+resource_name = "transition_out"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1333333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.02800004883]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ly7kv"]
+_data = {
+&"RESET": SubResource("Animation_y2wa0"),
+&"transition_in": SubResource("Animation_jpf8g"),
+&"transition_out": SubResource("Animation_l2yxd")
+}
+
+[sub_resource type="Shader" id="Shader_egnvw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_td45c"]
+render_priority = 0
+shader = SubResource("Shader_egnvw")
+
+[node name="Menu" type="Control" unique_id=290282353 node_paths=PackedStringArray("transition", "animation")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_267q8")
+transition = NodePath("Transition")
+animation = NodePath("Transition/AnimationPlayer")
+
+[node name="Transition" type="ColorRect" parent="." unique_id=1690316749]
+z_index = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_8idm0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=1782791435]
+libraries/ = SubResource("AnimationLibrary_ly7kv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1217506792]
+material = SubResource("ShaderMaterial_td45c")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0.15294118, 0.14509805, 1)
+
+[node name="Label" type="Label" parent="." unique_id=576041024]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 49.0
+offset_right = 891.0
+offset_bottom = 187.0
+theme = ExtResource("3_ly7kv")
+text = "BICHOCORREÇÃO"
+
+[node name="Button" type="Button" parent="." unique_id=1171957681]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 181.0
+offset_right = 865.0
+offset_bottom = 372.0
+theme = ExtResource("3_ly7kv")
+text = "Jogar!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://3nrxof30mhh7"]
+
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades.gdshader" id="1_7itkh"]
+[ext_resource type="Script" uid="uid://dj76ffpib5q7i" path="res://upgrades/upgrade_cart_control.gd" id="1_ap2g1"]
+[ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="2_ap2g1"]
+[ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://upgrades/animate_upgrades.gd" id="3_kjbwr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hol4"]
+shader = ExtResource("1_7itkh")
+shader_parameter/shine_color = Vector4(1, 1, 1, 0.1)
+shader_parameter/shine_speed = 2.40000003576288
+shader_parameter/shine_size = 0.05999999865888
+
+[node name="Control" type="Control" unique_id=102528172]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ap2g1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=305049079]
+material = SubResource("ShaderMaterial_0hol4")
+layout_mode = 0
+offset_top = -1.0
+offset_right = 230.0
+offset_bottom = 404.0
+pivot_offset = Vector2(115, 202.5)
+texture = ExtResource("2_ap2g1")
+script = ExtResource("3_kjbwr")
+
+[connection signal="gui_input" from="TextureRect" to="TextureRect" method="_on_click_TextureRect"]
+[connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_hover_TextureRect"]
+[connection signal="mouse_exited" from="TextureRect" to="TextureRect" method="_on_dishover_TextureRect"]

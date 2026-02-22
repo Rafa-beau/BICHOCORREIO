@@ -72,32 +72,38 @@ func _process(delta):
 			remove_card()
 
 # carimbador thur
-func stamp_receive(stamp_path: String):
-	if not StampManager.can_stamp():
-		print("cabou a tinta")
-		return
-	if not stamped:
-		
-		stamp_sprite.modulate.a = StampManager.get_next_opacity()
-		stamp_sprite.texture = load(stamp_path)
-		
-		
-		SignalManager.stamp.emit()
-		
-		Utils.enable_cursor()
-		
-		stamped = true
-		
-	else:
+func stamp_receive(stamp_path = null):
+	if stamp_path:
+		if not StampManager.can_stamp():
+			SignalManager.bad_stamp.emit()
+			print("Bad Stamb")
+			return
+		if not stamped:
+			
+			stamp_sprite.modulate.a = StampManager.get_next_opacity()
+			stamp_sprite.texture = load(stamp_path)
+			
+			
+			SignalManager.stamp.emit()
+			
+			Utils.enable_cursor()
+			
+			stamped = true
+			return
+			
+		SignalManager.bad_stamp.emit()
 		print("Bad Stamb")
-
-
+		return
+	SignalManager.bad_stamp.emit()
+	print("Bad Stamb")
+	
 # fazer a carta sumir
 func remove_card():
 	queue_free()
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
+		stamp_receive()
 		if StampManager.current_color == Color.GREEN:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				stamp_receive("res://assets/carimbos/carimboAPROVADO.png")

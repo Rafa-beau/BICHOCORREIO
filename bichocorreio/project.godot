@@ -25,6 +25,7 @@ StampManager="*uid://g1s2qj4igdyq"
 [display]
 
 window/stretch/mode="canvas_items"
+window/quality/msaa_2d=3
 
 [input]
 
@@ -51,4 +52,3 @@ click-right={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-anti_aliasing/quality/msaa_2d=3
