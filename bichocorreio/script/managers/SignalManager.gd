@@ -6,14 +6,14 @@ signal despause
 
 signal coinup
 
-
+signal accept
+signal reject
 
 ### Signais do carimbor (saber se tem cor ainda, etc)
-signal stamp_pick(color: String) #signal para pegar carimbo verde
+signal stamp_pick(color: Color) #signal para pegar carimbo verde
 signal stamp_has_color(has: bool)
 signal bad_stamp
 signal stamp
-
 
 ### Sinals do Upgrade
 

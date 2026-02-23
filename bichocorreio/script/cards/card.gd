@@ -10,9 +10,12 @@ var start_pos: Vector2
 var offset
 var rng = RandomNumberGenerator.new()
 
+
 var original_position: Vector2
 
-@onready var stamp_sprite: Sprite2D = $Sprite2D
+
+@onready var stamp: Sprite2D = $Stamp
+@onready var card_frame: Sprite2D = $Card
 
 
 func CardType(probability: float):
@@ -20,14 +23,15 @@ func CardType(probability: float):
 	return random_value < probability
 
 func _ready():
-	$Card.frame = 0
-	var blue_chance = 0.2
+	stamp.hide()
+	card_frame.frame = 0
+	var blue_chance = 1
 	
 	if CardType(blue_chance):
-		$Card.frame = 1
+		card_frame.frame = 1
 		water = true
 	else:
-		$Card.frame = 0
+		card_frame.frame = 0
 		water = false
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -48,8 +52,8 @@ func stamp_receive(stamp_path = null):
 			return
 		if not stamped:
 			
-			stamp_sprite.modulate.a = StampManager.get_next_opacity()
-			stamp_sprite.texture = load(stamp_path)
+			stamp.modulate.a = StampManager.get_next_opacity()
+			stamp.texture = load(stamp_path)
 			
 			
 			SignalManager.stamp.emit()
@@ -66,24 +70,37 @@ func stamp_receive(stamp_path = null):
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if StampManager.current_color == Color.GREEN:
-			if event.button_index == MOUSE_BUTTON_LEFT:
-				stamp_receive("res://assets/carimbos/carimboAPROVADO.png")
-				await get_tree().create_timer(0.10).timeout
-				approved = true
-				water_stamp = false
-			elif event.button_index == MOUSE_BUTTON_RIGHT:
-				stamp_receive("res://assets/carimbos/carimboREPROVADO.png")
-				disapproved = true
-				water_stamp = false
-			return
-		if StampManager.current_color == Color.BLUE:
-			if event.button_index == MOUSE_BUTTON_LEFT:
-				stamp_receive("res://assets/carimbos/carimboAPROVADOagua.png")
-				await get_tree().create_timer(0.10).timeout
-				approved = true
-				water_stamp = true
-			elif event.button_index == MOUSE_BUTTON_RIGHT:
-				stamp_receive("res://assets/carimbos/carimboREPROVADOagua.png")
-				disapproved = true
-				water_stamp = true
-			return
+			if not stamped:
+				if event.button_index == MOUSE_BUTTON_LEFT:
+					stamp.show()
+					stamp.frame = 0
+					await get_tree().create_timer(0.10).timeout
+					approved = true
+					water_stamp = false
+					stamped = true
+				elif event.button_index == MOUSE_BUTTON_RIGHT:
+					stamp.show()
+					stamp.frame = 2
+					await get_tree().create_timer(0.10).timeout
+					disapproved = true
+					water_stamp = false
+					stamped = true
+				return
+			if StampManager.current_color == Color.BLUE:
+				print ("Bad Stamb")
+				if event.button_index == MOUSE_BUTTON_LEFT:
+					print ("Bad Stamb")
+					stamp.show()
+					stamp.frame = 1
+					await get_tree().create_timer(0.10).timeout
+					approved = true
+					water_stamp = true
+					stamped = true
+				elif event.button_index == MOUSE_BUTTON_RIGHT:
+					print ("Bad Stamb")
+					stamp.show()
+					stamp.frame = 3
+					disapproved = true
+					water_stamp = true
+					stamped = true
+				return

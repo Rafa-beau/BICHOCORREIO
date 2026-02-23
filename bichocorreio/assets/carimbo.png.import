@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn7i2q6pioyki"
-path="res://.godot/imported/4_theEmperor_5x.png-1bfac3acb4a661c03c6e6ea7bb3b0316.ctex"
+uid="uid://d3ok0jo73ppes"
+path="res://.godot/imported/carimbo.png-905e131bc9ad1137a5c9f37bea605a53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carimbos/4_theEmperor_5x.png"
-dest_files=["res://.godot/imported/4_theEmperor_5x.png-1bfac3acb4a661c03c6e6ea7bb3b0316.ctex"]
+source_file="res://assets/carimbo.png"
+dest_files=["res://.godot/imported/carimbo.png-905e131bc9ad1137a5c9f37bea605a53.ctex"]
 
 [params]
 
