@@ -44,11 +44,17 @@ func _unhandled_input(event):
 		if event is InputEventMouseButton and not event.pressed:
 			dragging = false
 	
+	
+func stamp_wears():
+	stamp.modulate.a = StampManager.get_next_opacity()
+	return
+	
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		if not stamped:
+		if not stamped and StampManager.can_stamp():
 			if StampManager.current_color == Color.GREEN:
 				if event.button_index == MOUSE_BUTTON_LEFT:
+					stamp.modulate.a = StampManager.get_next_opacity()
 					stamp.show()
 					stamp.frame = 0
 					await get_tree().create_timer(0.10).timeout
@@ -56,6 +62,7 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 					stamped = true
 					SignalManager.stamp.emit()
 				elif event.button_index == MOUSE_BUTTON_RIGHT:
+					stamp.modulate.a = StampManager.get_next_opacity()
 					stamp.show()
 					stamp.frame = 2
 					await get_tree().create_timer(0.10).timeout
@@ -65,6 +72,7 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 				return
 			if StampManager.current_color == Color.BLUE:
 				if event.button_index == MOUSE_BUTTON_LEFT:
+					stamp.modulate.a = StampManager.get_next_opacity()
 					print ("Bad Stamb")
 					stamp.show()
 					stamp.frame = 1
@@ -74,6 +82,7 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 					stamped = true
 					SignalManager.stamp.emit()
 				elif event.button_index == MOUSE_BUTTON_RIGHT:
+					stamp.modulate.a = StampManager.get_next_opacity()
 					stamp.show()
 					stamp.frame = 3
 					disapproved = true
