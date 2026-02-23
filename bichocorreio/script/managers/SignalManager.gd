@@ -1,11 +1,13 @@
 extends Node
 signal call_card
-
 signal pause
 signal despause
 
-signal coinup
 
+### Signals pro PlayerManager/Player | Turno
+signal life_changed(life)
+signal died
+signal coinchange(coin_int: int)
 signal accept
 signal reject
 

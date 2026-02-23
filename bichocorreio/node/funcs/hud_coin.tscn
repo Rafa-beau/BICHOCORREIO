@@ -3,7 +3,15 @@
 [ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="1_a2jqj"]
 [ext_resource type="Script" uid="uid://dbtxhugwtxln2" path="res://script/ui/Player/HudCoin.gd" id="2_cqo1h"]
 
-[node name="HudCoin" type="Label" unique_id=1077457220]
+[node name="Control" type="Control" unique_id=1947126241]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_cqo1h")
+
+[node name="HudCoin" type="Label" parent="." unique_id=1077457220]
+layout_mode = 0
 offset_left = 806.0
 offset_top = -15.0
 offset_right = 1146.0
@@ -11,4 +19,8 @@ offset_bottom = 92.0
 theme = ExtResource("1_a2jqj")
 text = "0"
 horizontal_alignment = 2
-script = ExtResource("2_cqo1h")
+
+[node name="HudLife" type="HBoxContainer" parent="." unique_id=1890122312]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

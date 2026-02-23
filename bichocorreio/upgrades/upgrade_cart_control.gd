@@ -2,7 +2,6 @@ extends Control
 
 @export var card: Node
 @export var card_viewport: SubViewportContainer
-@export var textures: Array[Texture2D]
 @export var upgrade_name = ""
 var upgrades = []
 
@@ -17,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
+
 func burn_card(up_name):
 	if up_name == upgrade_name:
 		return

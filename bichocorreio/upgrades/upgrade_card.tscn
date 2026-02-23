@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dj76ffpib5q7i" path="res://upgrades/upgrade_cart_control.gd" id="1_ap2g1"]
 [ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="2_ap2g1"]
 [ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://upgrades/animate_upgrades.gd" id="3_kjbwr"]
+[ext_resource type="Texture2D" uid="uid://b5f5suxqldqbx" path="res://assets/upgrades/shine.png" id="5_kjbwr"]
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades_shine.gdshader" id="5_y7ayy"]
 [ext_resource type="Shader" uid="uid://bxa43mlmj0kpb" path="res://upgrades/BURN_CARD.gdshader" id="8_sk4u4"]
-[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades.gdshader" id="9_gkhd2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rbodq"]
 noise_type = 5
@@ -22,10 +23,17 @@ shader_parameter/burn_size = 0.0999999977648
 shader_parameter/burn_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk4u4"]
-shader = ExtResource("9_gkhd2")
-shader_parameter/shine_color = Vector4(0, 0, 0, 0)
-shader_parameter/shine_speed = 4.90000007301588
-shader_parameter/shine_size = 0.0999999977648
+shader = ExtResource("5_y7ayy")
+shader_parameter/Line_Smoothness = 0.10000000149012
+shader_parameter/Line_Width = 0.074000003515
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.1450000068875
+shader_parameter/Speed = 0.4
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 0.1030000048925
 
 [sub_resource type="Animation" id="Animation_sk4u4"]
 length = 0.001
@@ -91,9 +99,13 @@ size_2d_override = Vector2i(1280, 1080)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=616913304]
-material = SubResource("ShaderMaterial_sk4u4")
 position = Vector2(116, 203)
 texture = ExtResource("2_ap2g1")
+
+[node name="Shine" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1086099792]
+material = SubResource("ShaderMaterial_sk4u4")
+position = Vector2(116, 203)
+texture = ExtResource("5_kjbwr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244340220]
 root_motion_local = true

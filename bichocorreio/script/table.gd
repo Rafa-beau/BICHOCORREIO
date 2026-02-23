@@ -2,6 +2,7 @@ extends Node2D
 
 @export var card_scene: PackedScene
 @export var player: GDScript
+@export var transition: ColorRect
 
 var parent = self
 var vel = 15
@@ -9,10 +10,39 @@ var current_card
 var pull = false
 
 func _ready() -> void:
+	transition.anim.play("transition_out")
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	call_card()
-	SignalManager.accept.connect(accept)
-	SignalManager.reject.connect(reject)
+	init_turn(10)
+	
+### SISTEMA DE TURNO
+var turn_index: int
+var turn_controler: int
+var can_pass_turn: bool
+
+# iniciar turno
+func init_turn(qtd_provas: int):
+	turn_index = qtd_provas
+	turn_controler = 0
+	await exec_turn()
+	end_turn()
+	
+# executar turno
+func exec_turn():
+	while turn_controler < turn_index:
+		can_pass_turn = false
+		call_card()
+		print("turno iniciado")
+		while (can_pass_turn != true):
+			await Utils.timer(0.2)
+		turn_controler += 1
+	
+# finalizar turno
+func end_turn():
+	pass
+
+
+
+
 
 
 ### SPAWNAR CARTA
@@ -31,24 +61,28 @@ func call_card():
 func reject():
 	player.take_damage(1)
 	current_card.queue_free()
-	call_card()
+	can_pass_turn = true
 	print("rejeitou")
 
 func accept():
-	SignalManager.coinup.emit()
+	coin_up()
 	current_card.queue_free()
-	call_card()
+	can_pass_turn = true
 	print("ceitou")
+
+func coin_up():
+	SignalManager.coinchange.emit(current_card.coins)
 	
 func next_card():
 	if current_card:
 		current_card.queue_free()
+		next_card()
 
 ### MOVIMENTO
 func move_card(des):
 	var tween = create_tween()
 	tween.tween_property(current_card, "position", des, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	await get_tree().create_timer(0.60).timeout
+	await Utils.timer(0.6)
 	return
 
 ### VALIDATORES
@@ -57,7 +91,7 @@ func accept_validate() -> bool:
 		current_card.water = false
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		return false
+		return true
 	return false
 	
 func confiscate_validate() -> bool:
@@ -66,7 +100,7 @@ func confiscate_validate() -> bool:
 		current_card.water = false
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		return false
+		return true
 	return false
 		
 ### ACEITAR E CONFISCAR - CLICK

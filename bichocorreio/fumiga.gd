@@ -17,19 +17,20 @@ func _process(delta: float) -> void:
 		
 	
 func disable_cursor():
-	await get_tree().create_timer(0.1).timeout
+	await Utils.timer(0.1)
 	Utils.disable_cursor()
 
 func enable_stamp():
 	can_follow = true
-	await get_tree().create_timer(0.1).timeout
+	await Utils.timer(0.1)
 	modulate.a = 1
 	visible = true
 	
 func disable_stamp():
 	can_follow = false
 	create_tween().tween_property(self, "modulate:a", 0.0, 0.3)
-	await get_tree().create_timer(0.30).timeout
+	await Utils.timer(0.3)
+
 	visible = false
 
 func stamp(f = ""):
@@ -42,5 +43,5 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			texture = load("res://assets/formiga_grab.png")
 		else:
-			await get_tree().create_timer(0.13).timeout
+			await Utils.timer(0.13)
 			texture = load("res://assets/formiga.png")

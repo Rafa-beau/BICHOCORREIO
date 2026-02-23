@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://c8k8wgi5jrs0o"]
+
+[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="1_q3ong"]
+[ext_resource type="Script" uid="uid://dvslycvlauodp" path="res://transition/color_rect.gd" id="2_opuju"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jaa4l"]
+shader = ExtResource("1_q3ong")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/pixel_size = 14.0
+shader_parameter/resolution = Vector2(400, 400)
+shader_parameter/dither_offset = Vector2(2, 0)
+shader_parameter/bayer_size = 1
+shader_parameter/interpolate = true
+shader_parameter/invert = true
+shader_parameter/falloff = 6.58800030967012
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_y2wa0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jpf8g"]
+resource_name = "transition_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.02800004883, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l2yxd"]
+resource_name = "transition_out"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1333333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.02800004883]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjbs3"]
+_data = {
+&"RESET": SubResource("Animation_y2wa0"),
+&"transition_in": SubResource("Animation_jpf8g"),
+&"transition_out": SubResource("Animation_l2yxd")
+}
+
+[node name="ColorRect" type="ColorRect" unique_id=33267722 node_paths=PackedStringArray("anim")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_jaa4l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("2_opuju")
+anim = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=102400498]
+libraries/ = SubResource("AnimationLibrary_tjbs3")

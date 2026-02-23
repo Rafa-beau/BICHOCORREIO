@@ -1,11 +1,12 @@
 extends Area2D
 
-var dragging = false
-var stamped = false
-var approved = false
-var disapproved = false
-var water = false
-var water_stamp = false
+var dragging: bool
+var stamped: bool
+var approved: bool
+var disapproved: bool
+var water: bool
+var water_stamp: bool
+var coins: int = 1
 var start_pos: Vector2
 var offset
 var rng = RandomNumberGenerator.new()
@@ -30,9 +31,11 @@ func _ready():
 	if CardType(blue_chance):
 		card_frame.frame = 1
 		water = true
+		coins = 2
 	else:
 		card_frame.frame = 0
 		water = false
+		coins = 1
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -57,7 +60,6 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 					stamp.modulate.a = StampManager.get_next_opacity()
 					stamp.show()
 					stamp.frame = 0
-					await get_tree().create_timer(0.10).timeout
 					approved = true
 					stamped = true
 					SignalManager.stamp.emit()
@@ -65,7 +67,6 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 					stamp.modulate.a = StampManager.get_next_opacity()
 					stamp.show()
 					stamp.frame = 2
-					await get_tree().create_timer(0.10).timeout
 					disapproved = true
 					stamped = true
 					SignalManager.stamp.emit()

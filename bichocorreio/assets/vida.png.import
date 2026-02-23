@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j31wavk6ffja"
-path="res://.godot/imported/3_theEmpress_5x.png-be10833941e634b4f7226a4ff0a3f4a7.ctex"
+uid="uid://63bw5gqnyjt5"
+path="res://.godot/imported/vida.png-795bfd38d0aa43bd22b9419103b571f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/upgrades/3_theEmpress_5x.png"
-dest_files=["res://.godot/imported/3_theEmpress_5x.png-be10833941e634b4f7226a4ff0a3f4a7.ctex"]
+source_file="res://assets/vida.png"
+dest_files=["res://.godot/imported/vida.png-795bfd38d0aa43bd22b9419103b571f2.ctex"]
 
 [params]
 
