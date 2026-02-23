@@ -2,15 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dj76ffpib5q7i" path="res://upgrades/upgrade_cart_control.gd" id="1_ap2g1"]
 [ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="2_ap2g1"]
-[ext_resource type="Texture2D" uid="uid://dri2igf2bwxry" path="res://assets/upgrades/1_TheMagician_5x.png" id="3_gkhd2"]
 [ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://upgrades/animate_upgrades.gd" id="3_kjbwr"]
-[ext_resource type="Texture2D" uid="uid://c3k32ngaa8h2u" path="res://assets/upgrades/2_theHighPriestess_5x.png" id="4_sk4u4"]
-[ext_resource type="Texture2D" uid="uid://j31wavk6ffja" path="res://assets/upgrades/3_theEmpress_5x.png" id="5_rbodq"]
-[ext_resource type="Texture2D" uid="uid://t0u4oapjl1h4" path="res://assets/upgrades/5_theHierophant_5x.png" id="7_62vf1"]
 [ext_resource type="Shader" uid="uid://bxa43mlmj0kpb" path="res://upgrades/BURN_CARD.gdshader" id="8_sk4u4"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1rlk"]
-load_path = "res://.godot/imported/4_theEmperor_5x.png-1bfac3acb4a661c03c6e6ea7bb3b0316.ctex"
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades.gdshader" id="9_gkhd2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rbodq"]
 noise_type = 5
@@ -26,6 +20,12 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_ntdot")
 shader_parameter/dissolve_value = 1.0
 shader_parameter/burn_size = 0.0999999977648
 shader_parameter/burn_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk4u4"]
+shader = ExtResource("9_gkhd2")
+shader_parameter/shine_color = Vector4(0, 0, 0, 0)
+shader_parameter/shine_speed = 4.90000007301588
+shader_parameter/shine_size = 0.0999999977648
 
 [sub_resource type="Animation" id="Animation_sk4u4"]
 length = 0.001
@@ -63,7 +63,7 @@ _data = {
 &"dissolve": SubResource("Animation_ybfsw")
 }
 
-[node name="Control" type="Control" unique_id=102528172 node_paths=PackedStringArray("card", "card_viewport")]
+[node name="Control" type="Control" unique_id=102528172 node_paths=PackedStringArray("card_viewport")]
 z_index = 200
 layout_mode = 3
 anchors_preset = 15
@@ -72,9 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ap2g1")
-card = NodePath("")
 card_viewport = NodePath("SubViewportContainer")
-textures = Array[Texture2D]([ExtResource("2_ap2g1"), ExtResource("3_gkhd2"), ExtResource("4_sk4u4"), ExtResource("5_rbodq"), SubResource("CompressedTexture2D_h1rlk"), ExtResource("7_62vf1")])
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1453586234 node_paths=PackedStringArray("p")]
 material = SubResource("ShaderMaterial_62vf1")
@@ -93,7 +91,8 @@ size_2d_override = Vector2i(1280, 1080)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=616913304]
-position = Vector2(120, 200)
+material = SubResource("ShaderMaterial_sk4u4")
+position = Vector2(116, 203)
 texture = ExtResource("2_ap2g1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244340220]
