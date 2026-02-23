@@ -12,46 +12,6 @@ var upgrade_texture: Texture2D
 func _ready() -> void:	
 	var material_burn = card_viewport.material.duplicate()
 	card_viewport.material = material_burn	
-	upgrades = [
-		{
-		"upgrade_name": "fool",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[0]
-		},
-		{
-		"upgrade_name": "magician",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[1]
-		},
-		{
-		"upgrade_name": "priestess",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[2]
-		},
-		{
-		"upgrade_name": "empress",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[3]
-		},
-		{
-		"upgrade_name": "emperor",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[4]
-		},
-		{
-		"upgrade_name": "hiero",
-		"upgrade_cost": 0,
-		"upgrade_texture": textures[5]
-		}
-		]
-	
-	var upgrade_cart = upgrades.pick_random()
-	
-	upgrade_name = upgrade_cart["upgrade_name"]
-	upgrade_cost = upgrade_cart["upgrade_cost"]
-	upgrade_texture = upgrade_cart["upgrade_texture"]
-	
-	card.texture = upgrade_texture
 	SignalManager.upgrade_clicked.connect(burn_card)
 	pass
 

@@ -231,7 +231,7 @@ _data = {
 &"Spawn": SubResource("Animation_618ed")
 }
 
-[node name="Control" type="Control" unique_id=1552963297 node_paths=PackedStringArray("animation_fly", "nodes")]
+[node name="Control2" type="Control" unique_id=1552963297 node_paths=PackedStringArray("animation_fly", "nodes")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

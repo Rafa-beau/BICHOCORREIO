@@ -53,11 +53,12 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 			await get_tree().create_timer(0.60).timeout
 			if current_card.water == true:
 				if current_card.water_stamp == true:
+					current_card.water == false
 					accept()
 				else:
 					reject()
-			if current_card.water == true:
-				if current_card.water_stamp == false:
+			elif current_card.water == false:
+				if current_card.water_stamp == false and current_card.stamped == true:
 					accept()
 				else:
 					reject()
