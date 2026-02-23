@@ -23,3 +23,6 @@ func disable_cursor():
 func enable_cursor():
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func timer(sec: float):
+	await get_tree().create_timer(sec).timeout

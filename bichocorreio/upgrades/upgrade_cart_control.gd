@@ -2,14 +2,12 @@ extends Control
 
 @export var card: Node
 @export var card_viewport: SubViewportContainer
-@export var textures: Array[Texture2D]
 @export var upgrade_name = ""
 var upgrades = []
 
-var upgrade_cost: int
-var upgrade_texture: Texture2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
+	
 	var material_burn = card_viewport.material.duplicate()
 	card_viewport.material = material_burn	
 	SignalManager.upgrade_clicked.connect(burn_card)
@@ -18,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
+
 func burn_card(up_name):
 	if up_name == upgrade_name:
 		return

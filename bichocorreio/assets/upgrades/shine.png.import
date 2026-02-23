@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xisa34aycxx"
-path="res://.godot/imported/coracao.webp-627875e697cb93d4057dae0113478b94.ctex"
+uid="uid://b5f5suxqldqbx"
+path="res://.godot/imported/shine.png-892f39b8c5622ef393855ebd79e4c9d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/coracao.webp"
-dest_files=["res://.godot/imported/coracao.webp-627875e697cb93d4057dae0113478b94.ctex"]
+source_file="res://assets/upgrades/shine.png"
+dest_files=["res://.godot/imported/shine.png-892f39b8c5622ef393855ebd79e4c9d8.ctex"]
 
 [params]
 

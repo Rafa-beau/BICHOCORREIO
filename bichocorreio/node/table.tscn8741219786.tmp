@@ -3,49 +3,13 @@
 [ext_resource type="Script" uid="uid://xiw65vp3v28v" path="res://script/table.gd" id="1_7w2ib"]
 [ext_resource type="PackedScene" uid="uid://cb0on76tdbam5" path="res://node/card.tscn" id="2_brvwj"]
 [ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/table.png" id="2_mthqe"]
+[ext_resource type="Script" uid="uid://b2672wrwjrji7" path="res://script/PlayerLifeConnector.gd" id="4_e76hu"]
+[ext_resource type="PackedScene" uid="uid://dmsynnmv0iovo" path="res://node/ui/life/HudLife.tscn" id="5_e76hu"]
+[ext_resource type="Script" uid="uid://ccisha6ix6sjx" path="res://script/player/Player.gd" id="6_7w2ib"]
 [ext_resource type="PackedScene" uid="uid://dshim37dpnki" path="res://node/Stamp.tscn" id="7_6rkjd"]
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
-[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="9_5jmgm"]
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
 [ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/funcs/hud_coin.tscn" id="9_qjd42"]
-[ext_resource type="PackedScene" uid="uid://c8k8wgi5jrs0o" path="res://transition/color_rect.tscn" id="11_5jmgm"]
-
-[sub_resource type="GDScript" id="GDScript_qjd42"]
-script/source = "extends Node
-
-var max_life = 3
-var current_life = max_life
-var coin = 0
-
-signal life_changed(current_life)
-signal died
-
-func _ready() -> void:
-	SignalManager.coinup.connect(coinup)
-
-# tomar dano
-func take_damage(amount):
-	current_life -= amount
-	current_life = max(current_life, 0)
-	
-	emit_signal(\"life_changed\", current_life)
-	
-	if current_life == 0:
-		die()
-		
-
-#morrer
-
-func die():
-	emit_signal(\"died\")
-
-func _input(event: InputEvent) -> void:
-	if event.is_action(\"ui_accept\"):
-		take_damage(1)
-
-func coinup():
-	coin += 1
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
 size = Vector2(657, 477)
@@ -53,24 +17,10 @@ size = Vector2(657, 477)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
 size = Vector2(784, 419)
 
-[node name="Table" type="Node2D" unique_id=1511156028 node_paths=PackedStringArray("transition")]
+[node name="Table" type="Node2D" unique_id=1511156028]
 script = ExtResource("1_7w2ib")
 card_scene = ExtResource("2_brvwj")
-player = SubResource("GDScript_qjd42")
-transition = NodePath("Control/ColorRect")
-
-[node name="Control" type="Control" parent="." unique_id=475472182]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="ColorRect" parent="Control" unique_id=33267722 instance=ExtResource("11_5jmgm")]
-z_index = 1000
-layout_mode = 1
-scale = Vector2(28.76993, 16.279999)
-mouse_filter = 2
+player = ExtResource("6_7w2ib")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
 position = Vector2(576, 324)
@@ -89,6 +39,14 @@ shape = SubResource("RectangleShape2D_e76hu")
 position = Vector2(245, 632.5)
 shape = SubResource("RectangleShape2D_7w2ib")
 
+[node name="Life" type="Node2D" parent="." unique_id=1556179960]
+script = ExtResource("4_e76hu")
+
+[node name="HudLife" parent="Life" unique_id=164941465 instance=ExtResource("5_e76hu")]
+
+[node name="Player" type="Node" parent="Life" unique_id=1935294341]
+script = ExtResource("6_7w2ib")
+
 [node name="Stamp" parent="." unique_id=1663195992 instance=ExtResource("7_6rkjd")]
 position = Vector2(684, 422)
 
@@ -100,9 +58,7 @@ scale = Vector2(0.55, 0.55)
 texture = ExtResource("9_brvwj")
 script = ExtResource("8_qjd42")
 
-[node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_qjd42")]
-z_index = 100
-life_icon = ExtResource("9_5jmgm")
+[node name="HudCoin" parent="." unique_id=1077457220 instance=ExtResource("9_qjd42")]
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]
