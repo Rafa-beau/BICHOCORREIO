@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dd3cvs462sw3g"]
+
+[ext_resource type="Texture2D" uid="uid://6pd32fce586i" path="res://assets/maos.png" id="1_g7gvq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4l3xd"]
+radius = 54.5
+height = 176.0
+
+[node name="Paws" type="Area2D" unique_id=2096880879]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462490435]
+position = Vector2(260.00006, 186.99998)
+scale = Vector2(0.516217, 0.4820513)
+texture = ExtResource("1_g7gvq")
+hframes = 4
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1201682298]
+position = Vector2(255, 185)
+scale = Vector2(0.99999994, 1)
+shape = SubResource("CapsuleShape2D_4l3xd")

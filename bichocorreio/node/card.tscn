@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cb0on76tdbam5"]
 
 [ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/cards/card.gd" id="1_b70dl"]
+[ext_resource type="Texture2D" uid="uid://be7ixgqolkwlw" path="res://assets/papeis.png" id="2_kpnyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
-size = Vector2(349, 463)
+size = Vector2(578, 456)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
-size = Vector2(202, 99)
+size = Vector2(188, 135)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kpnyg"]
 load_path = "res://.godot/imported/carimboAPROVADO.png-f1df75ad4f8357c006d3d4550d5a0f8e.ctex"
@@ -14,31 +15,27 @@ load_path = "res://.godot/imported/carimboAPROVADO.png-f1df75ad4f8357c006d3d4550
 [node name="Card" type="Area2D" unique_id=647703974]
 script = ExtResource("1_b70dl")
 
+[node name="Card" type="Sprite2D" parent="." unique_id=1486517222]
+position = Vector2(289.5, 225.49997)
+scale = Vector2(0.60104173, 0.5416666)
+texture = ExtResource("2_kpnyg")
+hframes = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552224773]
-position = Vector2(175.5, 231.5)
+position = Vector2(290, 228)
 shape = SubResource("RectangleShape2D_rjgdm")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=624667224]
-offset_right = 349.0
-offset_bottom = 463.0
-mouse_filter = 2
-
-[node name="Stamp" type="ColorRect" parent="." unique_id=1551326070]
-offset_right = 202.0
-offset_bottom = 98.0
-mouse_filter = 2
-color = Color(1, 0.5686275, 0.6117647, 1)
+debug_color = Color(0.9825526, 0, 0.36536703, 0.41960785)
 
 [node name="StampPlace" type="Area2D" parent="." unique_id=82034314]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StampPlace" unique_id=25307432]
-position = Vector2(101, 49.5)
+position = Vector2(193, 9)
 shape = SubResource("RectangleShape2D_b70dl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=978036842]
-position = Vector2(96.500885, 46.93056)
-rotation = -0.17802358
-scale = Vector2(0.18680403, 0.18680403)
+position = Vector2(204.19952, 43.096626)
+rotation = 0.17104226
+scale = Vector2(0.13641007, 0.11884499)
 texture = SubResource("CompressedTexture2D_kpnyg")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

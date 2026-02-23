@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn5l10k1x4ffh"
-path="res://.godot/imported/Carimbo verde.png-4cd4c6e96de70357d390a3ad87a9878a.ctex"
+uid="uid://6pd32fce586i"
+path="res://.godot/imported/maos.png-fae96e401755ae44ac7940ada51b8541.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carimbos/Carimbo verde.png"
-dest_files=["res://.godot/imported/Carimbo verde.png-4cd4c6e96de70357d390a3ad87a9878a.ctex"]
+source_file="res://assets/maos.png"
+dest_files=["res://.godot/imported/maos.png-fae96e401755ae44ac7940ada51b8541.ctex"]
 
 [params]
 
