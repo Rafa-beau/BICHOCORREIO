@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn5l10k1x4ffh"
-path="res://.godot/imported/Carimbo verde.png-4cd4c6e96de70357d390a3ad87a9878a.ctex"
+uid="uid://pcdi3ssrbbg3"
+path="res://.godot/imported/carimboREPROVADOagua.png-8d6fd4142bfcb00b9a7bf09b2ac1392c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carimbos/Carimbo verde.png"
-dest_files=["res://.godot/imported/Carimbo verde.png-4cd4c6e96de70357d390a3ad87a9878a.ctex"]
+source_file="res://assets/carimbos/carimboREPROVADOagua.png"
+dest_files=["res://.godot/imported/carimboREPROVADOagua.png-8d6fd4142bfcb00b9a7bf09b2ac1392c.ctex"]
 
 [params]
 

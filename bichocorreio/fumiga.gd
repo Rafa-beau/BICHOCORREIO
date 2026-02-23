@@ -38,10 +38,9 @@ func stamp(f = ""):
 	texture = load("res://assets/formiga.png")
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				texture = load("res://assets/formiga_grab.png")
-			else:
-				await get_tree().create_timer(0.13).timeout
-				texture = load("res://assets/formiga.png")
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			texture = load("res://assets/formiga_grab.png")
+		else:
+			await get_tree().create_timer(0.13).timeout
+			texture = load("res://assets/formiga.png")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckybny5v2h48g"
-path="res://.godot/imported/Carimbo marrom.png-51a3e2925aa48689fea16204985d115b.ctex"
+uid="uid://be7ixgqolkwlw"
+path="res://.godot/imported/papeis.png-b069abae97b9a051e5dcec996c26c03e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carimbos/Carimbo marrom.png"
-dest_files=["res://.godot/imported/Carimbo marrom.png-51a3e2925aa48689fea16204985d115b.ctex"]
+source_file="res://assets/papeis.png"
+dest_files=["res://.godot/imported/papeis.png-b069abae97b9a051e5dcec996c26c03e.ctex"]
 
 [params]
 
