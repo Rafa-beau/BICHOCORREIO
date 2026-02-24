@@ -2,73 +2,6 @@
 
 [ext_resource type="Script" uid="uid://caa2xf1tmfoi" path="res://upgrades/upgrades_menu.gd" id="1_8potm"]
 [ext_resource type="PackedScene" uid="uid://3nrxof30mhh7" path="res://upgrades/upgrade_card.tscn" id="2_80lm3"]
-[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="2_u1u0o"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_80lm3"]
-shader = ExtResource("2_u1u0o")
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.0
-shader_parameter/pixel_size = 14.0
-shader_parameter/resolution = Vector2(400, 400)
-shader_parameter/dither_offset = Vector2(2, 0)
-shader_parameter/bayer_size = 1
-shader_parameter/interpolate = true
-shader_parameter/invert = true
-shader_parameter/falloff = 6.58800030967012
-shader_parameter/color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_y2wa0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_jpf8g"]
-resource_name = "transition_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.02800004883, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_l2yxd"]
-resource_name = "transition_out"
-length = 2.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.1333333, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.02800004883]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q25kt"]
-_data = {
-&"RESET": SubResource("Animation_y2wa0"),
-&"transition_in": SubResource("Animation_jpf8g"),
-&"transition_out": SubResource("Animation_l2yxd")
-}
 
 [sub_resource type="Animation" id="Animation_80lm3"]
 resource_name = "Flutuar"
@@ -77,7 +10,7 @@ loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("../C_Animation/Control2:position:x")
+tracks/0/path = NodePath("../CanvasLayer/C_Animation/Control2:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -88,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../C_Animation/Control2:position:y")
+tracks/1/path = NodePath("../CanvasLayer/C_Animation/Control2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +32,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../C_Animation/Control3:position:x")
+tracks/2/path = NodePath("../CanvasLayer/C_Animation/Control3:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -110,7 +43,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../C_Animation/Control3:position:y")
+tracks/3/path = NodePath("../CanvasLayer/C_Animation/Control3:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -121,7 +54,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../C_Animation/Control:position:x")
+tracks/4/path = NodePath("../CanvasLayer/C_Animation/Control:position:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -132,7 +65,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../C_Animation/Control:position:y")
+tracks/5/path = NodePath("../CanvasLayer/C_Animation/Control:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -146,7 +79,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../C_Animation/Control2:position:x")
+tracks/0/path = NodePath("../CanvasLayer/C_Animation/Control2:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -157,7 +90,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../C_Animation/Control2:position:y")
+tracks/1/path = NodePath("../CanvasLayer/C_Animation/Control2:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -168,7 +101,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../C_Animation/Control3:position:x")
+tracks/2/path = NodePath("../CanvasLayer/C_Animation/Control3:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -179,7 +112,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../C_Animation/Control3:position:y")
+tracks/3/path = NodePath("../CanvasLayer/C_Animation/Control3:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -199,7 +132,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("C_Animation:position")
+tracks/0/path = NodePath("CanvasLayer/C_Animation:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -215,7 +148,7 @@ length = 3.2666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("C_Animation:position")
+tracks/0/path = NodePath("CanvasLayer/C_Animation:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -240,23 +173,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8potm")
 animation_fly = NodePath("Fly")
-nodes = [NodePath("C_Animation/Control"), NodePath("C_Animation/Control2"), NodePath("C_Animation/Control3")]
+nodes = [NodePath("CanvasLayer/C_Animation/Control"), NodePath("CanvasLayer/C_Animation/Control2"), NodePath("CanvasLayer/C_Animation/Control3")]
 metadata/_edit_vertical_guides_ = [-915.0]
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=667188216]
-texture_filter = 1
-material = SubResource("ShaderMaterial_80lm3")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-
-[node name="Transition" type="AnimationPlayer" parent="ColorRect" unique_id=2088329094]
-libraries/ = SubResource("AnimationLibrary_q25kt")
-autoplay = &"transition_in"
 
 [node name="Fly" type="AnimationPlayer" parent="." unique_id=491084509]
 root_node = NodePath("../HBoxContainer2")
@@ -283,8 +201,11 @@ grow_vertical = 2
 pivot_offset = Vector2(420, 185)
 theme_override_constants/separation = 307
 
-[node name="C_Animation" type="Control" parent="." unique_id=1875495230]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1747752678]
+layer = 6
+
+[node name="C_Animation" type="Control" parent="CanvasLayer" unique_id=1875495230]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -293,7 +214,7 @@ offset_bottom = -662.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" parent="C_Animation" unique_id=102528172 instance=ExtResource("2_80lm3")]
+[node name="Control" parent="CanvasLayer/C_Animation" unique_id=102528172 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -306,7 +227,7 @@ grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(116, 186)
 
-[node name="Control2" parent="C_Animation" unique_id=816195450 instance=ExtResource("2_80lm3")]
+[node name="Control2" parent="CanvasLayer/C_Animation" unique_id=816195450 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -319,7 +240,7 @@ grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(118, 187)
 
-[node name="Control3" parent="C_Animation" unique_id=1329179213 instance=ExtResource("2_80lm3")]
+[node name="Control3" parent="CanvasLayer/C_Animation" unique_id=1329179213 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

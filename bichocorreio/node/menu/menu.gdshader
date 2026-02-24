@@ -1,30 +1,41 @@
 shader_type canvas_item;
 
-uniform vec2 resolution = vec2(1920.0, 1080.0);
-uniform vec3 color: source_color;
-uniform vec3 replace_black_color : source_color;
-uniform float speed: hint_range(0.0, 10.0, 0.01);
-uniform float pixelation : hint_range(50.0, 800.0, 1.0);
-uniform float black_threshold: hint_range(0.0, 0.2, 0.001);
+uniform sampler2D perlin_noise: repeat_enable;
+uniform sampler2D cell_noise: repeat_enable;
+
+#define pow2(x) (x * x)
+#define iResolution 1.0/SCREEN_PIXEL_SIZE
+
+const int samples = 35;
+const float sigma = float(samples) * 0.25;
+
+float gaussian(vec2 i) {
+	return 1.0 / (2.0 * PI * pow2(sigma)) * exp(-((pow2(i.x) + pow2(i.y)) / (2.0 * pow2(sigma))));
+}
+
+vec3 blur(sampler2D sp, vec2 uv, vec2 scale) {
+	vec3 col = vec3(0.0);
+	float accum = 0.0;
+	float weight;
+	vec2 offset;
+	for (int x = -samples / 2; x < samples / 2; ++x) {
+		for (int y = -samples / 2; y < samples / 2; ++y) {
+			offset = vec2(float(x), float(y));
+			weight = gaussian(offset);
+			col += texture(sp, uv + scale * offset).rgb * weight;
+			accum += weight;
+		}
+	}
+	return col / accum;
+}
 
 void fragment() {
-	vec2 uv = UV;
-	uv = floor(uv * pixelation) / pixelation;
-	uv -= 0.5;
-	uv.x *= resolution.x / resolution.y;
-	float time = TIME * speed;
-	float radius = length(uv);
-	float theta = atan(uv.x, uv.y);
-	float dis = time + 20.0 * exp(-radius);
-	float shift = sin(time + 7.0 * theta + dis);
-	float shape = sin(shift + dis);
+	vec2 uv1 = vec2(UV.x + TIME * .02, UV.y + TIME * .005);
+	vec2 uv2 = vec2(UV.x + TIME * .03, UV.y + TIME * .005);
+	float noise1 = blur(perlin_noise, uv1, SCREEN_PIXEL_SIZE).r;
+	float noise2 = blur(cell_noise, uv2, SCREEN_PIXEL_SIZE).r;
 	
-	vec3 result = color * shape / radius * 0.4;
+	float noise = smoothstep(noise1 * noise2 * 1.0, .0, .15);
 	
-	float intensity = length(result);
-	if (intensity < black_threshold) {
-		result = replace_black_color;
-	}
-	
-	COLOR = vec4(result, 1.0);
+	COLOR = vec4(1,1,1, noise);
 }

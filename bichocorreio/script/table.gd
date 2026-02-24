@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var card_scene: PackedScene
-@export var player: GDScript
+@export var upgrade_scene: PackedScene
 @export var transition: ColorRect
 
 var parent = self
@@ -10,7 +10,6 @@ var current_card
 var pull = false
 
 func _ready() -> void:
-	transition.anim.play("transition_out")
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	init_turn(10)
 	
@@ -49,7 +48,7 @@ func end_turn():
 func call_card():
 	var des_summon = Vector2(98, 85)
 	
-	current_card = Utils.spawn_card(card_scene, Vector2(198, -2000), parent)
+	current_card = Utils.spawn_scene(card_scene, Vector2(198, -2000), parent)
 	
 	CardManager.current_card = current_card
 	
@@ -59,12 +58,13 @@ func call_card():
 
 ### AÇÔES DA CARTA
 func reject():
-	player.take_damage(1)
+	PlayerManager.take_damage(1)
 	current_card.queue_free()
 	can_pass_turn = true
 	print("rejeitou")
 
 func accept():
+	PlayerManager.heal(1)
 	coin_up()
 	current_card.queue_free()
 	can_pass_turn = true

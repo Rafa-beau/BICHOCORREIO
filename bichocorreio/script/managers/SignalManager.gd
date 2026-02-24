@@ -19,6 +19,6 @@ signal stamp
 
 ### Sinals do Upgrade
 
-signal upgrade_purchased # colocar parametro (upgrade, cost) dps
+signal upgrade_purchased(upgrade_name: String, cost: int, inverted: bool, enchanted: bool)
 signal upgrade_clicked(upgrade: String)
 signal upgrade_blocked

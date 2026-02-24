@@ -1,18 +1,30 @@
 extends Control
-
+@export var upgrade_index: int
 @export var card: Node
 @export var card_viewport: SubViewportContainer
-@export var upgrade_name = ""
-var upgrades = []
+
+
+var upgrade_name: String
+var enchanted: bool
+var inverted: bool
+
+var enchantble_cards: Array = [0, 4, 5, 8, 9]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
-	
 	var material_burn = card_viewport.material.duplicate()
 	card_viewport.material = material_burn	
 	SignalManager.upgrade_clicked.connect(burn_card)
+	random_type_of_upgrade_card()
 	pass
 
+func random_type_of_upgrade_card():
+	
+	
+			
+	print("inverted:", inverted)
+	print("enchanted:", enchanted)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -5,10 +5,10 @@ var card_scene := preload("res://node/card.tscn")
 var parent = self
 var card_instance
 
-func spawn_card(card_scene: PackedScene, pos: Vector2, parent: Node):
-	var card_instance = card_scene.instantiate()
-	parent.add_child(card_instance)
-	card_instance.global_position = pos
+func spawn_scene(scene: PackedScene, pos: Vector2, parent: Node):
+	var instance = scene.instantiate()
+	parent.add_child(instance)
+	instance.global_position = pos
 	print("criou")
 	
 	return card_instance
