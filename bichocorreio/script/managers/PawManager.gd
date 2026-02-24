@@ -1,60 +1,43 @@
 extends Area2D
 
-var dragging: bool
+
+@onready var paw = $Sprite2D
+@onready var stamp: Sprite2D = $Stamp
+
+var current_paw
+
+var water: bool
 var stamped: bool
 var approved: bool
 var disapproved: bool
-var water: bool
 var water_stamp: bool
-var coins: int = 1
-var start_pos: Vector2
-var offset
-var rng = RandomNumberGenerator.new()
-var is_anteat: bool
-var original_position: Vector2
+var AntEat: bool
 
-@onready var stamp: Sprite2D = $Stamp
-@onready var card_frame: Sprite2D = $Card
-@onready var paw: Area2D = $Paws
+var paws_water = ["Frog1", "Frog2"]
+var paws = ["Cat", "AntEater"]
 
-func CardType(probability: float):
-	var random_value = rng.randf()
-	return random_value < probability
-
-func _ready():
-	SignalManager.AntEat.connect(is_ant)
-	
+func _ready() -> void:
 	stamp.hide()
-	card_frame.frame = 0
-	var blue_chance = 0.2
-	
-	if CardType(blue_chance):
-		card_frame.frame = 1
-		water = true
-		coins = 2
-		SignalManager.is_water.emit(true)
-	else:
-		card_frame.frame = 0
-		water = false
-		coins = 1
-		SignalManager.is_water.emit(false)
+	SignalManager.is_water.connect(change_sprite) 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			dragging = true
-
-func _unhandled_input(event):
-	if dragging:
-		if event is InputEventMouseButton and not event.pressed:
-			dragging = false
-
-func is_ant():
-	is_anteat = true
-
-func stamp_wears():
-	stamp.modulate.a = StampManager.get_next_opacity()
-	return
+func change_sprite(isw: bool):
+	if isw == true:
+		var choice = paws_water.pick_random()
+		print (choice)
+		match choice:
+			"Frog1":
+				paw.frame = 1
+			"Frog2":
+				paw.frame = 2
+	if isw == false:
+		var choice = paws.pick_random()
+		print (choice)
+		match choice:
+			"Cat":
+				paw.frame = 0
+			"AntEater":
+				paw.frame = 3
+				SignalManager.AntEat.emit()
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -78,7 +61,6 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 			if StampManager.current_color == Color.BLUE:
 				if event.button_index == MOUSE_BUTTON_LEFT:
 					stamp.modulate.a = StampManager.get_next_opacity()
-					print ("Bad Stamb")
 					stamp.show()
 					stamp.frame = 1
 					approved = true

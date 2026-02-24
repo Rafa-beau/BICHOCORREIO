@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var card_scene: PackedScene
+@export var paw: PackedScene
 @export var player: GDScript
 @export var transition: ColorRect
 
@@ -39,11 +40,6 @@ func exec_turn():
 # finalizar turno
 func end_turn():
 	pass
-
-
-
-
-
 
 ### SPAWNAR CARTA
 func call_card():
@@ -91,7 +87,11 @@ func accept_validate() -> bool:
 		current_card.water = false
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		return true
+		if current_card.is_anteat == true:
+			print("funfou")
+			if current_card.paw.disapproved == true:
+				print("funfou")
+				return true
 	return false
 	
 func confiscate_validate() -> bool:
@@ -101,6 +101,7 @@ func confiscate_validate() -> bool:
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
 		return true
+			
 	return false
 		
 ### ACEITAR E CONFISCAR - CLICK

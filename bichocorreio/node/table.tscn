@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://xiw65vp3v28v" path="res://script/table.gd" id="1_7w2ib"]
 [ext_resource type="PackedScene" uid="uid://cb0on76tdbam5" path="res://node/card.tscn" id="2_brvwj"]
 [ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/table.png" id="2_mthqe"]
+[ext_resource type="PackedScene" uid="uid://dd3cvs462sw3g" path="res://node/paws.tscn" id="3_brvwj"]
 [ext_resource type="PackedScene" uid="uid://dshim37dpnki" path="res://node/Stamp.tscn" id="7_6rkjd"]
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
 [ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="9_5jmgm"]
@@ -56,6 +57,7 @@ size = Vector2(784, 419)
 [node name="Table" type="Node2D" unique_id=1511156028 node_paths=PackedStringArray("transition")]
 script = ExtResource("1_7w2ib")
 card_scene = ExtResource("2_brvwj")
+paw = ExtResource("3_brvwj")
 player = SubResource("GDScript_qjd42")
 transition = NodePath("Control/ColorRect")
 

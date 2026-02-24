@@ -3,6 +3,8 @@ signal call_card
 signal pause
 signal despause
 
+signal is_water(isw: bool)
+signal AntEat
 
 ### Signals pro PlayerManager/Player | Turno
 signal life_changed(life)

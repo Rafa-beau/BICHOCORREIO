@@ -3,8 +3,7 @@ extends Control
 @export var life_icon = Image
 @onready var HudCoin: Label = $HudCoin
 @onready var HudLife: HBoxContainer = $HudLife
-
-var player = PlayerManager
+@onready var player = PlayerManager
 
 func _ready() -> void:
 	
