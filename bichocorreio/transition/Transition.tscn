@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6bt16vcrthem"]
 
 [ext_resource type="Script" uid="uid://btsbso4q07gkb" path="res://transition/transition.gd" id="1_rpwwx"]
-[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="2_rpwwx"]
+[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://materials/shaders/transition.gdshader" id="2_rpwwx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6mx0u"]
 shader = ExtResource("2_rpwwx")
@@ -10,7 +10,7 @@ shader_parameter/radius = 0.0
 shader_parameter/pixel_size = 7.0
 shader_parameter/resolution = Vector2(400, 400)
 shader_parameter/dither_offset = Vector2(2, 0)
-shader_parameter/bayer_size = 2
+shader_parameter/bayer_size = 1
 shader_parameter/interpolate = true
 shader_parameter/invert = true
 shader_parameter/falloff = 2.5

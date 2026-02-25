@@ -34,7 +34,7 @@ var inverted: bool
 var enchantble_cards: Array[int] = [upgrades.LOUCO, upgrades.MAGO, upgrades.JUSTICA, upgrades.ENFORCADO]
 
 var enchant_chance: float = 0.3
-
+var inverted_chance: float = 0.4
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	SignalManager.upgrade_clicked.connect(burn_card)
@@ -139,8 +139,12 @@ func set_text_and_desc():
 			upgrade_name = "[tornado]A    T O R R E"
 			if inverted == true:
 				upgrade_name += "[/tornado][color=dodger_blue][shake]  INVERTIDA"
+				upgrade_desc += "Diminui a [color=green]CHANCE[/color] de uma [color=dodger_blue]Prova Marinha[/color] aparecer em [color=green]15%[/color], Porém aumenta a quantidade de [color=green]CARTAS POR TURNO[/color] em [color=green]2[/color]. [color=gray](Máx: 4)[/color]"
 				return
+				
+			upgrade_desc += "Aumenta a [color=green]CHANCE[/color] de uma [color=dodger_blue]Prova Marinha[/color] aparecer em [color=green]15%[/color], Porém diminui a quantidade de [color=green]CARTAS POR TURNO[/color] em [color=green]2[/color]. [color=gray](Min: 3 cartas por turno)[/color]"
 			pass
+			
 
 func set_inverted():
 	inverted = true
@@ -159,7 +163,7 @@ func set_enchant_or_inverted():
 	if upgrade_index == 8:
 		set_enchant()
 	
-	if randf() < 1.3:
+	if randf() < inverted_chance:
 		set_inverted()
 	
 	if upgrade_index in enchantble_cards and not upgrade_index in PlayerManager.already_enchanted_cards_purchased:

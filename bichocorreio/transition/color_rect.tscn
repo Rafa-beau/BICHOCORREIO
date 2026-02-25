@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8k8wgi5jrs0o"]
 
-[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="1_q3ong"]
+[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://materials/shaders/transition.gdshader" id="1_q3ong"]
 [ext_resource type="Script" uid="uid://dvslycvlauodp" path="res://transition/color_rect.gd" id="2_opuju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jaa4l"]

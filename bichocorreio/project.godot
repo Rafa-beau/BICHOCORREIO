@@ -27,7 +27,9 @@ UpgradeManager="*uid://cc3hjbmv74o5i"
 
 [display]
 
+window/size/mode=4
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 window/quality/msaa_2d=3
 
 [input]
@@ -55,3 +57,4 @@ click-right={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
