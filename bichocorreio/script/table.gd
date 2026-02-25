@@ -88,10 +88,11 @@ func accept_validate() -> bool:
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
 		if current_card.is_anteat == true:
-			print("funfou")
 			if current_card.paw.disapproved == true:
-				print("funfou")
 				return true
+		if current_card.is_anteat == false:
+			if current_card.paw.stamped == true:
+				return false
 	return false
 	
 func confiscate_validate() -> bool:
@@ -100,8 +101,12 @@ func confiscate_validate() -> bool:
 		current_card.water = false
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		return true
-			
+		if current_card.is_anteat == true:
+			if current_card.paw.disapproved == true:
+				return true
+		if current_card.is_anteat == false:
+			if current_card.paw.stamped == true:
+				return false
 	return false
 		
 ### ACEITAR E CONFISCAR - CLICK
