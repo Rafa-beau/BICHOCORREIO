@@ -3,15 +3,18 @@ extends Node2D
 @export var card_scene: PackedScene
 @export var upgrade_scene: PackedScene
 @export var transition: ColorRect
+@onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
+
 
 var parent = self
 var vel = 15
 var current_card
+var current_upgrade_scene
 var pull = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	init_turn(10)
+	init_turn(2)
 	
 ### SISTEMA DE TURNO
 var turn_index: int
@@ -37,9 +40,7 @@ func exec_turn():
 	
 # finalizar turno
 func end_turn():
-	pass
-
-
+	Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
 
 
 
@@ -48,9 +49,9 @@ func end_turn():
 func call_card():
 	var des_summon = Vector2(98, 85)
 	
-	current_card = Utils.spawn_scene(card_scene, Vector2(198, -2000), parent)
-	
-	CardManager.current_card = current_card
+	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+	print(current_card)
+	#CardManager.current_card = current_card
 	
 	var tween = create_tween()
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

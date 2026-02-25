@@ -16,7 +16,10 @@ enum upgrade_name {
 func _ready() -> void:
 	SignalManager.upgrade_purchased.connect(set_upgrade)
 	
-func set_upgrade(upgrade_index: int, cost: int, inverted: bool, enchanted: bool):
+func set_upgrade(upgrade_index: int, inverted: bool, enchanted: bool):
+	print(upgrade_index)
+	print("invertido: ", inverted)
+	print("encantado: ", enchanted)
 	match upgrade_index:
 		upgrade_name.LOUCO:
 			pass
@@ -38,3 +41,4 @@ func set_upgrade(upgrade_index: int, cost: int, inverted: bool, enchanted: bool)
 			pass
 		upgrade_name.TORRE:
 			pass
+	

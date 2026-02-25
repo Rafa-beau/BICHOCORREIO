@@ -15,7 +15,7 @@ func _ready() -> void:
 	upd_display_life(1)
 
 func upd_display_coin(a: int):
-	HudCoin.text = "X" + str(player.coin)
+	HudCoin.text = "X" + str(player.coins)
 	
 func upd_display_life(a: int):
 	for i in range(HudLife.get_children().size()):

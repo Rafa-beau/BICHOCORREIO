@@ -3,10 +3,10 @@ extends Node
 ### variaveis vida e coins
 var max_life :int = 3
 var current_life :int = max_life
-var coin: int
+var coins: int
 var total_coins: int
 ### array de habilidades ja compradas
-var already_enchanted_cards_purchased = []
+var already_enchanted_cards_purchased: Array 
 
 ### variaveis de controlar, sorte, mais ou menos moedas no fim do turno, tempo
 var coins_up_after_turno: int # carrega quantas moedas a mais o jogador vai receber no final do turno
@@ -34,7 +34,6 @@ func take_damage(amount):
 func heal(amount):
 	if current_life < max_life:
 		current_life += amount
-		current_life = max(current_life, 0)
 		SignalManager.life_changed.emit(current_life)
 
 #morrer
@@ -42,4 +41,6 @@ func die():
 	SignalManager.died.emit()
 
 func coinchange(coin_int: int):
-	coin += coin_int
+	coins += coin_int
+	coins = max(coins, 0)
+	

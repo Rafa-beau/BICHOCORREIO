@@ -4,7 +4,6 @@ uniform sampler2D dissolve_texture : source_color;
 uniform float dissolve_value : hint_range(0,1);
 uniform float burn_size: hint_range(0.0, 1.0, 0.01);
 uniform vec4 burn_color: source_color;
-
 void fragment(){
     vec4 main_texture = texture(TEXTURE, UV);
     vec4 noise_texture = texture(dissolve_texture, UV);
