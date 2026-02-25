@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://c8vkeuto5ftdq"]
 
 [ext_resource type="Script" uid="uid://drq8t3lnvqexm" path="res://script/ui/menu.gd" id="1_267q8"]
+[ext_resource type="Texture2D" uid="uid://b2aesafi5ixm0" path="res://assets/menu.png" id="2_8idm0"]
 [ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="3_ly7kv"]
+[ext_resource type="FontFile" uid="uid://c8qjltbd1kdrf" path="res://tite.ttf" id="4_ly7kv"]
 
 [node name="Menu" type="Control" unique_id=290282353]
 layout_mode = 3
@@ -12,28 +14,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_267q8")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1217506792]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1350695346]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(1, 0.15294118, 0.14509805, 1)
-
-[node name="Label" type="Label" parent="." unique_id=576041024]
-layout_mode = 0
-offset_left = 230.0
-offset_top = 49.0
-offset_right = 891.0
-offset_bottom = 187.0
-theme = ExtResource("3_ly7kv")
-text = "BICHOCORREÇÃO"
+texture = ExtResource("2_8idm0")
 
 [node name="Button" type="Button" parent="." unique_id=1171957681]
 layout_mode = 0
-offset_left = 254.0
-offset_top = 181.0
-offset_right = 865.0
-offset_bottom = 372.0
+offset_left = 263.0
+offset_top = 292.0
+offset_right = 874.0
+offset_bottom = 483.0
 theme = ExtResource("3_ly7kv")
+theme_override_colors/font_color = Color(0.5254902, 0, 0.015686275, 1)
 text = "Jogar!"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1395805042]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = -373.0
+offset_right = 403.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36078432)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/normal_font = ExtResource("4_ly7kv")
+theme_override_font_sizes/normal_font_size = 139
+bbcode_enabled = true
+text = "[tornado]BichoCorreio"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

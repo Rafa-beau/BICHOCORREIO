@@ -13,6 +13,9 @@ var current_upgrade_scene
 var pull = false
 
 func _ready() -> void:
+	await Utils.timer(0.2)
+	TransitionScene.play_out()
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	init_turn(2)
 	
