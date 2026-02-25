@@ -209,6 +209,7 @@ theme_override_constants/separation = 307
 layer = 6
 
 [node name="Card_Upgrades" type="Control" parent="Card_Upgrade_Layer" unique_id=1875495230]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

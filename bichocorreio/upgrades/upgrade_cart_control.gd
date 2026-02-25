@@ -48,6 +48,8 @@ func set_text_and_desc():
 			upgrade_name = "[tornado]O    L O U C O"
 			if inverted == true:
 				upgrade_name += "[/tornado][color=dodger_blue][shake]  INVERTIDO"
+				
+				upgrade_desc += "Aumenta a quantidade de [color=green]MOEDAS[/color] perdidas no fim do turno em [color=green]2[/color]. Porém seu [color=green]TEMPO POR CARTA[/color] aumenta em 1"
 				return
 			if enchanted == true:
 				upgrade_name+= "[/tornado][color=medium_orchid][wave]  ENCANTADO"

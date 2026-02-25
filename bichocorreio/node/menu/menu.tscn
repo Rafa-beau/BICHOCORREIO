@@ -1,33 +1,7 @@
 [gd_scene format=3 uid="uid://c8vkeuto5ftdq"]
 
 [ext_resource type="Script" uid="uid://drq8t3lnvqexm" path="res://script/ui/menu.gd" id="1_267q8"]
-[ext_resource type="Shader" uid="uid://b5vx7nixfl8ft" path="res://node/menu/menu.gdshader" id="3_8idm0"]
 [ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="3_ly7kv"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8idm0"]
-noise_type = 2
-fractal_type = 2
-fractal_octaves = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ly7kv"]
-noise = SubResource("FastNoiseLite_8idm0")
-seamless = true
-invert = true
-seamless_blend_skirt = 0.45
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ngl4d"]
-noise_type = 3
-frequency = 0.005
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wnt5d"]
-noise = SubResource("FastNoiseLite_ngl4d")
-seamless = true
-seamless_blend_skirt = 0.323
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_td45c"]
-shader = ExtResource("3_8idm0")
-shader_parameter/perlin_noise = SubResource("NoiseTexture2D_wnt5d")
-shader_parameter/cell_noise = SubResource("NoiseTexture2D_ly7kv")
 
 [node name="Menu" type="Control" unique_id=290282353]
 layout_mode = 3
@@ -39,7 +13,6 @@ grow_vertical = 2
 script = ExtResource("1_267q8")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1217506792]
-material = SubResource("ShaderMaterial_td45c")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
