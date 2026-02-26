@@ -16,7 +16,7 @@ var coins_after_turno: int # carrega quantas moedas o jogador vai perder no fina
 # turno
 var time_per_prova: float = 3.0
 var cards_per_turno: int = 8
-
+var error_ignored: int
 
 # prova marinha
 var water_card_chance: float = 0.2 # controla a chance de vir uma carta azul
