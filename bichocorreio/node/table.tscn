@@ -1,38 +1,52 @@
 [gd_scene format=3 uid="uid://dvvt4w2yisrts"]
 
 [ext_resource type="Script" uid="uid://xiw65vp3v28v" path="res://script/table.gd" id="1_7w2ib"]
-[ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/cards/card.gd" id="2_brvwj"]
+[ext_resource type="PackedScene" uid="uid://cb0on76tdbam5" path="res://node/card.tscn" id="2_brvwj"]
 [ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/table.png" id="2_mthqe"]
 [ext_resource type="PackedScene" uid="uid://dd3cvs462sw3g" path="res://node/paws.tscn" id="3_brvwj"]
-[ext_resource type="Texture2D" uid="uid://be7ixgqolkwlw" path="res://assets/papeis.png" id="3_5jmgm"]
-[ext_resource type="Texture2D" uid="uid://d3ok0jo73ppes" path="res://assets/carimbo.png" id="4_yaivw"]
 [ext_resource type="PackedScene" uid="uid://dpwuw2kawmdui" path="res://upgrades/upgrade_menu.tscn" id="5_4ixn4"]
 [ext_resource type="PackedScene" uid="uid://dshim37dpnki" path="res://node/Stamp.tscn" id="7_6rkjd"]
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
+[ext_resource type="AudioStream" uid="uid://b6j2cko28mvva" path="res://assets/sounds/menu_music.mp3" id="9_5jmgm"]
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
 [ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/funcs/hud_coin.tscn" id="9_qjd42"]
-[ext_resource type="AudioStream" uid="uid://iuco8tv45k6w" path="res://assets/sounds/game_music.mp3" id="11_5jmgm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
-size = Vector2(578, 456)
+[sub_resource type="GDScript" id="GDScript_qjd42"]
+script/source = "extends Node
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
-size = Vector2(188, 135)
+var max_life = 3
+var current_life = max_life
+var coin = 0
 
-[sub_resource type="PackedScene" id="PackedScene_exvlx"]
-_bundled = {
-"conn_count": 2,
-"conns": PackedInt32Array(1073741830, 1073741829, 28, 27, 2, 0, 0, 1073741832, 1073741831, 30, 29, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
-"names": PackedStringArray("Card", "Area2D", "script", "Card", "Sprite2D", "position", "scale", "texture", "hframes", "CollisionShape2D", "CollisionShape2D", "position", "shape", "debug_color", "StampPlace", "Area2D", "CollisionShape2D", "CollisionShape2D", "position", "shape", "Stamp", "Sprite2D", "position", "rotation", "scale", "texture", "hframes", "_on_input_event", "input_event", "_on_stamp_place_input_event", "input_event"),
-"node_count": 6,
-"node_ids": PackedInt32Array(647703974, 1486517222, 1552224773, 82034314, 25307432, 978036842),
-"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("./StampPlace"), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("StampPlace")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 4, 5, 1, 6, 2, 7, 3, 8, 4, 0, 1073741825, 0, 10, 9, -1, 3, 11, 5, 12, 6, 13, 7, 0, 1073741826, 0, 15, 14, -1, 0, 0, 1073741827, 0, 17, 16, -1, 2, 18, 8, 19, 9, 0, 1073741828, 0, 21, 20, -1, 5, 22, 10, 23, 11, 24, 12, 25, 13, 26, 14, 0),
-"variants": [ExtResource("2_brvwj"), Vector2(289.5, 225.49997), Vector2(0.60104173, 0.5416666), ExtResource("3_5jmgm"), 2, Vector2(290, 228), SubResource("RectangleShape2D_rjgdm"), Color(0.9825526, 0, 0.36536703, 0.41960785), Vector2(193, 9), SubResource("RectangleShape2D_b70dl"), Vector2(204.19952, 43.096626), 0.17104226, Vector2(0.13641007, 0.11884499), ExtResource("4_yaivw"), 4],
-"version": 3
-}
+signal life_changed(current_life)
+signal died
+
+func _ready() -> void:
+	SignalManager.coinup.connect(coinup)
+
+# tomar dano
+func take_damage(amount):
+	current_life -= amount
+	current_life = max(current_life, 0)
+	
+	emit_signal(\"life_changed\", current_life)
+	
+	if current_life == 0:
+		die()
+		
+
+#morrer
+
+func die():
+	emit_signal(\"died\")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action(\"ui_accept\"):
+		take_damage(1)
+
+func coinup():
+	coin += 1
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
 size = Vector2(657, 477)
@@ -40,26 +54,13 @@ size = Vector2(657, 477)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
 size = Vector2(784, 419)
 
-[node name="Table" type="Node2D" unique_id=1511156028]
+[node name="Table" type="Node2D" unique_id=1511156028 node_paths=PackedStringArray("transition")]
 script = ExtResource("1_7w2ib")
-card_scene = SubResource("PackedScene_exvlx")
+card_scene = ExtResource("2_brvwj")
 upgrade_scene = ExtResource("5_4ixn4")
 paw = ExtResource("3_brvwj")
 player = SubResource("GDScript_qjd42")
-transition = NodePath("Control/ColorRect")
-
-[node name="Control" type="Control" parent="." unique_id=475472182]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="ColorRect" parent="Control" unique_id=33267722 instance=ExtResource("11_5jmgm")]
-z_index = 1000
-layout_mode = 1
-scale = Vector2(28.76993, 16.279999)
-mouse_filter = 2
+transition = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
 position = Vector2(576, 324)
@@ -92,8 +93,8 @@ script = ExtResource("8_qjd42")
 [node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_qjd42")]
 z_index = 100
 
-[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1530953808]
-stream = ExtResource("11_5jmgm")
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1784291314]
+stream = ExtResource("9_5jmgm")
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

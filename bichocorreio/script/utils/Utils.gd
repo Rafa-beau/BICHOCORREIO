@@ -1,9 +1,5 @@
 extends Node
 
-@onready var table = ("res://node/table.tscn")
-var card_scene := preload("res://node/card.tscn")
-var card_instance
-''
 func spawn_scene(scene: PackedScene, parent, pos:=):
 	var instance = scene.instantiate()
 	parent.add_child(instance)
