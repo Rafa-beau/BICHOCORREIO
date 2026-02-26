@@ -9,14 +9,21 @@ var total_coins: int
 var already_enchanted_cards_purchased: Array 
 
 ### variaveis de controlar, sorte, mais ou menos moedas no fim do turno, tempo
-var coins_up_after_turno: int # carrega quantas moedas a mais o jogador vai receber no final do turno
-var coins_down_after_turno: int # carrega quantas moedas a mais o jogador vai perder no final do turno
-var time_up_to_stamp: float # carrega o tempo a mais pra carimbar e passar/confiscar uma carta
-var time_down_to_stamp: float # carrega o tempo a menos pra carimbar e passar/confiscar uma carta
-var base_time_to_stamp: float # valor base do tempo pra carimbar e passar/confiscar uma carta 
+
+# coins
+var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
+
+# turno
+var time_per_prova: float = 3.0
+var cards_per_turno: int = 8
+
+
+# prova marinha
 var water_card_chance: float = 0.2 # controla a chance de vir uma carta azul
 var water_card_coins: int = 2 # controla a quantidade de coins q uma carta azul da\
-var wears_stamp_chance: float # controla a chance do carimbo ir apagando
+
+# carimbo
+var wears_stamp_chance: float = 0.45 # controla a chance do carimbo ir apagando
 
 func _ready() -> void:
 	SignalManager.coinchange.connect(coinchange)
