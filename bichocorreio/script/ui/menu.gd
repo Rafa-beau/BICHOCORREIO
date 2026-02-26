@@ -17,9 +17,12 @@ func _ready() -> void:
 	print(original_positions)
 	Utils.set_cursor("res://assets/cursor.png")
 	viewport_size = get_viewport().get_visible_rect().size
+	Utils.disable_cursor()
 	await Utils.timer(4.8)
 	TransitionScene.play_out()
-	await Utils.timer(0.6)
+	await Utils.timer(0.4)
+	Utils.enable_cursor()
+	await Utils.timer(0.2)
 	can_click = true
 	i = 1
 	
