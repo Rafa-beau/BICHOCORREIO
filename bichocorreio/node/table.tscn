@@ -54,13 +54,12 @@ size = Vector2(657, 477)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
 size = Vector2(784, 419)
 
-[node name="Table" type="Node2D" unique_id=1511156028 node_paths=PackedStringArray("transition")]
+[node name="Table" type="Node2D" unique_id=1511156028]
 script = ExtResource("1_7w2ib")
 card_scene = ExtResource("2_brvwj")
 upgrade_scene = ExtResource("5_4ixn4")
 paw = ExtResource("3_brvwj")
 player = SubResource("GDScript_qjd42")
-transition = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
 position = Vector2(576, 324)

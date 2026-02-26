@@ -10,7 +10,7 @@ extends Node2D
 
 var parent = self
 var vel = 15
-var current_card
+var current_card: Node
 var current_upgrade_scene: Node
 var pull = false
 
