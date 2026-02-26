@@ -9,15 +9,20 @@ extends Node2D
 var parent = self
 var vel = 15
 var current_card
-var current_upgrade_scene
+var current_upgrade_scene: Node
 var pull = false
 
 func _ready() -> void:
+	
+	
 	await Utils.timer(0.2)
 	TransitionScene.play_out()
-	
+	await Utils.timer(0.4)
+	$Background.play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	init_turn(2)
+	init_turn()
+	
+	SignalManager.upgrade_clicked.connect(init_turn)
 	
 ### SISTEMA DE TURNO
 var turn_index: int
@@ -25,11 +30,14 @@ var turn_controler: int
 var can_pass_turn: bool
 
 # iniciar turno
-func init_turn(qtd_provas: int):
+func init_turn(qtd_provas = PlayerManager.cards_per_turno):
+	if current_upgrade_scene:
+		current_upgrade_scene.queue_free()
+		TransitionScene.play_out()
+		await Utils.timer(1)
 	turn_index = qtd_provas
 	turn_controler = 0
-	await exec_turn()
-	end_turn()
+	exec_turn()
 	
 # executar turno
 func exec_turn():
@@ -40,10 +48,10 @@ func exec_turn():
 		while (can_pass_turn != true):
 			await Utils.timer(0.2)
 		turn_controler += 1
-	
+	end_turn()
 # finalizar turno
 func end_turn():
-	Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
+	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
 
 
 

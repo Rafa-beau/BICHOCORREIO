@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://f7lrbgd21kdq" path="res://assets/upgrades/spritesheet.png" id="4_y7ayy"]
 [ext_resource type="Texture2D" uid="uid://b5f5suxqldqbx" path="res://assets/upgrades/shine.png" id="5_kjbwr"]
 [ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://materials/shaders/upgrades_shine.gdshader" id="5_y7ayy"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="9_gkhd2"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="10_sk4u4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk4u4"]
 resource_local_to_scene = true
@@ -107,6 +109,12 @@ texture = ExtResource("5_kjbwr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244340220]
 root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_k40d6")
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=562692765]
+stream = ExtResource("9_gkhd2")
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=904266003]
+stream = ExtResource("10_sk4u4")
 
 [connection signal="gui_input" from="SubViewportContainer" to="." method="_on_sub_viewport_container_gui_input"]
 [connection signal="gui_input" from="SubViewportContainer" to="SubViewportContainer" method="_on_click"]

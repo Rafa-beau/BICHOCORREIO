@@ -50,6 +50,7 @@ func animate_click_upgrade(r):
 
 func _on_hover() -> void:
 	animate_up_upgrade(self)
+	$"../Hover".play()
 
 ###			Dishover Tween Signals
 func _on_dishover() -> void:
@@ -61,6 +62,7 @@ func _on_click(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				animate_click_upgrade(self)
+				$"../Click".play()
 				SignalManager.upgrade_clicked.emit(p.upgrade_index)
 
 			

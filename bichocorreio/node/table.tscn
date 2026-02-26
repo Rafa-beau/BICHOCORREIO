@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
 [ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/funcs/hud_coin.tscn" id="9_qjd42"]
+[ext_resource type="AudioStream" uid="uid://iuco8tv45k6w" path="res://assets/sounds/game_music.mp3" id="11_5jmgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
 size = Vector2(578, 456)
@@ -73,6 +74,9 @@ script = ExtResource("8_qjd42")
 
 [node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_qjd42")]
 z_index = 100
+
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1530953808]
+stream = ExtResource("11_5jmgm")
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

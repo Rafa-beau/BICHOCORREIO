@@ -33,8 +33,8 @@ var inverted: bool
 
 var enchantble_cards: Array[int] = [upgrades.LOUCO, upgrades.MAGO, upgrades.JUSTICA, upgrades.ENFORCADO]
 
-var enchant_chance: float = 0.3
-var inverted_chance: float = 0.4
+var enchant_chance: float = 2.3
+var inverted_chance: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	SignalManager.upgrade_clicked.connect(burn_card)

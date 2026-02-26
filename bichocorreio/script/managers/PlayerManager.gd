@@ -9,6 +9,7 @@ var total_coins: int
 var already_enchanted_cards_purchased: Array 
 
 ### variaveis de controlar, sorte, mais ou menos moedas no fim do turno, tempo
+var can_heal_end_turn: bool
 
 # coins
 var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
@@ -27,6 +28,9 @@ var wears_stamp_chance: float = 0.45 # controla a chance do carimbo ir apagando
 
 func _ready() -> void:
 	SignalManager.coinchange.connect(coinchange)
+
+func change_can_heal_end_turn():
+	can_heal_end_turn = not can_heal_end_turn
 
 # tomar dano
 func take_damage(amount):

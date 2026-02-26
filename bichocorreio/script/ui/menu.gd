@@ -22,15 +22,11 @@ func _ready() -> void:
 	TransitionScene.play_out()
 	await Utils.timer(0.4)
 	Utils.enable_cursor()
+	$Background.playing = true
 	await Utils.timer(0.2)
 	can_click = true
 	i = 1
-	
-func _on_button_pressed() -> void:
-	if can_click:
-		TransitionScene.play_in()
-		await Utils.timer(1.7)
-		get_tree().change_scene_to_file("res://node/table.tscn")
+
 
 func parallax(mouse):
 	var relative = (mouse - (viewport_size/2)) / (viewport_size/2)
@@ -40,6 +36,7 @@ func parallax(mouse):
 		
 func move_up_button(b: int, move: Vector2):
 	if can_click:
+		$Hover.play()
 		var tween = create_tween()
 		tween.tween_property(buttons[b], "position", buttons[b].position + move, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 func move_down_button(b: int, move: Vector2):
@@ -87,6 +84,8 @@ func _on_play_gui_input(event: InputEvent) -> void:
 			can_click = false
 			click_button(0)
 			TransitionScene.play_in()
+			var tween = create_tween()
+			tween.tween_property($Background, "volume_db", -45.0, 1.0)
 			await Utils.timer(1.7)
 			get_tree().change_scene_to_file("res://node/table.tscn")
 	pass # Replace with function body.
