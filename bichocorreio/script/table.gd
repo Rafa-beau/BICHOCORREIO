@@ -11,6 +11,7 @@ extends Node2D
 var parent = self
 var vel = 15
 var current_card: Node
+var current_paw: Node
 var current_upgrade_scene: Node
 var pull = false
 
@@ -55,18 +56,19 @@ func exec_turn():
 func end_turn():
 	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
 
-
-
-
 ### SPAWNAR CARTA
 func call_card():
 	var des_summon = Vector2(98, 85)
+	var paw_summon = Vector2(248, -114)
 	
 	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+	print(current_card)
+	current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
 	print(current_card)
 	#CardManager.current_card = current_card
 	
 	var tween = create_tween()
+	tween.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	SignalManager.call_card.emit()
 

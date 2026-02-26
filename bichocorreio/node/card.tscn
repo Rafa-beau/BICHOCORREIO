@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/cards/card.gd" id="1_b70dl"]
 [ext_resource type="Texture2D" uid="uid://be7ixgqolkwlw" path="res://assets/papeis.png" id="2_kpnyg"]
 [ext_resource type="Texture2D" uid="uid://d3ok0jo73ppes" path="res://assets/carimbo.png" id="3_6lr71"]
-[ext_resource type="PackedScene" uid="uid://dd3cvs462sw3g" path="res://node/paws.tscn" id="4_7547a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
 size = Vector2(578, 456)
@@ -37,9 +36,6 @@ rotation = 0.17104226
 scale = Vector2(0.13641007, 0.11884499)
 texture = ExtResource("3_6lr71")
 hframes = 4
-
-[node name="Paws" parent="." unique_id=2096880879 instance=ExtResource("4_7547a")]
-position = Vector2(124, -228)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="StampPlace" to="." method="_on_stamp_place_input_event"]
