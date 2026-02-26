@@ -2,16 +2,15 @@ extends Node
 
 @onready var table = ("res://node/table.tscn")
 var card_scene := preload("res://node/card.tscn")
-var parent = self
 var card_instance
-
-func spawn_card(card_scene: PackedScene, pos: Vector2, parent: Node):
-	var card_instance = card_scene.instantiate()
-	parent.add_child(card_instance)
-	card_instance.global_position = pos
-	print("criou")
-	
-	return card_instance
+''
+func spawn_scene(scene: PackedScene, parent, pos:=):
+	var instance = scene.instantiate()
+	parent.add_child(instance)
+	if pos is Vector2:
+		instance.global_position = pos
+		print("criou")
+	return instance
 
 func set_cursor(img_path:String):
 	Input.set_custom_mouse_cursor(load(img_path))

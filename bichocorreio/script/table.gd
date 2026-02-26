@@ -1,19 +1,30 @@
 extends Node2D
 
 @export var card_scene: PackedScene
+@export var upgrade_scene: PackedScene
 @export var paw: PackedScene
 @export var player: GDScript
 @export var transition: ColorRect
+@onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
+
 
 var parent = self
 var vel = 15
 var current_card
+var current_upgrade_scene: Node
 var pull = false
 
 func _ready() -> void:
-	transition.anim.play("transition_out")
+	
+	
+	await Utils.timer(0.2)
+	TransitionScene.play_out()
+	await Utils.timer(0.4)
+	$Background.play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	init_turn(10)
+	init_turn()
+	
+	SignalManager.upgrade_clicked.connect(init_turn)
 	
 ### SISTEMA DE TURNO
 var turn_index: int
@@ -21,11 +32,14 @@ var turn_controler: int
 var can_pass_turn: bool
 
 # iniciar turno
-func init_turn(qtd_provas: int):
+func init_turn(qtd_provas = PlayerManager.cards_per_turno):
+	if current_upgrade_scene:
+		current_upgrade_scene.queue_free()
+		TransitionScene.play_out()
+		await Utils.timer(1)
 	turn_index = qtd_provas
 	turn_controler = 0
-	await exec_turn()
-	end_turn()
+	exec_turn()
 	
 # executar turno
 func exec_turn():
@@ -36,18 +50,21 @@ func exec_turn():
 		while (can_pass_turn != true):
 			await Utils.timer(0.2)
 		turn_controler += 1
-	
+	end_turn()
 # finalizar turno
 func end_turn():
-	pass
+	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
+
+
+
 
 ### SPAWNAR CARTA
 func call_card():
 	var des_summon = Vector2(98, 85)
 	
-	current_card = Utils.spawn_card(card_scene, Vector2(198, -2000), parent)
-	
-	CardManager.current_card = current_card
+	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+	print(current_card)
+	#CardManager.current_card = current_card
 	
 	var tween = create_tween()
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -55,12 +72,13 @@ func call_card():
 
 ### AÇÔES DA CARTA
 func reject():
-	player.take_damage(1)
+	PlayerManager.take_damage(1)
 	current_card.queue_free()
 	can_pass_turn = true
 	print("rejeitou")
 
 func accept():
+	PlayerManager.heal(1)
 	coin_up()
 	current_card.queue_free()
 	can_pass_turn = true

@@ -1,82 +1,51 @@
 [gd_scene format=3 uid="uid://c8vkeuto5ftdq"]
 
 [ext_resource type="Script" uid="uid://drq8t3lnvqexm" path="res://script/ui/menu.gd" id="1_267q8"]
-[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="3_267q8"]
-[ext_resource type="Theme" uid="uid://cms3j4e75bn8d" path="res://themes/label.tres" id="3_ly7kv"]
+[ext_resource type="Texture2D" uid="uid://b2aesafi5ixm0" path="res://assets/menu.png" id="2_8idm0"]
+[ext_resource type="FontFile" uid="uid://c8qjltbd1kdrf" path="res://tite.ttf" id="4_ly7kv"]
+[ext_resource type="Texture2D" uid="uid://b6y54bxw7v2c8" path="res://assets/button.png" id="5_ngl4d"]
+[ext_resource type="AudioStream" uid="uid://b6j2cko28mvva" path="res://assets/sounds/menu_music.mp3" id="6_ngl4d"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="6_wnt5d"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="7_wnt5d"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8idm0"]
-shader = ExtResource("3_267q8")
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.0
-shader_parameter/pixel_size = 14.0
-shader_parameter/resolution = Vector2(400, 400)
-shader_parameter/dither_offset = Vector2(2, 0)
-shader_parameter/bayer_size = 1
-shader_parameter/interpolate = true
-shader_parameter/invert = true
-shader_parameter/falloff = 6.58800030967012
-shader_parameter/color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_y2wa0"]
+[sub_resource type="Animation" id="Animation_ly7kv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/path = NodePath("Inicio:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jpf8g"]
-resource_name = "transition_in"
+[sub_resource type="Animation" id="Animation_ngl4d"]
+resource_name = "intro"
+length = 4.5333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.02800004883, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_l2yxd"]
-resource_name = "transition_out"
-length = 2.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/path = NodePath("Inicio:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.1333333, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.49999997, 1.9666666, 3.4333334, 4.4333334),
+"transitions": PackedFloat32Array(1, 0.48296815, 3.4822013, 1),
 "update": 0,
-"values": [0.0, 1.02800004883]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ly7kv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wnt5d"]
 _data = {
-&"RESET": SubResource("Animation_y2wa0"),
-&"transition_in": SubResource("Animation_jpf8g"),
-&"transition_out": SubResource("Animation_l2yxd")
+&"RESET": SubResource("Animation_ly7kv"),
+&"intro": SubResource("Animation_ngl4d")
 }
 
-[sub_resource type="Shader" id="Shader_egnvw"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_td45c"]
-render_priority = 0
-shader = SubResource("Shader_egnvw")
-
-[node name="Menu" type="Control" unique_id=290282353 node_paths=PackedStringArray("transition", "animation")]
+[node name="Menu" type="Control" unique_id=290282353 node_paths=PackedStringArray("buttons", "buttons_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,47 +53,172 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_267q8")
-transition = NodePath("Transition")
-animation = NodePath("Transition/AnimationPlayer")
+buttons = [NodePath("VBoxContainer/play"), NodePath("VBoxContainer/play2"), NodePath("VBoxContainer/play3")]
+buttons_text = [NodePath("VBoxContainer/play/RichTextLabel"), NodePath("VBoxContainer/play2/RichTextLabel"), NodePath("VBoxContainer/play3/RichTextLabel")]
 
-[node name="Transition" type="ColorRect" parent="." unique_id=1690316749]
-z_index = 1
-texture_filter = 1
-material = SubResource("ShaderMaterial_8idm0")
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1395805042]
+z_index = 7
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -509.0
+offset_top = -435.0
+offset_right = 506.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36078432)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/normal_font = ExtResource("4_ly7kv")
+theme_override_font_sizes/normal_font_size = 139
+bbcode_enabled = true
+text = "[tornado]FormigaBarito"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=2126175515]
+z_index = -2
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D" unique_id=1350695346]
+offset_right = 1152.0
+offset_bottom = 648.0
+scale = Vector2(1.04, 1.04)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+texture = ExtResource("2_8idm0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1558230516]
+layout_mode = 0
+offset_left = 330.00003
+offset_top = 103.000015
+offset_right = 825.0
+offset_bottom = 684.0
+scale = Vector2(0.845, 0.845)
+pivot_offset = Vector2(247.5, 290.5)
+theme_override_constants/separation = 192
+
+[node name="play" type="Control" parent="VBoxContainer" unique_id=846722860]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/play" unique_id=1395392184]
+texture_filter = 1
+layout_mode = 0
+offset_right = 497.0
+offset_bottom = 198.0
+pivot_offset = Vector2(248.5, 99)
+texture = ExtResource("5_ngl4d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/play" unique_id=2099506079]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 192.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("6_wnt5d")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Jogar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play2" type="Control" parent="VBoxContainer" unique_id=868136707]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/play2" unique_id=719734721]
+texture_filter = 1
+layout_mode = 0
+offset_right = 497.0
+offset_bottom = 198.0
+pivot_offset = Vector2(248.5, 99)
+texture = ExtResource("5_ngl4d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/play2" unique_id=1775748074]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 192.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("6_wnt5d")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Opções"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play3" type="Control" parent="VBoxContainer" unique_id=393926720]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/play3" unique_id=1375267856]
+texture_filter = 1
+layout_mode = 0
+offset_right = 497.0
+offset_bottom = 198.0
+pivot_offset = Vector2(248.5, 99)
+texture = ExtResource("5_ngl4d")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/play3" unique_id=79601448]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 192.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("6_wnt5d")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Colecionaveis"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=584083531]
+layer = 19
+
+[node name="Inicio" type="RichTextLabel" parent="CanvasLayer" unique_id=1677479271]
+z_index = 7
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 4
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_colors/font_shadow_color = Color(0.1584723, 0.15847233, 0.1584723, 0.36078432)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/normal_font = ExtResource("4_ly7kv")
+theme_override_font_sizes/normal_font_size = 139
+bbcode_enabled = true
+text = "[tornado]FormigaBarito"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=1782791435]
-libraries/ = SubResource("AnimationLibrary_ly7kv")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1004980266]
+libraries/ = SubResource("AnimationLibrary_wnt5d")
+autoplay = &"intro"
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1217506792]
-material = SubResource("ShaderMaterial_td45c")
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(1, 0.15294118, 0.14509805, 1)
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1776697694]
+stream = ExtResource("6_ngl4d")
 
-[node name="Label" type="Label" parent="." unique_id=576041024]
-layout_mode = 0
-offset_left = 230.0
-offset_top = 49.0
-offset_right = 891.0
-offset_bottom = 187.0
-theme = ExtResource("3_ly7kv")
-text = "BICHOCORREÇÃO"
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=2020457931]
+stream = ExtResource("7_wnt5d")
 
-[node name="Button" type="Button" parent="." unique_id=1171957681]
-layout_mode = 0
-offset_left = 254.0
-offset_top = 181.0
-offset_right = 865.0
-offset_bottom = 372.0
-theme = ExtResource("3_ly7kv")
-text = "Jogar!"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="gui_input" from="VBoxContainer/play" to="." method="_on_play_gui_input"]
+[connection signal="mouse_entered" from="VBoxContainer/play" to="." method="_on_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="VBoxContainer/play" to="." method="_on_mouse_exited" binds= [0]]
+[connection signal="mouse_entered" from="VBoxContainer/play2" to="." method="_on_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="VBoxContainer/play2" to="." method="_on_mouse_exited" binds= [1]]
+[connection signal="gui_input" from="VBoxContainer/play3" to="." method="_on_play_gui_input"]
+[connection signal="mouse_entered" from="VBoxContainer/play3" to="." method="_on_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="VBoxContainer/play3" to="." method="_on_mouse_exited" binds= [2]]

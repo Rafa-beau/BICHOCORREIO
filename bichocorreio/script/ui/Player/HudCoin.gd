@@ -3,23 +3,20 @@ extends Control
 @export var life_icon = Image
 @onready var HudCoin: Label = $HudCoin
 @onready var HudLife: HBoxContainer = $HudLife
-@onready var player = PlayerManager
+
+
+var player = PlayerManager
 
 func _ready() -> void:
 	
 	SignalManager.coinchange.connect(upd_display_coin)
-	upd_display_coin()
-	upd_display_life()
+	SignalManager.life_changed.connect(upd_display_life)
+	upd_display_coin(1)
+	upd_display_life(1)
+
+func upd_display_coin(a: int):
+	HudCoin.text = "X" + str(player.coins)
 	
-func upd_display_coin():
-	HudCoin.text = "X" + str(player.coin)
-	
-func upd_display_life():
-	var max_vidas = player.max_life
-	while HudLife.get_child_count() < max_vidas:
-		var heart_life = TextureRect.new()
-		heart_life.texture = life_icon
-		HudLife.add_child(heart_life)
-	
-	
-	
+func upd_display_life(a: int):
+	for i in range(HudLife.get_children().size()):
+		HudLife.get_children()[i].visible = i < player.current_life

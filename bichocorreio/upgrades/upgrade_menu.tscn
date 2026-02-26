@@ -2,73 +2,7 @@
 
 [ext_resource type="Script" uid="uid://caa2xf1tmfoi" path="res://upgrades/upgrades_menu.gd" id="1_8potm"]
 [ext_resource type="PackedScene" uid="uid://3nrxof30mhh7" path="res://upgrades/upgrade_card.tscn" id="2_80lm3"]
-[ext_resource type="Shader" uid="uid://ci7m0tuhivb7k" path="res://transition/transition.gdshader" id="2_u1u0o"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_80lm3"]
-shader = ExtResource("2_u1u0o")
-shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.0
-shader_parameter/pixel_size = 14.0
-shader_parameter/resolution = Vector2(400, 400)
-shader_parameter/dither_offset = Vector2(2, 0)
-shader_parameter/bayer_size = 1
-shader_parameter/interpolate = true
-shader_parameter/invert = true
-shader_parameter/falloff = 6.58800030967012
-shader_parameter/color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_y2wa0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_jpf8g"]
-resource_name = "transition_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.02800004883, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_l2yxd"]
-resource_name = "transition_out"
-length = 2.0333333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.1333333, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.02800004883]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q25kt"]
-_data = {
-&"RESET": SubResource("Animation_y2wa0"),
-&"transition_in": SubResource("Animation_jpf8g"),
-&"transition_out": SubResource("Animation_l2yxd")
-}
+[ext_resource type="PackedScene" uid="uid://dvfyospeaaxgh" path="res://upgrades/card_upgrade_text_layer.tscn" id="2_q25kt"]
 
 [sub_resource type="Animation" id="Animation_80lm3"]
 resource_name = "Flutuar"
@@ -76,69 +10,69 @@ length = 2.0333333
 loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("../C_Animation/Control2:position:x")
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 3, 0),
-"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0, 450, -0.16666667, 0, 0, 0, 450, -0.080914885, 0, 0.080914885, 0, 450, -0.16666667, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 1.3236595, 2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../C_Animation/Control2:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(3, 2),
-"points": PackedFloat32Array(37, -0.8333333, -2, 0.8333333, 2, 161.5, -0.8666667, 10, 0, 0),
-"times": PackedFloat32Array(0.0333333, 2.0333333)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../C_Animation/Control3:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../C_Animation/Control3:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(166.5, -0.8333333, -2, 0.46666667, 0, 42, -0.9333333, 8.5, 0, 0),
-"times": PackedFloat32Array(0, 2)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../C_Animation/Control:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(143, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(180.5, -0.8333333, -2, 1.851424, -13.5, 56, -1.2485759, 17, 0, 0),
+"times": PackedFloat32Array(0.015242659, 2.0152426)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(166.5, -0.8333333, -2, 0.46666667, 0, 42, -0.9333333, 8.5, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0, 450, -0.16666667, 0, 0, 0, 450, -0.080914885, 0, 0.080914885, 0, 450, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 1.3236595, 2)
+}
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../C_Animation/Control:position:y")
+tracks/5/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:y")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(180.5, -0.8333333, -2, 1.851424, -13.5, 56, -1.2485759, 17, 0, 0),
-"times": PackedFloat32Array(0.015242659, 2.0152426)
+"points": PackedFloat32Array(37, -0.8333333, -2, 0.8333333, 2, 161.5, -0.8666667, 10, 0, 0),
+"times": PackedFloat32Array(0.0333333, 2.0333333)
 }
 
 [sub_resource type="Animation" id="Animation_q25kt"]
@@ -146,45 +80,45 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../C_Animation/Control2:position:x")
+tracks/0/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(113, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../C_Animation/Control2:position:y")
+tracks/1/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(163, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../C_Animation/Control3:position:x")
+tracks/2/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../C_Animation/Control3:position:y")
+tracks/3/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(113, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(163, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -199,7 +133,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("C_Animation:position")
+tracks/0/path = NodePath("Card_Upgrade_Layer/Card_Upgrades:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -215,14 +149,14 @@ length = 3.2666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("C_Animation:position")
+tracks/0/path = NodePath("Card_Upgrade_Layer/Card_Upgrades:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(0.24148417, 0.24148417),
 "update": 0,
-"values": [Vector2(0, -662), Vector2(0, 0)]
+"values": [Vector2(0, -662), Vector2(11, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_87ua2"]
@@ -231,32 +165,20 @@ _data = {
 &"Spawn": SubResource("Animation_618ed")
 }
 
-[node name="Control2" type="Control" unique_id=1552963297 node_paths=PackedStringArray("animation_fly", "nodes")]
+[node name="Control2" type="Control" unique_id=1552963297 node_paths=PackedStringArray("animation_fly", "card_upgrades")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_8potm")
 animation_fly = NodePath("Fly")
-nodes = [NodePath("C_Animation/Control"), NodePath("C_Animation/Control2"), NodePath("C_Animation/Control3")]
+desc_upgrade_scene = ExtResource("2_q25kt")
+card_upgrades = [NodePath("Card_Upgrade_Layer/Card_Upgrades/Control"), NodePath("Card_Upgrade_Layer/Card_Upgrades/Control2"), NodePath("Card_Upgrade_Layer/Card_Upgrades/Control3")]
 metadata/_edit_vertical_guides_ = [-915.0]
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=667188216]
-texture_filter = 1
-material = SubResource("ShaderMaterial_80lm3")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-
-[node name="Transition" type="AnimationPlayer" parent="ColorRect" unique_id=2088329094]
-libraries/ = SubResource("AnimationLibrary_q25kt")
-autoplay = &"transition_in"
 
 [node name="Fly" type="AnimationPlayer" parent="." unique_id=491084509]
 root_node = NodePath("../HBoxContainer2")
@@ -283,8 +205,11 @@ grow_vertical = 2
 pivot_offset = Vector2(420, 185)
 theme_override_constants/separation = 307
 
-[node name="C_Animation" type="Control" parent="." unique_id=1875495230]
-layout_mode = 1
+[node name="Card_Upgrade_Layer" type="CanvasLayer" parent="." unique_id=1747752678]
+layer = 6
+
+[node name="Card_Upgrades" type="Control" parent="Card_Upgrade_Layer" unique_id=1875495230]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -293,7 +218,7 @@ offset_bottom = -662.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" parent="C_Animation" unique_id=102528172 instance=ExtResource("2_80lm3")]
+[node name="Control" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=102528172 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -306,7 +231,7 @@ grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(116, 186)
 
-[node name="Control2" parent="C_Animation" unique_id=816195450 instance=ExtResource("2_80lm3")]
+[node name="Control2" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=816195450 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -319,7 +244,7 @@ grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(118, 187)
 
-[node name="Control3" parent="C_Animation" unique_id=1329179213 instance=ExtResource("2_80lm3")]
+[node name="Control3" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=1329179213 instance=ExtResource("2_80lm3")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

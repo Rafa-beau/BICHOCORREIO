@@ -1,12 +1,14 @@
 extends CanvasLayer
 
-@export var anim: AnimationPlayer
+@onready var anim = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+const TIMER_LIMIT = 2.0
+var timer = 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func play_in():
+	anim.play("in")
+	
+func play_out():
+	anim.play("out")
+	await Utils.timer(1.7)

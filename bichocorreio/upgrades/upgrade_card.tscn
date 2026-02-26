@@ -1,28 +1,18 @@
 [gd_scene format=3 uid="uid://3nrxof30mhh7"]
 
 [ext_resource type="Script" uid="uid://dj76ffpib5q7i" path="res://upgrades/upgrade_cart_control.gd" id="1_ap2g1"]
-[ext_resource type="Texture2D" uid="uid://qdrkd5n0k5ku" path="res://assets/upgrades/0_theFool_5x.png" id="2_ap2g1"]
+[ext_resource type="Texture2D" uid="uid://kcxptaf7kvfw" path="res://assets/upgrades/spritesheet (1).png" id="2_esdr5"]
+[ext_resource type="Texture2D" uid="uid://q7o8ppinx5o4" path="res://assets/upgrades/spritesheetenchanted.png" id="3_h1rlk"]
 [ext_resource type="Script" uid="uid://fngjqlbtbir" path="res://upgrades/animate_upgrades.gd" id="3_kjbwr"]
+[ext_resource type="Material" uid="uid://c6ut875hctbmn" path="res://materials/burn.tres" id="4_h1rlk"]
+[ext_resource type="Texture2D" uid="uid://f7lrbgd21kdq" path="res://assets/upgrades/spritesheet.png" id="4_y7ayy"]
 [ext_resource type="Texture2D" uid="uid://b5f5suxqldqbx" path="res://assets/upgrades/shine.png" id="5_kjbwr"]
-[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://upgrades/upgrades_shine.gdshader" id="5_y7ayy"]
-[ext_resource type="Shader" uid="uid://bxa43mlmj0kpb" path="res://upgrades/BURN_CARD.gdshader" id="8_sk4u4"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rbodq"]
-noise_type = 5
-seed = 17
-frequency = 0.0035
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ntdot"]
-noise = SubResource("FastNoiseLite_rbodq")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_62vf1"]
-shader = ExtResource("8_sk4u4")
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_ntdot")
-shader_parameter/dissolve_value = 1.0
-shader_parameter/burn_size = 0.0999999977648
-shader_parameter/burn_color = Color(0, 0, 0, 1)
+[ext_resource type="Shader" uid="uid://bmachg8mnp2ju" path="res://materials/shaders/upgrades_shine.gdshader" id="5_y7ayy"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="9_gkhd2"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="10_sk4u4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk4u4"]
+resource_local_to_scene = true
 shader = ExtResource("5_y7ayy")
 shader_parameter/Line_Smoothness = 0.10000000149012
 shader_parameter/Line_Width = 0.074000003515
@@ -71,19 +61,25 @@ _data = {
 &"dissolve": SubResource("Animation_ybfsw")
 }
 
-[node name="Control" type="Control" unique_id=102528172 node_paths=PackedStringArray("card_viewport")]
+[node name="Control" type="Control" unique_id=102528172 node_paths=PackedStringArray("card", "shine", "card_viewport")]
 z_index = 200
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ap2g1")
+card = NodePath("SubViewportContainer/SubViewport/Sprite2D")
+shine = NodePath("SubViewportContainer/SubViewport/Shine")
 card_viewport = NodePath("SubViewportContainer")
+inverted_texture = ExtResource("2_esdr5")
+enchanted_texture = ExtResource("3_h1rlk")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1453586234 node_paths=PackedStringArray("p")]
-material = SubResource("ShaderMaterial_62vf1")
+material = ExtResource("4_h1rlk")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -99,17 +95,26 @@ size_2d_override = Vector2i(1280, 1080)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=616913304]
-position = Vector2(116, 203)
-texture = ExtResource("2_ap2g1")
+position = Vector2(116.155, 192.775)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("4_y7ayy")
+hframes = 10
 
 [node name="Shine" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1086099792]
 material = SubResource("ShaderMaterial_sk4u4")
-position = Vector2(116, 203)
+position = Vector2(116, 193.25)
+scale = Vector2(1, 0.9518518)
 texture = ExtResource("5_kjbwr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1244340220]
 root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_k40d6")
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=562692765]
+stream = ExtResource("9_gkhd2")
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=904266003]
+stream = ExtResource("10_sk4u4")
 
 [connection signal="gui_input" from="SubViewportContainer" to="." method="_on_sub_viewport_container_gui_input"]
 [connection signal="gui_input" from="SubViewportContainer" to="SubViewportContainer" method="_on_click"]

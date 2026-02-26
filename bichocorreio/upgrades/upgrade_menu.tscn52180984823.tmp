@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://dpwuw2kawmdui"]
+
+[ext_resource type="Script" uid="uid://caa2xf1tmfoi" path="res://upgrades/upgrades_menu.gd" id="1_8potm"]
+[ext_resource type="PackedScene" uid="uid://3nrxof30mhh7" path="res://upgrades/upgrade_card.tscn" id="2_80lm3"]
+
+[sub_resource type="Animation" id="Animation_80lm3"]
+resource_name = "Flutuar"
+length = 2.0333333
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(37, -0.8333333, -2, 0.8333333, 2, 161.5, -0.8666667, 10, 0, 0),
+"times": PackedFloat32Array(0.0333333, 2.0333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0, 450, -0.16666667, 0, 0, 0, 450, -0.080914885, 0, 0.080914885, 0, 450, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 1.3236595, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(166.5, -0.8333333, -2, 0.46666667, 0, 42, -0.9333333, 8.5, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(180.5, -0.8333333, -2, 1.851424, -13.5, 56, -1.2485759, 17, 0, 0),
+"times": PackedFloat32Array(0.015242659, 2.0152426)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(143, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_q25kt"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(163, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control2:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(450, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(757, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Card_Upgrade_Layer/Card_Upgrades/Control3:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(113, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ju7dh"]
+_data = {
+&"Flutuar": SubResource("Animation_80lm3"),
+&"RESET": SubResource("Animation_q25kt")
+}
+
+[sub_resource type="Animation" id="Animation_ju7dh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card_Upgrade_Layer/Card_Upgrades:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -662)]
+}
+
+[sub_resource type="Animation" id="Animation_618ed"]
+resource_name = "Spawn"
+length = 3.2666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card_Upgrade_Layer/Card_Upgrades:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.24148417, 0.24148417),
+"update": 0,
+"values": [Vector2(0, -662), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87ua2"]
+_data = {
+&"RESET": SubResource("Animation_ju7dh"),
+&"Spawn": SubResource("Animation_618ed")
+}
+
+[node name="Control2" type="Control" unique_id=1552963297 node_paths=PackedStringArray("animation_fly")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8potm")
+animation_fly = NodePath("Fly")
+metadata/_edit_vertical_guides_ = [-915.0]
+
+[node name="Fly" type="AnimationPlayer" parent="." unique_id=491084509]
+root_node = NodePath("../HBoxContainer2")
+libraries/ = SubResource("AnimationLibrary_ju7dh")
+autoplay = &"Flutuar"
+
+[node name="Spawn" type="AnimationPlayer" parent="." unique_id=934277633]
+libraries/ = SubResource("AnimationLibrary_87ua2")
+autoplay = &"Spawn"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=151490833]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.0
+offset_top = -211.0
+offset_right = 181.0
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(420, 185)
+theme_override_constants/separation = 307
+
+[node name="Card_Upgrade_Layer" type="CanvasLayer" parent="." unique_id=1747752678]
+layer = 6
+
+[node name="Card_Upgrades" type="Control" parent="Card_Upgrade_Layer" unique_id=1875495230]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -662.0
+offset_bottom = -662.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=102528172 instance=ExtResource("2_80lm3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 143.0
+offset_top = 180.5
+offset_right = 143.0
+offset_bottom = 220.50012
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(116, 186)
+
+[node name="Control2" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=816195450 instance=ExtResource("2_80lm3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 450.0
+offset_top = 163.0
+offset_right = 450.0
+offset_bottom = 202.99927
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(118, 187)
+
+[node name="Control3" parent="Card_Upgrade_Layer/Card_Upgrades" unique_id=1329179213 instance=ExtResource("2_80lm3")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 757.0
+offset_top = 113.0
+offset_right = 757.0
+offset_bottom = 153.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(113, 183)

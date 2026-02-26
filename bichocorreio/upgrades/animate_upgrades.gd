@@ -6,23 +6,26 @@ var mouse_animate = true #click, hover, dishover
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
-	SignalManager.upgrade_purchased.connect(cancel_animations)
+	SignalManager.upgrade_clicked.connect(cancel_animations)
 
-func cancel_animations():
+func cancel_animations(i:=1):
 	mouse_animate = false
 
 func animate_up_upgrade(r):
-	if mouse_animate:
+	if mouse_animate == true:
 		var tween = get_tree().create_tween()
 		tween.tween_property(r, "scale", Vector2(1.1, 1.1), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.play()
+		SignalManager.upgrade_hovered.emit(p.upgrade_name, p.upgrade_desc)
+		
 func animate_down_upgrade(r):
-	if mouse_animate:
+	if mouse_animate == true:
 		var tween = get_tree().create_tween()
 		tween.tween_property(r, "scale", Vector2(1.0, 1.0), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.play()
+		SignalManager.upgrade_dishovered.emit()
 func animate_click_upgrade(r):
-	if mouse_animate:
+	if mouse_animate :
 		var tween_rot = get_tree().create_tween()
 		var tween_scale = get_tree().create_tween()
 		
@@ -42,12 +45,12 @@ func animate_click_upgrade(r):
 			tween_rot.tween_property(r, "rotation_degrees", original_rotation - rot_offset, shake_duration).set_trans(Tween.TRANS_SINE)
 			tween_rot.tween_property(r, "rotation_degrees", original_rotation, shake_duration).set_trans(Tween.TRANS_SINE)
 			tween_rot.play()
-		
 
 ###			Hover Tween Signals
 
 func _on_hover() -> void:
 	animate_up_upgrade(self)
+	$"../Hover".play()
 
 ###			Dishover Tween Signals
 func _on_dishover() -> void:
@@ -55,9 +58,12 @@ func _on_dishover() -> void:
 
 ###			Click Tween Signals 
 func _on_click(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			animate_click_upgrade(self)
-			SignalManager.upgrade_purchased.emit()
+	if mouse_animate == true:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				animate_click_upgrade(self)
+				$"../Click".play()
+				SignalManager.upgrade_clicked.emit(p.upgrade_index)
+
 			
 			
