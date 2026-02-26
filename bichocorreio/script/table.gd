@@ -7,7 +7,13 @@ extends Node2D
 
 var parent = self
 var vel = 15
+<<<<<<< Updated upstream
 var current_card
+=======
+var current_card: Node
+var current_paw: Node
+var current_upgrade_scene: Node
+>>>>>>> Stashed changes
 var pull = false
 
 func _ready() -> void:
@@ -24,9 +30,15 @@ var can_pass_turn: bool
 func init_turn(qtd_provas: int):
 	turn_index = qtd_provas
 	turn_controler = 0
+<<<<<<< Updated upstream
 	await exec_turn()
 	end_turn()
 	
+=======
+	exec_turn()
+
+
+>>>>>>> Stashed changes
 # executar turno
 func exec_turn():
 	while turn_controler < turn_index:
@@ -38,19 +50,35 @@ func exec_turn():
 		turn_controler += 1
 	
 # finalizar turno
+
 func end_turn():
+<<<<<<< Updated upstream
 	pass
+=======
+	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
+>>>>>>> Stashed changes
 
 ### SPAWNAR CARTA
 func call_card():
 	var des_summon = Vector2(98, 85)
+	var paw_summon = Vector2(248, -114)
 	
+<<<<<<< Updated upstream
 	current_card = Utils.spawn_card(card_scene, Vector2(198, -2000), parent)
 	
 	CardManager.current_card = current_card
+=======
+	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+	print(current_card)
+	current_paw = Utils.spawn_scene(paw, parent, Vector2(98, -2000))
+	print(current_card)
+	#CardManager.current_card = current_card
+>>>>>>> Stashed changes
 	
 	var tween = create_tween()
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
 	SignalManager.call_card.emit()
 
 ### AÇÔES DA CARTA
@@ -88,10 +116,10 @@ func accept_validate() -> bool:
 		return true
 	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
 		if current_card.is_anteat == true:
-			if current_card.paw.disapproved == true:
+			if current_paw.disapproved == true:
 				return true
 		if current_card.is_anteat == false:
-			if current_card.paw.stamped == true:
+			if current_paw.stamped == true:
 				return false
 	return false
 	
