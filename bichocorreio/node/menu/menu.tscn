@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b6j2cko28mvva" path="res://assets/sounds/menu_music.mp3" id="6_ngl4d"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="6_wnt5d"]
 [ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="7_wnt5d"]
+[ext_resource type="AudioStream" uid="uid://b0ub8u5tdnd04" path="res://assets/sounds/start.wav" id="8_j8mup"]
 
 [sub_resource type="Animation" id="Animation_ly7kv"]
 length = 0.001
@@ -213,6 +214,12 @@ stream = ExtResource("6_ngl4d")
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=2020457931]
 stream = ExtResource("7_wnt5d")
+volume_db = -7.61
+bus = &"Sfx"
+
+[node name="Click_play" type="AudioStreamPlayer" parent="." unique_id=1944483654]
+stream = ExtResource("8_j8mup")
+volume_db = -8.878
 
 [connection signal="gui_input" from="VBoxContainer/play" to="." method="_on_play_gui_input"]
 [connection signal="mouse_entered" from="VBoxContainer/play" to="." method="_on_mouse_entered" binds= [0]]

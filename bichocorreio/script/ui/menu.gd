@@ -45,6 +45,7 @@ func move_down_button(b: int, move: Vector2):
 		tween.tween_property(buttons[b], "position", original_positions[b], 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		
 func click_button(r):
+	$Click_play.play()
 	var tween_rot = get_tree().create_tween()
 	var tween_scale = get_tree().create_tween()
 	

@@ -73,6 +73,7 @@ func call_card():
 ### AÇÔES DA CARTA
 func reject():
 	PlayerManager.take_damage(1)
+	$Hit.play()
 	current_card.queue_free()
 	can_pass_turn = true
 	print("rejeitou")
