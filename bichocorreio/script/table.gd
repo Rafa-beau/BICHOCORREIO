@@ -15,11 +15,22 @@ var current_paw: Node
 var current_upgrade_scene: Node
 var pull = false
 
-
 func _ready() -> void:
-	
-	
-	await Utils.timer(0.2)
+	SignalManager.no_tutorial.connect(no_tutorial)
+	SignalManager.tutorial.connect(tutorial)
+
+
+func tutorial():
+	await Utils.timer(1.2)
+	$CanvasLayer.hide()
+	TransitionScene.play_out()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	await Utils.timer(0.4)
+	$Background.play()
+
+func no_tutorial():
+	await Utils.timer(1.2)
+	$CanvasLayer.hide()
 	TransitionScene.play_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)

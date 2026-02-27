@@ -65,6 +65,8 @@ func _on_voltar_gui_input(event: InputEvent) -> void:
 			$".".visible = false
 			
 			save_options(vg,vm,vsfx,vsy,full)
+			$Click.play()
+			
 
 func _on_value_changed(value: float, extra_arg_0: int) -> void:
 	match extra_arg_0:
@@ -88,17 +90,19 @@ func _on_check_button_toggled(toggled_on: bool, extra_arg_0: int) -> void:
 			if toggled_on:
 				vsy = true
 				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+				$Click.play()
 				return
 			vsy = false
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-			
+			$Click.play()
 		1:
 			if toggled_on:
 				full = true
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-				
+				$Click.play()
 				return
 			full = false
+			$Click.play()
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		
+	
 	

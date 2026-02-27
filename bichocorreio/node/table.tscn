@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
 [ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/ui/Hud.tscn" id="9_qjd42"]
 [ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="11_5jmgm"]
+[ext_resource type="AudioStream" uid="uid://chq5qn7ftoyq0" path="res://assets/sounds/sem tinta.wav" id="12_4ixn4"]
+[ext_resource type="AudioStream" uid="uid://gc0n1hta60es" path="res://assets/sounds/carimbo_certo.wav" id="13_exvlx"]
+[ext_resource type="PackedScene" uid="uid://chml75h3i2q2x" path="res://enable_tutorial.tscn" id="14_exvlx"]
 
 [sub_resource type="GDScript" id="GDScript_qjd42"]
 script/source = "extends Node
@@ -116,6 +119,16 @@ bus = &"Music"
 stream = ExtResource("11_5jmgm")
 volume_db = -10.78
 bus = &"Sfx"
+
+[node name="BadStamp" type="AudioStreamPlayer" parent="." unique_id=1897063896]
+stream = ExtResource("12_4ixn4")
+bus = &"Sfx"
+
+[node name="Stamp2" type="AudioStreamPlayer" parent="." unique_id=1776239401]
+stream = ExtResource("13_exvlx")
+bus = &"Sfx"
+
+[node name="CanvasLayer" parent="." unique_id=2131017630 instance=ExtResource("14_exvlx")]
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

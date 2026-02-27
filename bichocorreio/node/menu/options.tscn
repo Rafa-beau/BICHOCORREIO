@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://b1lg4ki3tk8x7" path="res://node/menu/options.gd" id="1_l2gif"]
 [ext_resource type="Texture2D" uid="uid://b6y54bxw7v2c8" path="res://assets/button.png" id="2_yx15l"]
 [ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="4_impyr"]
-[ext_resource type="AudioStream" uid="uid://b0ub8u5tdnd04" path="res://assets/sounds/start.wav" id="5_4jir5"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="5_l2gif"]
 
-[node name="Control" type="Control" unique_id=406482905]
+[node name="Control2" type="Control" unique_id=406482905]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,11 +216,12 @@ vertical_alignment = 1
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=659738423]
 stream = ExtResource("4_impyr")
+volume_db = 4.439
 bus = &"Sfx"
 
-[node name="Click_play" type="AudioStreamPlayer" parent="." unique_id=211885633]
-stream = ExtResource("5_4jir5")
-volume_db = -8.878
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1114509569]
+stream = ExtResource("5_l2gif")
+volume_db = 13.317
 bus = &"Sfx"
 
 [connection signal="mouse_entered" from="Vsync/CheckButton" to="." method="_on_mouse_entered"]

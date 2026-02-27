@@ -2,6 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="1_1eyw8"]
 [ext_resource type="Script" uid="uid://cucqosth81bgt" path="res://enable_tutorial.gd" id="1_glaxh"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="3_7t7k8"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="4_ielk8"]
 
 [sub_resource type="Theme" id="Theme_1eyw8"]
 Button/colors/font_color = Color(0.7288213, 0.7288222, 0.7288216, 1)
@@ -114,7 +116,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_1eyw8")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[wave]Deseja Habilitar Tutorial?"
+text = "[wave]Deseja fazer o Tutorial?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -152,4 +154,17 @@ flat = true
 libraries/ = SubResource("AnimationLibrary_7t7k8")
 autoplay = &"oi"
 
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=311683348]
+stream = ExtResource("3_7t7k8")
+volume_db = 4.439
+bus = &"Sfx"
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1820356650]
+stream = ExtResource("4_ielk8")
+volume_db = 13.317
+bus = &"Sfx"
+
+[connection signal="mouse_entered" from="HBoxContainer/sim" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/sim" to="." method="_on_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HBoxContainer/nao" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer/nao" to="." method="_on_pressed" binds= [1]]

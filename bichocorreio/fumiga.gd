@@ -1,4 +1,6 @@
 extends Sprite2D
+@onready var bad_stamp: AudioStreamPlayer = $"../../BadStamp"
+@onready var stamp_2: AudioStreamPlayer = $"../../Stamp2"
 
 var can_follow = true
 # Called when the node enters the scene tree for the first time.
@@ -8,7 +10,9 @@ func _ready() -> void:
 	
 
 	SignalManager.stamp.connect(stamp)
+	SignalManager.stamp.connect(stamp_2.play)
 	SignalManager.bad_stamp.connect(stamp)
+	SignalManager.bad_stamp.connect(bad_stamp.play)
 	SignalManager.stamp_pick.connect(stamp)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BICHOCORREIO"
-run/main_scene="uid://c8vkeuto5ftdq"
+run/main_scene="uid://bv5fa212gpqnl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

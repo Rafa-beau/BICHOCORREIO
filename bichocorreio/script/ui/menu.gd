@@ -13,11 +13,8 @@ func _process(delta: float) -> void:
 		
 func _ready() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
-	Utils.load_options()
 	print(original_positions)
 	Utils.set_cursor("res://assets/cursor.png")
-	Utils.disable_cursor()
-	await Utils.timer(4.8)
 	TransitionScene.play_out()
 	await Utils.timer(0.4)
 	Utils.enable_cursor()
@@ -36,7 +33,6 @@ func parallax(mouse):
 		
 func move_up_button(b: int, move: Vector2):
 	if can_click:
-		$Hover.play()
 		var tween = create_tween()
 		tween.tween_property(buttons[b], "position", buttons[b].position + move, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 func move_down_button(b: int, move: Vector2):
@@ -66,9 +62,11 @@ func click_button(r):
 		tween_rot.tween_property(buttons[r], "rotation_degrees", original_rotation - rot_offset, shake_duration).set_trans(Tween.TRANS_SINE)
 		tween_rot.tween_property(buttons[r], "rotation_degrees", original_rotation, shake_duration).set_trans(Tween.TRANS_SINE)
 		tween_rot.play()
-func _on_mouse_entered(extra_arg_0: int) -> void:
-	move_up_button(extra_arg_0, Vector2(0, -10))
-	buttons_text[extra_arg_0].add_theme_color_override("default_color", Color("#fff"))
+func _on_mouse_entered(extra_arg_0 : int) -> void:
+	$Hover.play()
+	if extra_arg_0 != -1:
+		move_up_button(extra_arg_0, Vector2(0, -10))
+		buttons_text[extra_arg_0].add_theme_color_override("default_color", Color("#fff"))
 	pass # Replace with function body.
 
 
@@ -93,8 +91,18 @@ func _on_play_gui_input(event: InputEvent) -> void:
 
 
 func _on_click(event: InputEvent, extra_arg_0:= -1) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and can_click:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			$Click.play()
 			if extra_arg_0 == 0:
 				$Options.visible = true
+			if extra_arg_0 == 1:
+				$CanvasLayer.visible = true
+			if extra_arg_0 == 2:
+				$CanvasLayer.visible = false
 	
+			if extra_arg_0 == 3:
+				Utils.disable_cursor()
+				TransitionScene.play_in()
+				await Utils.timer(2)
+				get_tree().quit()
