@@ -102,6 +102,7 @@ layer = 20
 script = ExtResource("1_glaxh")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1068077386]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -134,12 +135,14 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 159
 
 [node name="sim" type="Button" parent="HBoxContainer" unique_id=1470947326]
+texture_filter = 1
 layout_mode = 2
 theme = SubResource("Theme_1eyw8")
 text = "Sim"
 flat = true
 
 [node name="nao" type="Button" parent="HBoxContainer" unique_id=1994105366]
+texture_filter = 1
 layout_mode = 2
 theme = SubResource("Theme_1eyw8")
 text = "Não '-'"

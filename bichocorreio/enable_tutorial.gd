@@ -9,11 +9,8 @@ func _on_pressed(extra_arg_0: int) -> void:
 	match extra_arg_0:
 		0:
 			SignalManager.tutorial.emit()
-			sim.disabled = true
-			nao.disabled = true
-			animation_player.play("tchau")
 		1:
 			SignalManager.no_tutorial.emit()
-			sim.disabled = true
-			nao.disabled = true
-			animation_player.play("tchau")
+	sim.disabled = true
+	nao.disabled = true
+	animation_player.play("tchau")
