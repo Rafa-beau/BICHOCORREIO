@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b0ub8u5tdnd04" path="res://assets/sounds/start.wav" id="8_j8mup"]
 [ext_resource type="PackedScene" uid="uid://ciu4dsv3gx5oo" path="res://node/menu/options.tscn" id="9_fegjp"]
 [ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="9_td45c"]
+[ext_resource type="Texture2D" uid="uid://dtla2prbo0cle" path="res://assets/smallbutton.png" id="11_cywq3"]
 
 [sub_resource type="Theme" id="Theme_td45c"]
 Button/colors/font_color = Color(0.7288213, 0.7288222, 0.7288216, 1)
@@ -152,6 +153,35 @@ text = "Sair do Jogo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="credits" type="Control" parent="VBoxContainer" unique_id=1300475184]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/credits" unique_id=1298944902]
+texture_filter = 1
+layout_mode = 0
+offset_left = -62.0
+offset_top = -62.0
+offset_right = 235.0
+offset_bottom = 136.0
+pivot_offset = Vector2(248.5, 99)
+texture = ExtResource("11_cywq3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/credits" unique_id=1933960596]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = -17.0
+offset_right = 121.0
+offset_bottom = 91.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("6_wnt5d")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "👥"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Background" type="AudioStreamPlayer" parent="." unique_id=1776697694]
 stream = ExtResource("6_ngl4d")
 bus = &"Music"
@@ -247,6 +277,7 @@ flat = true
 [connection signal="gui_input" from="VBoxContainer/play3" to="." method="_on_click" binds= [1]]
 [connection signal="mouse_entered" from="VBoxContainer/play3" to="." method="_on_mouse_entered" binds= [2]]
 [connection signal="mouse_exited" from="VBoxContainer/play3" to="." method="_on_mouse_exited" binds= [2]]
+[connection signal="gui_input" from="VBoxContainer/credits" to="." method="_on_credits_gui_input"]
 [connection signal="gui_input" from="CanvasLayer/HBoxContainer/sim" to="." method="_on_click" binds= [3]]
 [connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/sim" to="." method="_on_mouse_entered" binds= [-1]]
 [connection signal="gui_input" from="CanvasLayer/HBoxContainer/nao" to="." method="_on_click" binds= [2]]
