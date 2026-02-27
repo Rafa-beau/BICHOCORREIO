@@ -112,6 +112,8 @@ libraries/ = SubResource("AnimationLibrary_k40d6")
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=562692765]
 stream = ExtResource("9_gkhd2")
+volume_db = -32.341
+bus = &"Sfx"
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=904266003]
 stream = ExtResource("10_sk4u4")

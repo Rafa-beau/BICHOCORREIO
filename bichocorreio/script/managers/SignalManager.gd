@@ -1,7 +1,8 @@
 extends Node
 signal call_card
 signal pause
-signal despause
+signal tutorial
+signal no_tutorial
 
 signal is_water(isw: bool)
 signal AntEat

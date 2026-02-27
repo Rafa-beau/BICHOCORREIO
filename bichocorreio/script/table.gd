@@ -19,9 +19,9 @@ func _ready() -> void:
 	
 	await Utils.timer(0.2)
 	TransitionScene.play_out()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)
 	$Background.play()
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	init_turn()
 	
 	SignalManager.upgrade_clicked.connect(init_turn)
