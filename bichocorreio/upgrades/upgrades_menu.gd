@@ -3,6 +3,8 @@ extends Control
 @export var animation_fly: AnimationPlayer
 @export var desc_upgrade_scene: PackedScene
 @export var card_upgrades: Array[Control]
+@onready var spawn: AnimationPlayer = $Spawn
+@onready var spawn_2: AnimationPlayer = $Spawn2
 
 var current_text: Node
 
@@ -14,7 +16,7 @@ func _ready() -> void:
 	index.shuffle()
 	for i in range(3):
 		card_upgrades[i]._upgrade_index = index[i]
-		
+	
 	print(card_upgrades)
 	SignalManager.upgrade_clicked.connect(pause_fly)
 	SignalManager.upgrade_clicked.connect(move_card_purchased)
@@ -46,5 +48,10 @@ func move_card_purchased(upgrade_index):
 		if 	card_upgrades[i].upgrade_index == upgrade_index:
 			await Utils.timer(0.7)
 			tween_center(card_upgrades[i])
-			break
-		
+			await Utils.timer(1)
+			spawn.play("Spawn",true)
+			spawn_2.play("oi moanoite",true)
+			current_text.anim.play("out")
+			await Utils.timer(1)
+			TransitionScene.play_out()
+			$Card_Upgrade_Layer/Card_Upgrades.queue_free()

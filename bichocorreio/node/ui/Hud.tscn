@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dbtxhugwtxln2" path="res://script/ui/Player/HudCoin.gd" id="2_cqo1h"]
 [ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="2_q03xa"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_ehn7p"]
+[ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="4_gm185"]
 
 [node name="Control2" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
 layout_mode = 3
@@ -66,3 +67,8 @@ texture = ExtResource("2_q03xa")
 [node name="Sprite2D4" type="Sprite2D" parent="HudLife" unique_id=1881661864]
 position = Vector2(308, 44)
 texture = ExtResource("2_q03xa")
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=1779224747]
+stream = ExtResource("4_gm185")
+volume_db = -10.78
+bus = &"Sfx"

@@ -37,7 +37,7 @@ func no_tutorial():
 	$Background.play()
 	init_turn()
 	
-	SignalManager.upgrade_clicked.connect(init_turn)
+	#SignalManager.upgrade_clicked.connect()
 	
 ### SISTEMA DE TURNO
 var turn_index: int
@@ -47,7 +47,6 @@ var can_pass_turn: bool
 # iniciar turno
 func init_turn(qtd_provas = PlayerManager.cards_per_turno):
 	if current_upgrade_scene:
-		current_upgrade_scene.queue_free()
 		TransitionScene.play_out()
 		await Utils.timer(1)
 	turn_index = qtd_provas
@@ -88,7 +87,6 @@ func call_card():
 ### AÇÔES DA CARTA
 func reject():
 	PlayerManager.take_damage(1)
-	$Hit.play()
 	current_card.queue_free()
 	can_pass_turn = true
 

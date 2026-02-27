@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dr42dh6vd68xv" path="res://assets/tintaVERDE.png" id="1_fr017"]
 [ext_resource type="Texture2D" uid="uid://cioa0m3heg8gb" path="res://assets/tintaAZUL.png" id="2_fk8ll"]
+[ext_resource type="AudioStream" uid="uid://gc0n1hta60es" path="res://assets/sounds/carimbo_certo.wav" id="3_fk8ll"]
 
 [sub_resource type="GDScript" id="GDScript_de3tt"]
 script/source = "extends Node2D
@@ -21,13 +22,14 @@ func _on_green_input_event(viewport: Node, event: InputEvent, shape_idx: int) ->
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			SignalManager.stamp_pick.emit(Color.GREEN)
+			$Stamp2.play()
 
 
 func _on_blue_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			SignalManager.stamp_pick.emit(Color.BLUE)
-			
+			$Stamp2.play()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
@@ -63,6 +65,10 @@ texture = ExtResource("2_fk8ll")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blue/Blue" unique_id=1808835465]
 position = Vector2(167, 72)
 shape = SubResource("RectangleShape2D_wtcfe")
+
+[node name="Stamp2" type="AudioStreamPlayer" parent="." unique_id=2066197482]
+stream = ExtResource("3_fk8ll")
+bus = &"Sfx"
 
 [connection signal="input_event" from="Green/Green" to="." method="_on_green_input_event"]
 [connection signal="input_event" from="Blue/Blue" to="." method="_on_blue_input_event"]
