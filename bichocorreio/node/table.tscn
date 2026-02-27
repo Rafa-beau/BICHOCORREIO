@@ -122,6 +122,7 @@ bus = &"Sfx"
 
 [node name="BadStamp" type="AudioStreamPlayer" parent="." unique_id=1897063896]
 stream = ExtResource("12_4ixn4")
+volume_db = -7.61
 bus = &"Sfx"
 
 [node name="Stamp2" type="AudioStreamPlayer" parent="." unique_id=1776239401]

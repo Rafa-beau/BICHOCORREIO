@@ -18,7 +18,7 @@ var pull = false
 func _ready() -> void:
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
-
+	SignalManager.upgrade_clicked.connect(no_tutorial)
 
 func tutorial():
 	await Utils.timer(1.2)
@@ -77,8 +77,6 @@ func call_card():
 	if current_card.ball == false:
 		current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
 	
-	
-	
 	#CardManager.current_card = current_card
 	
 	var tween = create_tween()
@@ -130,31 +128,10 @@ func move_paw(des):
 
 ### VALIDATORES
 func accept_validate() -> bool:
-	if current_card.water == true and current_card.water_stamp == true:
-		current_card.water = false
-		return true
-	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		if current_card.is_anteat == true:
-			if current_paw.disapproved == true:
-				return true
-		if current_card.is_anteat == false:
-			if current_paw.stamped == true:
-				return false
-	return false
+	return CardManager.can_accept(CardClass.new(current_card, current_paw))
 	
 func confiscate_validate() -> bool:
-	# troocar para as validacoes certas dps
-	if current_card.water == true and current_card.water_stamp == true:
-		current_card.water = false
-		return true
-	if current_card.water == false and current_card.water_stamp == false and current_card.stamped == true:
-		if current_card.is_anteat == true:
-			if current_card.paw.disapproved == true:
-				return true
-		if current_card.is_anteat == false:
-			if current_card.paw.stamped == true:
-				return false
-	return false
+	return CardManager.can_confiscate(CardClass.new(current_card, current_paw))
 
 ### ACEITAR E CONFISCAR - CLICK
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

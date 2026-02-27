@@ -1,18 +1,19 @@
 extends Area2D
 
 
-@onready var paw = $Sprite2D
+@onready var paw: Sprite2D = $Sprite2D
 @onready var stamp: Sprite2D = $Stamp
 
-var current_paw
 
-var water: bool
-var stamped: bool
-var approved: bool
-var disapproved: bool
-var water_stamp: bool
-var AntEat: bool
+var paw_stamped: bool
+var paw_approved: bool
+var paw_disapproved: bool
+var paw_water_stamp: bool
+
 var Crocs: bool
+var AntEat: bool
+
+
 var cur_frame
 
 @onready var paws_water: Sprite2D = $WaterPaws
@@ -24,7 +25,6 @@ func _ready() -> void:
 	paws_water.hide()
 	paws.hide()
 	
-	# Check parent to see if there's already a card spawned
 	if get_parent() and "current_card" in get_parent() and get_parent().current_card:
 		change_sprite(get_parent().current_card.water)
 		
@@ -36,9 +36,8 @@ func change_sprite(isw: bool):
 		paws.show()
 		cur_frame = randi_range(0, 4)
 		paws.frame = cur_frame
-		if cur_frame == 5:
+		if cur_frame == 4:
 			AntEat = true
-			SignalManager.AntEat.emit()
 
 	if isw == true:
 		paws_water.show()
@@ -51,22 +50,22 @@ func change_sprite(isw: bool):
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		if not stamped and StampManager.can_stamp():
+		if not paw_stamped and StampManager.can_stamp():
 			if AntEat == true or Crocs == true:
 				if StampManager.current_color == Color.GREEN:
 					if event.button_index == MOUSE_BUTTON_LEFT:
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 0
-						approved = true
-						stamped = true
+						paw_approved = true
+						paw_stamped = true
 						SignalManager.stamp.emit()
 					elif event.button_index == MOUSE_BUTTON_RIGHT:
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 2
-						disapproved = true
-						stamped = true
+						paw_disapproved = true
+						paw_stamped = true
 						SignalManager.stamp.emit()
 					return
 				if StampManager.current_color == Color.BLUE:
@@ -74,17 +73,17 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 1
-						approved = true
-						water_stamp = true
-						stamped = true
+						paw_approved = true
+						paw_water_stamp = true
+						paw_stamped = true
 						SignalManager.stamp.emit()
 					elif event.button_index == MOUSE_BUTTON_RIGHT:
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 3
-						disapproved = true
-						water_stamp = true
-						stamped = true
+						paw_disapproved = true
+						paw_water_stamp = true
+						paw_stamped = true
 						SignalManager.stamp.emit()
 			else:
 				

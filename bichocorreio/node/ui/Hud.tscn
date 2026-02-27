@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="2_q03xa"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_ehn7p"]
 
-[node name="Control" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
+[node name="Control2" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

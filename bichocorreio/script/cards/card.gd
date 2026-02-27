@@ -1,29 +1,29 @@
 extends Area2D
 
+var disapproved: bool
+var approved: bool
 var dragging: bool
 var stamped: bool
-var approved: bool
-var disapproved: bool
-var ball: bool
-var water: bool
-var water_stamp: bool
-var dirty: bool
-var coins: int = 1
-var start_pos: Vector2
-var offset
-var rng = RandomNumberGenerator.new()
 var is_anteat: bool
-var original_position: Vector2
-var coin_scene
-var dirt_scene
-var min_c = 2
-var max_c = 6
+var ball: bool # BOLAS?!?!!
+var water_stamp: bool
+var stamp_fake: bool
 var bribe: bool
-var max_x = 300
-var max_y = 400
-var pos_x
-var pos_y
-var cur_c
+var dirty: bool
+var water: bool
+var start_pos: Vector2
+var rng = RandomNumberGenerator.new()
+var original_position: Vector2
+var coin_scene: Node
+var dirt_scene: Node
+var coins: int = 1
+var min_c : int = 2
+var max_c : int = 6
+var cur_c : int
+var max_x : float = 300
+var max_y : float= 400
+var pos_x : float
+var pos_y : float
 
 var parent = self
 @onready var dirt: Node2D = $Dirt
@@ -74,12 +74,12 @@ func _ready():
 		for i in range(cur_c):
 			create_rand()
 			print("teste")
-
-	if CardType(dirty_chance):
-		dirty = true
-		for i in range(cur_c):
-			create_rand()
-			print("teste")
+#
+	#if CardType(dirty_chance):
+		#dirty = true
+		#for i in range(cur_c):
+			#create_rand()
+			#print("teste")
 
 	if CardType(blue_chance):
 		card_frame.frame = 1
@@ -94,9 +94,11 @@ func _ready():
 
 	if CardType(stamp_chance):
 		if water == false:
+			stamp_fake = true
 			stamp.frame = 0
 			stamp.show()
 		if water == true:
+			stamp_fake = true
 			stamp.frame = 1
 			stamp.show()
 
@@ -130,7 +132,7 @@ func stamp_wears():
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if not ball:
-			if not stamped and StampManager.can_stamp():
+			if not stamped and StampManager.can_stamp() and stamp_fake == false:
 				if StampManager.current_color == Color.GREEN:
 					if event.button_index == MOUSE_BUTTON_LEFT:
 						stamp.modulate.a = StampManager.get_next_opacity()

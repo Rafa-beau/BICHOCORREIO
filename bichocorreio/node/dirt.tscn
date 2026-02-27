@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cet2m31cij6he"]
 
-[ext_resource type="Script" uid="uid://bl1jkhi8y4aoo" path="res://script/managers/CardManager.gd" id="1_non8s"]
+[ext_resource type="Script" uid="uid://bl1jkhi8y4aoo" path="res://script/managers/DirtyManager.gd" id="1_non8s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6lr71"]
 radius = 42.755116

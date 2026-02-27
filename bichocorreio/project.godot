@@ -22,12 +22,13 @@ buses/default_bus_layout="uid://bepfnc1qdir5a"
 [autoload]
 
 Utils="*uid://bhmowga67o17k"
-CardManager="*uid://bl1jkhi8y4aoo"
+DirtyManager="*uid://bl1jkhi8y4aoo"
 SignalManager="*uid://be5c4kycm4hff"
 StampManager="*uid://g1s2qj4igdyq"
 PlayerManager="*uid://cy7oga3ykq0j5"
 TransitionScene="*uid://b6bt16vcrthem"
 UpgradeManager="*uid://cc3hjbmv74o5i"
+CardManager="*uid://be3fjbu2oo6vd"
 
 [display]
 

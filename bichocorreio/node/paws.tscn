@@ -18,8 +18,10 @@ scale = Vector2(0.516217, 0.4820513)
 texture = ExtResource("3_o4lty")
 hframes = 3
 vframes = 2
+frame = 4
 
 [node name="WaterPaws" type="Sprite2D" parent="." unique_id=1329077582]
+visible = false
 position = Vector2(260.00006, 186.99998)
 scale = Vector2(0.516217, 0.4820513)
 texture = ExtResource("4_8h0cl")
@@ -32,6 +34,7 @@ scale = Vector2(0.99999994, 1)
 shape = SubResource("CapsuleShape2D_4l3xd")
 
 [node name="Stamp" type="Sprite2D" parent="." unique_id=1842096532]
+visible = false
 position = Vector2(257.99997, 187)
 rotation = 1.1693707
 scale = Vector2(0.1236217, 0.10705491)
