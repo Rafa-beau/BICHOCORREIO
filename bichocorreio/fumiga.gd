@@ -3,7 +3,7 @@ extends Sprite2D
 var can_follow = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	z_index = 10
+	z_index = 1000
 	visible = true
 	
 

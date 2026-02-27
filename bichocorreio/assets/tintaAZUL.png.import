@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6pd32fce586i"
-path="res://.godot/imported/maos.png-fae96e401755ae44ac7940ada51b8541.ctex"
+uid="uid://cioa0m3heg8gb"
+path="res://.godot/imported/tintaAZUL.png-713b1e3a07be27903c6502373eaeba87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/maos.png"
-dest_files=["res://.godot/imported/maos.png-fae96e401755ae44ac7940ada51b8541.ctex"]
+source_file="res://assets/tintaAZUL.png"
+dest_files=["res://.godot/imported/tintaAZUL.png-713b1e3a07be27903c6502373eaeba87.ctex"]
 
 [params]
 

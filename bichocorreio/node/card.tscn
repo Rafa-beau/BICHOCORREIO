@@ -3,39 +3,55 @@
 [ext_resource type="Script" uid="uid://b6771g3wmau7c" path="res://script/cards/card.gd" id="1_b70dl"]
 [ext_resource type="Texture2D" uid="uid://be7ixgqolkwlw" path="res://assets/papeis.png" id="2_kpnyg"]
 [ext_resource type="Texture2D" uid="uid://d3ok0jo73ppes" path="res://assets/carimbo.png" id="3_6lr71"]
+[ext_resource type="PackedScene" uid="uid://cet2m31cij6he" path="res://node/dirt.tscn" id="3_isbx4"]
+[ext_resource type="Texture2D" uid="uid://dk2kthl8t3qo4" path="res://assets/papel_amassado.png" id="4_isbx4"]
+[ext_resource type="PackedScene" uid="uid://dhymqlj7u4ny5" path="res://coin.tscn" id="5_u8qiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
-size = Vector2(578, 456)
+size = Vector2(348, 476)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
 size = Vector2(188, 135)
 
 [node name="Card" type="Area2D" unique_id=647703974]
 script = ExtResource("1_b70dl")
+coin = ExtResource("5_u8qiq")
+dirt_sc = ExtResource("3_isbx4")
 
 [node name="Card" type="Sprite2D" parent="." unique_id=1486517222]
-position = Vector2(289.5, 225.49997)
+position = Vector2(184.00003, 226.99997)
 scale = Vector2(0.60104173, 0.5416666)
 texture = ExtResource("2_kpnyg")
 hframes = 2
 
+[node name="Ball" type="Sprite2D" parent="." unique_id=572161634]
+position = Vector2(157, 171)
+scale = Vector2(0.36953124, 0.43981484)
+texture = ExtResource("4_isbx4")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552224773]
-position = Vector2(290, 228)
+position = Vector2(178, 227)
 shape = SubResource("RectangleShape2D_rjgdm")
 debug_color = Color(0.9825526, 0, 0.36536703, 0.41960785)
 
 [node name="StampPlace" type="Area2D" parent="." unique_id=82034314]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StampPlace" unique_id=25307432]
-position = Vector2(193, 9)
+position = Vector2(71, 0)
 shape = SubResource("RectangleShape2D_b70dl")
 
 [node name="Stamp" type="Sprite2D" parent="." unique_id=978036842]
-position = Vector2(204.19952, 43.096626)
+position = Vector2(92, 32)
 rotation = 0.17104226
 scale = Vector2(0.13641007, 0.11884499)
 texture = ExtResource("3_6lr71")
 hframes = 4
+
+[node name="Dirt" parent="." unique_id=1041605790 instance=ExtResource("3_isbx4")]
+
+[node name="Coin" parent="." unique_id=914596379 instance=ExtResource("5_u8qiq")]
+visible = false
+position = Vector2(-119, -112)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="StampPlace" to="." method="_on_stamp_place_input_event"]

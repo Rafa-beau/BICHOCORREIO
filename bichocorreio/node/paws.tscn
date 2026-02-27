@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dd3cvs462sw3g"]
 
 [ext_resource type="Script" uid="uid://c4pyv24tcim1x" path="res://script/managers/PawManager.gd" id="1_4l3xd"]
-[ext_resource type="Texture2D" uid="uid://6pd32fce586i" path="res://assets/maos.png" id="1_g7gvq"]
 [ext_resource type="Texture2D" uid="uid://d3ok0jo73ppes" path="res://assets/carimbo.png" id="3_fhehl"]
+[ext_resource type="Texture2D" uid="uid://bc4ek8w5i470y" path="res://assets/maos_normais.png" id="3_o4lty"]
+[ext_resource type="Texture2D" uid="uid://cu2r0r2oayspb" path="res://assets/maos_agua.png" id="4_8h0cl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4l3xd"]
 radius = 54.5
@@ -11,12 +12,19 @@ height = 176.0
 [node name="Paws" type="Area2D" unique_id=2096880879]
 script = ExtResource("1_4l3xd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462490435]
+[node name="Paws" type="Sprite2D" parent="." unique_id=1462490435]
 position = Vector2(260.00006, 186.99998)
 scale = Vector2(0.516217, 0.4820513)
-texture = ExtResource("1_g7gvq")
-hframes = 4
-frame = 3
+texture = ExtResource("3_o4lty")
+hframes = 3
+vframes = 2
+
+[node name="WaterPaws" type="Sprite2D" parent="." unique_id=1329077582]
+position = Vector2(260.00006, 186.99998)
+scale = Vector2(0.516217, 0.4820513)
+texture = ExtResource("4_8h0cl")
+hframes = 3
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1201682298]
 position = Vector2(255, 185)

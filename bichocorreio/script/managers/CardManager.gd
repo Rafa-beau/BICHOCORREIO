@@ -1,3 +1,6 @@
 extends Node
 
-var current_card: Node2D = null	
+@export var current_card: Node
+
+func _on_dirt_area_mouse_entered() -> void:
+	$Dirt_par.hide()

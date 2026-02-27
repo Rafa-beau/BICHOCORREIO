@@ -49,10 +49,13 @@ func coinup():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
-size = Vector2(657, 477)
+size = Vector2(537, 369)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
-size = Vector2(784, 419)
+size = Vector2(645, 225)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brvwj"]
+size = Vector2(604, 142)
 
 [node name="Table" type="Node2D" unique_id=1511156028]
 script = ExtResource("1_7w2ib")
@@ -61,25 +64,37 @@ upgrade_scene = ExtResource("5_4ixn4")
 paw = ExtResource("3_brvwj")
 player = SubResource("GDScript_qjd42")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=616938938]
+offset_right = 1151.0
+offset_bottom = 649.0
+mouse_filter = 2
+color = Color(0.2397204, 0.47731286, 0.015974116, 1)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
-position = Vector2(576, 324)
-scale = Vector2(0.59999996, 0.6000001)
+position = Vector2(567.99994, 285.5)
+scale = Vector2(0.90714276, 1.0693215)
 texture = ExtResource("2_mthqe")
 
 [node name="accept" type="Area2D" parent="." unique_id=578764493]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="accept" unique_id=1061130770]
-position = Vector2(941.5, 129.5)
+position = Vector2(881.5, 183.5)
 shape = SubResource("RectangleShape2D_e76hu")
 
 [node name="confiscate" type="Area2D" parent="." unique_id=1006347816]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="confiscate" unique_id=19972230]
-position = Vector2(245, 632.5)
+position = Vector2(314.5, 535.5)
 shape = SubResource("RectangleShape2D_7w2ib")
 
+[node name="ball" type="Area2D" parent="." unique_id=402927387]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=381510262]
+position = Vector2(303, 72)
+shape = SubResource("RectangleShape2D_brvwj")
+
 [node name="Stamp" parent="." unique_id=1663195992 instance=ExtResource("7_6rkjd")]
-position = Vector2(684, 422)
+position = Vector2(645, 449)
 
 [node name="Fumiga" type="Node2D" parent="." unique_id=1884845610]
 
@@ -101,3 +116,5 @@ stream = ExtResource("9_5jmgm")
 [connection signal="body_shape_exited" from="confiscate" to="." method="_on_confiscate_body_shape_exited"]
 [connection signal="input_event" from="confiscate" to="." method="_on_confiscate_input_event"]
 [connection signal="mouse_entered" from="confiscate" to="." method="_on_confiscate_mouse_entered"]
+[connection signal="input_event" from="ball" to="." method="_on_ball_input_event"]
+[connection signal="mouse_entered" from="ball" to="." method="_on_ball_mouse_entered"]

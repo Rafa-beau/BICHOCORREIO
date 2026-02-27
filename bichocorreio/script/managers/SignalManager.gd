@@ -5,6 +5,7 @@ signal despause
 
 signal is_water(isw: bool)
 signal AntEat
+signal CrocsHead
 
 ### Signals pro PlayerManager/Player | Turno
 signal life_changed(life)

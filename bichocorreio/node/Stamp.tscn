@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://dshim37dpnki"]
 
+[ext_resource type="Texture2D" uid="uid://dr42dh6vd68xv" path="res://assets/tintaVERDE.png" id="1_fr017"]
+[ext_resource type="Texture2D" uid="uid://cioa0m3heg8gb" path="res://assets/tintaAZUL.png" id="2_fk8ll"]
+
 [sub_resource type="GDScript" id="GDScript_de3tt"]
 script/source = "extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.z_index = 100
 	pass # Replace with function body.
 
 
@@ -27,7 +31,7 @@ func _on_blue_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> 
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(187.5, 176)
+size = Vector2(232.4375, 144.5)
 
 [node name="Node2D" type="Node2D" unique_id=1663195992]
 script = SubResource("GDScript_de3tt")
@@ -36,15 +40,14 @@ script = SubResource("GDScript_de3tt")
 
 [node name="Green" type="Area2D" parent="Green" unique_id=517625865]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Green/Green" unique_id=2043167398]
-position = Vector2(95.25, 87)
-shape = SubResource("RectangleShape2D_wtcfe")
+[node name="Sprite2D" type="Sprite2D" parent="Green/Green" unique_id=852020454]
+position = Vector2(108.99999, 68)
+scale = Vector2(0.84507036, 1.0116279)
+texture = ExtResource("1_fr017")
 
-[node name="ColorRect" type="ColorRect" parent="Green" unique_id=738996894]
-offset_right = 188.0
-offset_bottom = 179.0
-mouse_filter = 2
-color = Color(0, 1, 0.02745098, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Green/Green" unique_id=2043167398]
+position = Vector2(113, 72)
+shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="Blue" type="Node2D" parent="." unique_id=267827425]
 position = Vector2(204, 0)
@@ -52,15 +55,14 @@ position = Vector2(204, 0)
 [node name="Blue" type="Area2D" parent="Blue" unique_id=887329916]
 position = Vector2(-2, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue/Blue" unique_id=1808835465]
-position = Vector2(95.25, 87)
-shape = SubResource("RectangleShape2D_wtcfe")
+[node name="Sprite2D" type="Sprite2D" parent="Blue/Blue" unique_id=1625286610]
+position = Vector2(165.99998, 68)
+scale = Vector2(0.8732393, 1.0116279)
+texture = ExtResource("2_fk8ll")
 
-[node name="ColorRect" type="ColorRect" parent="Blue" unique_id=36944738]
-offset_right = 188.0
-offset_bottom = 179.0
-mouse_filter = 2
-color = Color(0, 0.54901963, 1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue/Blue" unique_id=1808835465]
+position = Vector2(167, 72)
+shape = SubResource("RectangleShape2D_wtcfe")
 
 [connection signal="input_event" from="Green/Green" to="." method="_on_green_input_event"]
 [connection signal="input_event" from="Blue/Blue" to="." method="_on_blue_input_event"]

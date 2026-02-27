@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cet2m31cij6he"]
+
+[ext_resource type="Script" uid="uid://bl1jkhi8y4aoo" path="res://script/managers/CardManager.gd" id="1_non8s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lr71"]
+radius = 42.755116
+
+[node name="Dirt" type="Node2D" unique_id=1041605790]
+script = ExtResource("1_non8s")
+
+[node name="Dirt_par" type="CPUParticles2D" parent="." unique_id=899899005]
+position = Vector2(44, 48)
+amount = 720
+lifetime = 5.0
+emission_shape = 1
+emission_sphere_radius = 41.07
+direction = Vector2(0, 0)
+spread = 99.6
+gravity = Vector2(0, 0)
+angular_velocity_min = 1.8
+angular_velocity_max = 1.8
+orbit_velocity_max = 0.05
+color = Color(0.8745098, 0.8509804, 0.5529412, 1)
+
+[node name="Dirt_area" type="Area2D" parent="Dirt_par" unique_id=1686523404]
+position = Vector2(-2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dirt_par/Dirt_area" unique_id=1175536603]
+position = Vector2(3, -2)
+shape = SubResource("CircleShape2D_6lr71")
+
+[connection signal="mouse_entered" from="Dirt_par/Dirt_area" to="." method="_on_dirt_area_mouse_entered"]

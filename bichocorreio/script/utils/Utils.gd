@@ -5,7 +5,6 @@ func spawn_scene(scene: PackedScene, parent, pos:=):
 	parent.add_child(instance)
 	if pos is Vector2:
 		instance.global_position = pos
-		print("criou")
 	return instance
 
 func set_cursor(img_path:String):

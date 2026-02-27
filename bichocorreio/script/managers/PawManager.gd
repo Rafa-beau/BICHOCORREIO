@@ -12,70 +12,80 @@ var approved: bool
 var disapproved: bool
 var water_stamp: bool
 var AntEat: bool
+var Crocs: bool
+var cur_frame
 
-var paws_water = ["Frog1", "Frog2"]
-var paws = ["Cat", "AntEater"]
+@onready var paws_water: Sprite2D = $WaterPaws
+@onready var paws: Sprite2D = $Paws
 
 func _ready() -> void:
+	self.z_index = 100
 	stamp.hide()
+	paws_water.hide()
+	paws.hide()
+	
+	# Check parent to see if there's already a card spawned
+	if get_parent() and "current_card" in get_parent() and get_parent().current_card:
+		change_sprite(get_parent().current_card.water)
+		
 	SignalManager.is_water.connect(change_sprite) 
 
 func change_sprite(isw: bool):
-	if isw == true:
-		var choice = paws_water.pick_random()
-		print (choice)
-		match choice:
-			"Frog1":
-				paw.frame = 1
-			"Frog2":
-				paw.frame = 2
 	if isw == false:
-		var choice = paws.pick_random()
-		print (choice)
-		match choice:
-			"Cat":
-				paw.frame = 0
-			"AntEater":
-				paw.frame = 3
-				SignalManager.AntEat.emit()
+		paws_water.hide()
+		paws.show()
+		cur_frame = randi_range(0, 4)
+		paws.frame = cur_frame
+		if cur_frame == 5:
+			AntEat = true
+			SignalManager.AntEat.emit()
+
+	if isw == true:
+		paws_water.show()
+		paws.hide()
+		cur_frame = randi_range(0, 4)
+		paws_water.frame = cur_frame
+		if cur_frame == 0:
+			Crocs = true
+			SignalManager.CrocsHead.emit()
 
 func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if not stamped and StampManager.can_stamp():
-			if StampManager.current_color == Color.GREEN:
-				if event.button_index == MOUSE_BUTTON_LEFT:
-					stamp.modulate.a = StampManager.get_next_opacity()
-					stamp.show()
-					stamp.frame = 0
-					approved = true
-					stamped = true
-					SignalManager.stamp.emit()
-				elif event.button_index == MOUSE_BUTTON_RIGHT:
-					stamp.modulate.a = StampManager.get_next_opacity()
-					stamp.show()
-					stamp.frame = 2
-					disapproved = true
-					stamped = true
-					SignalManager.stamp.emit()
-				return
-			if StampManager.current_color == Color.BLUE:
-				if event.button_index == MOUSE_BUTTON_LEFT:
-					stamp.modulate.a = StampManager.get_next_opacity()
-					stamp.show()
-					stamp.frame = 1
-					approved = true
-					water_stamp = true
-					stamped = true
-					SignalManager.stamp.emit()
-				elif event.button_index == MOUSE_BUTTON_RIGHT:
-					stamp.modulate.a = StampManager.get_next_opacity()
-					stamp.show()
-					stamp.frame = 3
-					disapproved = true
-					water_stamp = true
-					stamped = true
-					SignalManager.stamp.emit()
-		else:
-			print ("Bad Stamb")
-			
-			SignalManager.bad_stamp.emit()
+			if AntEat == true or Crocs == true:
+				if StampManager.current_color == Color.GREEN:
+					if event.button_index == MOUSE_BUTTON_LEFT:
+						stamp.modulate.a = StampManager.get_next_opacity()
+						stamp.show()
+						stamp.frame = 0
+						approved = true
+						stamped = true
+						SignalManager.stamp.emit()
+					elif event.button_index == MOUSE_BUTTON_RIGHT:
+						stamp.modulate.a = StampManager.get_next_opacity()
+						stamp.show()
+						stamp.frame = 2
+						disapproved = true
+						stamped = true
+						SignalManager.stamp.emit()
+					return
+				if StampManager.current_color == Color.BLUE:
+					if event.button_index == MOUSE_BUTTON_LEFT:
+						stamp.modulate.a = StampManager.get_next_opacity()
+						stamp.show()
+						stamp.frame = 1
+						approved = true
+						water_stamp = true
+						stamped = true
+						SignalManager.stamp.emit()
+					elif event.button_index == MOUSE_BUTTON_RIGHT:
+						stamp.modulate.a = StampManager.get_next_opacity()
+						stamp.show()
+						stamp.frame = 3
+						disapproved = true
+						water_stamp = true
+						stamped = true
+						SignalManager.stamp.emit()
+			else:
+				
+				SignalManager.bad_stamp.emit()

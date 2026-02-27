@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dhymqlj7u4ny5"]
+
+[ext_resource type="Script" uid="uid://bigapgbt20qbs" path="res://script/coin.gd" id="1_0t63x"]
+[ext_resource type="Texture2D" uid="uid://bt63n5eaynbly" path="res://assets/coin.png" id="2_v7riw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdq0q"]
+radius = 77.05842
+
+[node name="Coin" type="Area2D" unique_id=914596379 node_paths=PackedStringArray("coin")]
+script = ExtResource("1_0t63x")
+coin = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917547755]
+position = Vector2(48, 46)
+texture = ExtResource("2_v7riw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1732852736]
+position = Vector2(47, 45)
+shape = SubResource("CircleShape2D_pdq0q")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
