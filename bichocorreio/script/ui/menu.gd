@@ -11,12 +11,11 @@ func _process(delta: float) -> void:
 	if can_click == false and i == 0:
 		get_viewport().warp_mouse(Vector2(568.2, 110))
 		
-	
-
 func _ready() -> void:
+	viewport_size = get_viewport().get_visible_rect().size
+	Utils.load_options()
 	print(original_positions)
 	Utils.set_cursor("res://assets/cursor.png")
-	viewport_size = get_viewport().get_visible_rect().size
 	Utils.disable_cursor()
 	await Utils.timer(4.8)
 	TransitionScene.play_out()
@@ -26,6 +25,7 @@ func _ready() -> void:
 	await Utils.timer(0.2)
 	can_click = true
 	i = 1
+	
 
 
 func parallax(mouse):
@@ -45,6 +45,8 @@ func move_down_button(b: int, move: Vector2):
 		tween.tween_property(buttons[b], "position", original_positions[b], 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		
 func click_button(r):
+	$Click_play.play()
+	
 	var tween_rot = get_tree().create_tween()
 	var tween_scale = get_tree().create_tween()
 	
@@ -65,7 +67,6 @@ func click_button(r):
 		tween_rot.tween_property(buttons[r], "rotation_degrees", original_rotation, shake_duration).set_trans(Tween.TRANS_SINE)
 		tween_rot.play()
 func _on_mouse_entered(extra_arg_0: int) -> void:
-	print("oi")
 	move_up_button(extra_arg_0, Vector2(0, -10))
 	buttons_text[extra_arg_0].add_theme_color_override("default_color", Color("#fff"))
 	pass # Replace with function body.
@@ -89,3 +90,11 @@ func _on_play_gui_input(event: InputEvent) -> void:
 			await Utils.timer(1.7)
 			get_tree().change_scene_to_file("res://node/table.tscn")
 	pass # Replace with function body.
+
+
+func _on_click(event: InputEvent, extra_arg_0:= -1) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if extra_arg_0 == 0:
+				$Options.visible = true
+	

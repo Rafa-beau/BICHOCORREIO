@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://ciu4dsv3gx5oo"]
+
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="1_5okf8"]
+[ext_resource type="Script" uid="uid://b1lg4ki3tk8x7" path="res://node/menu/options.gd" id="1_l2gif"]
+[ext_resource type="Texture2D" uid="uid://b6y54bxw7v2c8" path="res://assets/button.png" id="2_yx15l"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="4_impyr"]
+[ext_resource type="AudioStream" uid="uid://b0ub8u5tdnd04" path="res://assets/sounds/start.wav" id="5_4jir5"]
+
+[node name="Control" type="Control" unique_id=406482905]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_l2gif")
+
+[node name="Panel" type="Panel" parent="." unique_id=370955614]
+texture_filter = 1
+layout_mode = 0
+offset_left = 218.0
+offset_top = 138.0
+offset_right = 258.0
+offset_bottom = 178.0
+scale = Vector2(17.759998, 9.360001)
+
+[node name="Panel2" type="Panel" parent="." unique_id=902118501]
+modulate = Color(0, 0, 0, 0)
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(29.014322, 16.388445)
+
+[node name="Vsync" type="Label" parent="." unique_id=906904223]
+texture_filter = 1
+layout_mode = 0
+offset_left = 738.0
+offset_top = 250.00002
+offset_right = 886.0
+offset_bottom = 286.0
+theme_override_fonts/font = ExtResource("1_5okf8")
+theme_override_font_sizes/font_size = 33
+text = "Vsync"
+
+[node name="CheckButton" type="CheckButton" parent="Vsync" unique_id=2104287574]
+texture_filter = 1
+layout_mode = 0
+offset_left = -82.99997
+offset_top = -11.0
+offset_right = -38.99997
+offset_bottom = 19.0
+scale = Vector2(1.99, 1.99)
+button_pressed = true
+
+[node name="Tela Cheia" type="Label" parent="." unique_id=363564178]
+texture_filter = 1
+layout_mode = 0
+offset_left = 739.0
+offset_top = 328.0
+offset_right = 887.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("1_5okf8")
+theme_override_font_sizes/font_size = 33
+text = "Tela Cheia"
+
+[node name="CheckButton" type="CheckButton" parent="Tela Cheia" unique_id=238574095]
+texture_filter = 1
+layout_mode = 0
+offset_left = -82.99997
+offset_top = -11.0
+offset_right = -38.99997
+offset_bottom = 19.0
+scale = Vector2(1.99, 1.99)
+button_pressed = true
+
+[node name="Volume Geral" type="Label" parent="." unique_id=1264220700]
+texture_filter = 1
+layout_mode = 0
+offset_left = 258.0
+offset_top = 214.00002
+offset_right = 406.0
+offset_bottom = 250.00002
+theme_override_fonts/font = ExtResource("1_5okf8")
+theme_override_font_sizes/font_size = 33
+text = "Volume Geral"
+
+[node name="HSlider6" type="HSlider" parent="Volume Geral" unique_id=1337675263]
+texture_filter = 1
+layout_mode = 0
+offset_left = -7.0
+offset_top = 29.0
+offset_right = 97.408356
+offset_bottom = 45.0
+scale = Vector2(2.155, 2.155)
+max_value = 0.5
+step = 0.001
+
+[node name="Musica" type="Label" parent="." unique_id=1910668329]
+texture_filter = 1
+layout_mode = 0
+offset_left = 258.0
+offset_top = 295.0
+offset_right = 406.0
+offset_bottom = 331.0
+theme_override_fonts/font = ExtResource("1_5okf8")
+theme_override_font_sizes/font_size = 33
+text = "Música"
+
+[node name="HSlider5" type="HSlider" parent="Musica" unique_id=1970877300]
+texture_filter = 1
+layout_mode = 0
+offset_left = -7.0
+offset_top = 33.0
+offset_right = 97.408356
+offset_bottom = 49.0
+scale = Vector2(2.155, 2.155)
+max_value = 0.5
+step = 0.001
+
+[node name="Sfx" type="Label" parent="." unique_id=1663851804]
+texture_filter = 1
+layout_mode = 0
+offset_left = 258.0
+offset_top = 370.0
+offset_right = 441.0
+offset_bottom = 406.0
+theme_override_fonts/font = ExtResource("1_5okf8")
+theme_override_font_sizes/font_size = 33
+text = "Efeitos Sonoros"
+
+[node name="HSlider3" type="HSlider" parent="Sfx" unique_id=1423616013]
+texture_filter = 1
+layout_mode = 0
+offset_left = -7.0
+offset_top = 34.0
+offset_right = 97.408356
+offset_bottom = 50.0
+scale = Vector2(2.155, 2.155)
+max_value = 0.5
+step = 0.001
+
+[node name="voltar" type="Control" parent="." unique_id=383494112]
+anchors_preset = 0
+offset_left = 325.0
+offset_top = 404.00006
+offset_right = 325.0
+offset_bottom = 404.00006
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(250, 104)
+
+[node name="TextureRect" type="TextureRect" parent="voltar" unique_id=486651076]
+texture_filter = 1
+layout_mode = 0
+offset_right = 497.0
+offset_bottom = 198.0
+pivot_offset = Vector2(248.5, 99)
+texture = ExtResource("2_yx15l")
+
+[node name="Voltar" type="RichTextLabel" parent="voltar" unique_id=365093477]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 192.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("1_5okf8")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Salvar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1100672642]
+texture_filter = 1
+layout_mode = 0
+offset_left = 502.0
+offset_top = 146.00002
+offset_right = 645.0
+offset_bottom = 210.00002
+theme_override_fonts/normal_font = ExtResource("1_5okf8")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave amp=3]Opções"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=256940131]
+texture_filter = 1
+layout_mode = 0
+offset_left = 673.0
+offset_top = 206.00002
+offset_right = 816.0
+offset_bottom = 270.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_5okf8")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10]Tela:"
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="." unique_id=394177117]
+texture_filter = 1
+layout_mode = 0
+offset_left = 258.0
+offset_top = 170.00002
+offset_right = 401.0
+offset_bottom = 234.00002
+theme_override_fonts/normal_font = ExtResource("1_5okf8")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10]Áudio:"
+vertical_alignment = 1
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=659738423]
+stream = ExtResource("4_impyr")
+bus = &"Sfx"
+
+[node name="Click_play" type="AudioStreamPlayer" parent="." unique_id=211885633]
+stream = ExtResource("5_4jir5")
+volume_db = -8.878
+bus = &"Sfx"
+
+[connection signal="mouse_entered" from="Vsync/CheckButton" to="." method="_on_mouse_entered"]
+[connection signal="toggled" from="Vsync/CheckButton" to="." method="_on_check_button_toggled" binds= [0]]
+[connection signal="mouse_entered" from="Tela Cheia/CheckButton" to="." method="_on_mouse_entered"]
+[connection signal="toggled" from="Tela Cheia/CheckButton" to="." method="_on_check_button_toggled" binds= [1]]
+[connection signal="mouse_entered" from="Volume Geral/HSlider6" to="." method="_on_mouse_entered"]
+[connection signal="value_changed" from="Volume Geral/HSlider6" to="." method="_on_value_changed" binds= [0]]
+[connection signal="mouse_entered" from="Musica/HSlider5" to="." method="_on_mouse_entered"]
+[connection signal="value_changed" from="Musica/HSlider5" to="." method="_on_value_changed" binds= [1]]
+[connection signal="mouse_entered" from="Sfx/HSlider3" to="." method="_on_mouse_entered"]
+[connection signal="value_changed" from="Sfx/HSlider3" to="." method="_on_value_changed" binds= [2]]
+[connection signal="gui_input" from="voltar" to="." method="_on_voltar_gui_input"]
+[connection signal="mouse_entered" from="voltar" to="." method="_on_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="voltar" to="." method="_on_mouse_exited"]

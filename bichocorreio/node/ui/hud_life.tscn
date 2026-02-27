@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://df2jd7f2jojet"]
+
+[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="1_r543v"]
+
+[node name="HudLife" type="HBoxContainer" unique_id=1856103720]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=26370619]
+layout_mode = 2
+texture = ExtResource("1_r543v")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1280028284]
+layout_mode = 2
+texture = ExtResource("1_r543v")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=409408645]
+layout_mode = 2
+texture = ExtResource("1_r543v")
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=1526694886]
+layout_mode = 2
+texture = ExtResource("1_r543v")

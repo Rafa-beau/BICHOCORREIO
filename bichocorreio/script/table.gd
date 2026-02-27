@@ -21,9 +21,9 @@ func _ready() -> void:
 	
 	await Utils.timer(0.2)
 	TransitionScene.play_out()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)
 	$Background.play()
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	init_turn()
 	
 	SignalManager.upgrade_clicked.connect(init_turn)
@@ -79,6 +79,7 @@ func call_card():
 ### AÇÔES DA CARTA
 func reject():
 	PlayerManager.take_damage(1)
+	$Hit.play()
 	current_card.queue_free()
 	can_pass_turn = true
 

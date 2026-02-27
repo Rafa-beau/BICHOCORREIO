@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bsvmq3ogivp7m"]
+
+[ext_resource type="Script" uid="uid://dbtxhugwtxln2" path="res://script/ui/Player/HudCoin.gd" id="2_cqo1h"]
+[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="2_q03xa"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_ehn7p"]
+
+[node name="Control" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_cqo1h")
+life_icon = ExtResource("2_q03xa")
+HudCoin = NodePath("CanvasLayer/HBoxContainer/Node2D/RichTextLabel")
+HudLife = NodePath("HudLife")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=174549277]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1861047960]
+layout_direction = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.0
+offset_right = -91.0
+offset_bottom = 88.0
+grow_horizontal = 0
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/HBoxContainer" unique_id=719777327]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Node2D" unique_id=1935960929]
+offset_left = -462.0
+offset_right = 175.0
+offset_bottom = 89.0
+mouse_filter = 2
+theme_override_constants/outline_size = 23
+theme_override_fonts/normal_font = ExtResource("3_ehn7p")
+theme_override_font_sizes/normal_font_size = 77
+bbcode_enabled = true
+text = "[shake][img]res://assets/moeda.png[/img]x[wave]0 "
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1348329046]
+
+[node name="HudLife" type="HBoxContainer" parent="." unique_id=1890122312]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HudLife" unique_id=2021246440]
+position = Vector2(44, 44)
+texture = ExtResource("2_q03xa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="HudLife" unique_id=1158600146]
+position = Vector2(132, 44)
+texture = ExtResource("2_q03xa")
+
+[node name="Sprite2D3" type="Sprite2D" parent="HudLife" unique_id=1083251597]
+position = Vector2(220, 44)
+texture = ExtResource("2_q03xa")
+
+[node name="Sprite2D4" type="Sprite2D" parent="HudLife" unique_id=1881661864]
+position = Vector2(308, 44)
+texture = ExtResource("2_q03xa")

@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://fumiga.gd" id="8_qjd42"]
 [ext_resource type="AudioStream" uid="uid://b6j2cko28mvva" path="res://assets/sounds/menu_music.mp3" id="9_5jmgm"]
 [ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/formiga.png" id="9_brvwj"]
-[ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/funcs/hud_coin.tscn" id="9_qjd42"]
+[ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/ui/Hud.tscn" id="9_qjd42"]
+[ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="11_5jmgm"]
 
 [sub_resource type="GDScript" id="GDScript_qjd42"]
 script/source = "extends Node
@@ -109,6 +110,12 @@ z_index = 100
 
 [node name="Background" type="AudioStreamPlayer" parent="." unique_id=1784291314]
 stream = ExtResource("9_5jmgm")
+bus = &"Music"
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=950851525]
+stream = ExtResource("11_5jmgm")
+volume_db = -10.78
+bus = &"Sfx"
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

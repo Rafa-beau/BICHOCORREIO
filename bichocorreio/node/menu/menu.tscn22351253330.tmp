@@ -239,5 +239,6 @@ pivot_offset = Vector2(361, 225.5)
 [connection signal="gui_input" from="VBoxContainer/options" to="." method="_on_click" binds= [0]]
 [connection signal="mouse_entered" from="VBoxContainer/options" to="." method="_on_mouse_entered" binds= [1]]
 [connection signal="mouse_exited" from="VBoxContainer/options" to="." method="_on_mouse_exited" binds= [1]]
+[connection signal="gui_input" from="VBoxContainer/play3" to="." method="_on_play_gui_input"]
 [connection signal="mouse_entered" from="VBoxContainer/play3" to="." method="_on_mouse_entered" binds= [2]]
 [connection signal="mouse_exited" from="VBoxContainer/play3" to="." method="_on_mouse_exited" binds= [2]]

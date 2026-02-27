@@ -1,8 +1,8 @@
 extends Control
 
 @export var life_icon = Image
-@onready var HudCoin: Label = $HudCoin
-@onready var HudLife: HBoxContainer = $HudLife
+@export var HudCoin: RichTextLabel
+@export var HudLife: HBoxContainer
 
 
 var player = PlayerManager
@@ -15,7 +15,7 @@ func _ready() -> void:
 	upd_display_life(1)
 
 func upd_display_coin(a: int):
-	HudCoin.text = "X" + str(player.coins)
+	HudCoin.text = "[shake][img]res://assets/moeda.png[/img]x[wave]" + str(player.coins) + " "
 	
 func upd_display_life(a: int):
 	for i in range(HudLife.get_children().size()):

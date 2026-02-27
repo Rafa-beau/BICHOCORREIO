@@ -15,6 +15,10 @@ run/main_scene="uid://c8vkeuto5ftdq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bepfnc1qdir5a"
+
 [autoload]
 
 Utils="*uid://bhmowga67o17k"
@@ -27,7 +31,8 @@ UpgradeManager="*uid://cc3hjbmv74o5i"
 
 [display]
 
-window/size/mode=4
+window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 window/quality/msaa_2d=3
