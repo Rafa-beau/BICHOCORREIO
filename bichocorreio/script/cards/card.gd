@@ -49,7 +49,7 @@ func _ready():
 	ball_text.hide()
 
 	card_frame.frame = 0
-	var blue_chance = 0.2
+	var blue_chance = PlayerManager.water_card_chance
 	var dirty_chance = 0.2
 	var stamp_chance = 0.1
 	var bribe_chance = 0.05
@@ -84,7 +84,7 @@ func _ready():
 	if CardType(blue_chance):
 		card_frame.frame = 1
 		water = true
-		coins = 2
+		coins = PlayerManager.water_card_coins
 		SignalManager.is_water.emit(true)
 	else:
 		card_frame.frame = 0

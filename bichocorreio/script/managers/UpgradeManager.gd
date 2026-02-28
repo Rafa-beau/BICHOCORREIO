@@ -59,18 +59,7 @@ var test : Dictionary = {
 			2: func(): change_water_card_chance(0.15)
 		},
 		},
-	5: { # justica
-		"normal": {
-			1: func(): change_time_per_prova(0.5),
-		},
-		"inverted": {
-			1: func(): change_time_per_prova(-0.5),
-		},
-		"enchanted":{
-			1: func(): change_error_ignored(2)
-		}
-		},
-	6: { # enforcado 
+	5: { # enforcado 
 		"normal": {
 			1: func(): change_cards_per_turn(-2),
 			2: func(): change_coins_after_turn(3)
@@ -83,7 +72,7 @@ var test : Dictionary = {
 			1: func(): change_max_life(1)
 		}
 		},
-	7: { # temperanca
+	6: { # temperanca
 		"normal": {
 			1: func(): change_time_per_prova(0.5),
 			2: func(): change_water_card_chance(PlayerManager.water_card_chance * -0.04)
@@ -93,33 +82,24 @@ var test : Dictionary = {
 			2: func(): change_water_card_chance(PlayerManager.water_card_chance * 0.04)
 		},
 		},
-	8: { # diabo
+	7: { # diabo
 		"normal": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): devil_function(false),
 		},
 		"inverted": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): devil_function(true),
 		},
-		"enchanted":{
-			1: func(): pass,
-			2: func(): pass
-		}
+
 		},
-	9: { # a torre
+	8: { # a torre
 		"normal": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): change_water_card_chance(PlayerManager.water_card_chance * -0.15),
+			2: func(): change_cards_per_turn(2)
 		},
 		"inverted": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): change_water_card_chance(PlayerManager.water_card_chance * 0.15),
+			2: func(): change_cards_per_turn(-2)
 		},
-		"enchanted":{
-			1: func(): pass,
-			2: func(): pass
-		}
 		}
 }
 
@@ -146,8 +126,8 @@ func devil_function(inverted: bool):
 			if PlayerManager.already_enchanted_cards_purchased.has(ramdon_key[1]):
 				habilidades[ramdon_key[1]].call()
 				in_habilities == true
-				break
-		
+				return
+		return
 	change_coins_after_turn(-6)
 	change_time_per_prova(4)
 
@@ -182,7 +162,7 @@ func set_upgrade(upgrade_index: int, inverted: bool, enchanted: bool):
 		if test[upgrade_index]["inverted"].has(2):
 			test[upgrade_index]["inverted"][2].call()
 		return
-	if enchanted:
+	if enchanted and not upgrade_index == 8:
 		test[upgrade_index]["enchanted"][1].call()
 		if test[upgrade_index]["enchanted"].has(2):
 			test[upgrade_index]["enchanted"][2].call()

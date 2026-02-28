@@ -4,6 +4,8 @@ signal pause
 signal tutorial
 signal no_tutorial
 
+signal AAAAAAANAOAGUENTOMAISSSSSSSSSSAS
+
 signal is_water(isw: bool)
 signal AntEat
 signal CrocsHead
@@ -25,7 +27,7 @@ signal stamp
 
 signal upgrade_purchased(upgrade_index: int, inverted: bool, enchanted: bool)
 signal upgrade_clicked(upgrade_index: int)
-signal upgrade_hovered(upgrade_name: String, upgrade_desc: String)
+signal upgrade_hovered(upgrade_name: String, upgrade_desc: String, coins)
 signal upgrade_dishovered
 signal upgrade_blocked
 

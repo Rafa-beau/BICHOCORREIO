@@ -16,7 +16,7 @@ func animate_up_upgrade(r):
 		var tween = get_tree().create_tween()
 		tween.tween_property(r, "scale", Vector2(1.1, 1.1), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.play()
-		SignalManager.upgrade_hovered.emit(p.upgrade_name, p.upgrade_desc)
+		SignalManager.upgrade_hovered.emit(p.upgrade_name, p.upgrade_desc, p.cost)
 		
 func animate_down_upgrade(r):
 	if mouse_animate == true:
@@ -58,12 +58,18 @@ func _on_dishover() -> void:
 
 ###			Click Tween Signals 
 func _on_click(event: InputEvent) -> void:
+	
 	if mouse_animate == true:
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
+				if p.cost > PlayerManager.coins:
+					if $"../BadStamp".playing == false:
+							$"../BadStamp".play()
+					return
 				animate_click_upgrade(self)
 				$"../Click".play()
+				SignalManager.upgrade_purchased.emit(p.upgrade_index, p.inverted, p.enchanted)
 				SignalManager.upgrade_clicked.emit(p.upgrade_index)
-
+				SignalManager.coinchange.emit(-p.cost)
 			
 			

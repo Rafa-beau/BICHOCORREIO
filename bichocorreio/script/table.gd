@@ -7,7 +7,7 @@ extends Node2D
 @export var transition: ColorRect
 @onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
 
-
+var err_pass
 var parent = self
 var vel = 15
 var current_card: Node
@@ -18,8 +18,8 @@ var pull = false
 func _ready() -> void:
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
-	SignalManager.upgrade_clicked.connect(no_tutorial)
-
+	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
+	
 func tutorial():
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
@@ -37,18 +37,21 @@ func no_tutorial():
 	$Background.play()
 	init_turn()
 	
-	#SignalManager.upgrade_clicked.connect()
 	
 ### SISTEMA DE TURNO
 var turn_index: int
 var turn_controler: int
 var can_pass_turn: bool
 
+func init_turn_from_upgrade():
+	await Utils.timer(1.2)
+	init_turn()
+
 # iniciar turno
 func init_turn(qtd_provas = PlayerManager.cards_per_turno):
-	if current_upgrade_scene:
-		TransitionScene.play_out()
-		await Utils.timer(1)
+	err_pass = 0
+	if PlayerManager.can_heal_end_turn:
+		PlayerManager.heal(1)
 	turn_index = qtd_provas
 	turn_controler = 0
 	exec_turn()
@@ -64,6 +67,11 @@ func exec_turn():
 	end_turn()
 # finalizar turno
 func end_turn():
+
+	SignalManager.coinchange.emit(PlayerManager.coins_after_turno)
+	
+
+	
 	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
 
 ### SPAWNAR CARTA
@@ -72,11 +80,14 @@ func call_card():
 	var paw_summon = Vector2(248, -114)
 	
 	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+	if current_paw:
+		current_paw.queue_free()
 	
 	if current_card.ball == false:
 		current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
 	
 	#CardManager.current_card = current_card
+	
 	
 	var tween = create_tween()
 	if current_paw:
@@ -86,12 +97,16 @@ func call_card():
 
 ### AÇÔES DA CARTA
 func reject():
+	if err_pass < PlayerManager.error_ignored:
+		err_pass += 1
+		current_card.queue_free()
+		can_pass_turn = true
+		return
 	PlayerManager.take_damage(1)
 	current_card.queue_free()
 	can_pass_turn = true
 
 func accept():
-	PlayerManager.heal(1)
 	coin_up()
 	current_card.queue_free()
 	can_pass_turn = true
@@ -108,14 +123,16 @@ func next_card():
 
 ### MOVIMENTO
 func move_card(des):
-	var tween = create_tween()
-	if current_card.ball == false:
-		tween.tween_property(current_card, "position", des, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	if current_card.ball == true:
-		tween.tween_property(current_card, "position", des, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-		
-	await Utils.timer(0.6)
-	return
+	if pull == true:
+		pull = false
+		var tween = create_tween()
+		if current_card.ball == false:
+			tween.tween_property(current_card, "position", des, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		if current_card.ball == true:
+			tween.tween_property(current_card, "position", des, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			
+		await Utils.timer(0.6)
+		return
 
 func move_paw(des):
 	var tween = create_tween()
@@ -135,7 +152,7 @@ func confiscate_validate() -> bool:
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card:
 		if event.is_action_released("click"):
-			pull = false
+			current_card.dragging = true
 			await move_card(Vector2(1500, 85))
 			if current_paw:
 				await move_paw(Vector2(248, -1500))
@@ -147,20 +164,8 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card :
 		if event.is_action_released("click"):
-			pull = false
+			current_card.dragging = true
 			await move_card(Vector2(198, 1000))
-			if current_paw:
-				await move_paw(Vector2(248, -1500))
-			if confiscate_validate() == true:
-				accept()
-				return
-			reject()
-
-func _on_ball_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if pull == true and current_card.ball == true:
-		if event.is_action_released("click"):
-			pull = false
-			await move_card(Vector2(198, -1000))
 			if current_paw:
 				await move_paw(Vector2(248, -1500))
 			if confiscate_validate() == true:

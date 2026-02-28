@@ -1,6 +1,12 @@
 extends Node
 
 func can_accept(c: CardClass) -> bool:
+	if c.bribe:
+		return false
+	if c.ball:
+		return false
+	if c.disapproved:
+		return false
 	if c.stamped and not c.paw_stamped and not c.stamp_fake:
 		if c.water:
 			if c.water_stamp and c.approved:

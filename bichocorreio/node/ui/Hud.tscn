@@ -16,6 +16,7 @@ HudCoin = NodePath("CanvasLayer/HBoxContainer/Node2D/RichTextLabel")
 HudLife = NodePath("HudLife")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=174549277]
+layer = 1000
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1861047960]
 layout_direction = 2

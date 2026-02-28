@@ -55,9 +55,10 @@ _data = {
 &"out": SubResource("Animation_mqblh")
 }
 
-[node name="Card_Upgrade_Text_Layer" type="CanvasLayer" unique_id=680100610 node_paths=PackedStringArray("title_rich", "desc_rich", "anim")]
+[node name="Card_Upgrade_Text_Layer" type="CanvasLayer" unique_id=680100610 node_paths=PackedStringArray("rich_text_label", "title_rich", "desc_rich", "anim")]
 layer = 9
 script = ExtResource("1_hp8sr")
+rich_text_label = NodePath("RichTextLabel")
 title_rich = NodePath("VBoxContainer/Titulo")
 desc_rich = NodePath("VBoxContainer/Description")
 anim = NodePath("AnimationPlayer")
@@ -108,3 +109,24 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1598946535]
 libraries/ = SubResource("AnimationLibrary_dfkao")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1542172256]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -318.5
+offset_right = 318.5
+offset_bottom = 89.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 23
+theme_override_fonts/normal_font = ExtResource("2_nly1n")
+theme_override_font_sizes/normal_font_size = 77
+bbcode_enabled = true
+text = "[shake][img]res://assets/moeda.png[/img]x[wave]0 "
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162

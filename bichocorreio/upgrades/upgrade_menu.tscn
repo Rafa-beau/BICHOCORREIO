@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://3nrxof30mhh7" path="res://upgrades/upgrade_card.tscn" id="2_80lm3"]
 [ext_resource type="PackedScene" uid="uid://dvfyospeaaxgh" path="res://upgrades/card_upgrade_text_layer.tscn" id="2_q25kt"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="4_q25kt"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="5_618ed"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="6_87ua2"]
 
 [sub_resource type="Animation" id="Animation_80lm3"]
 resource_name = "Flutuar"
@@ -301,5 +303,20 @@ offset_bottom = -175.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_ju7dh")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 text = "Pular Escolha"
 flat = true
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=1977344232]
+stream = ExtResource("5_618ed")
+volume_db = 4.439
+bus = &"Sfx"
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1647544265]
+stream = ExtResource("6_87ua2")
+volume_db = 13.317
+bus = &"Sfx"
+
+[connection signal="mouse_entered" from="Card_Upgrade_Layer/sim" to="." method="_on_sim_focus_entered"]
+[connection signal="pressed" from="Card_Upgrade_Layer/sim" to="." method="_on_sim_pressed"]
