@@ -44,7 +44,7 @@ func change_sprite(isw: bool):
 		paws.hide()
 		cur_frame = randi_range(0, 4)
 		paws_water.frame = cur_frame
-		if cur_frame == 0:
+		if cur_frame == 4:
 			Crocs = true
 			SignalManager.CrocsHead.emit()
 
