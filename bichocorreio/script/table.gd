@@ -6,7 +6,7 @@ extends Node2D
 @export var player: GDScript
 @export var transition: ColorRect
 @onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
-
+@onready var combo_ui = $ComboUI
 
 var parent = self
 var vel = 15
@@ -43,6 +43,9 @@ func no_tutorial():
 var turn_index: int
 var turn_controler: int
 var can_pass_turn: bool
+
+func _on_card_validated_correctly():
+	combo_ui.add_combo()
 
 # iniciar turno
 func init_turn(qtd_provas = PlayerManager.cards_per_turno):
@@ -86,15 +89,18 @@ func call_card():
 
 ### AÇÔES DA CARTA
 func reject():
+	SignalManager.reject.emit() 
 	PlayerManager.take_damage(1)
 	current_card.queue_free()
 	can_pass_turn = true
 
 func accept():
+	SignalManager.accept.emit() 
 	PlayerManager.heal(1)
 	coin_up()
 	current_card.queue_free()
 	can_pass_turn = true
+	_on_card_validated_correctly()
 
 func coin_up():
 	SignalManager.coinchange.emit(current_card.coins)

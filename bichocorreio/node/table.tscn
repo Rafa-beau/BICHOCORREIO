@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://chq5qn7ftoyq0" path="res://assets/sounds/sem tinta.wav" id="12_4ixn4"]
 [ext_resource type="AudioStream" uid="uid://gc0n1hta60es" path="res://assets/sounds/carimbo_certo.wav" id="13_exvlx"]
 [ext_resource type="PackedScene" uid="uid://chml75h3i2q2x" path="res://enable_tutorial.tscn" id="14_exvlx"]
+[ext_resource type="PackedScene" uid="uid://f7aekcl4st24" path="res://node/menu/ComboUI.tscn" id="14_ukfs3"]
 
 [sub_resource type="GDScript" id="GDScript_qjd42"]
 script/source = "extends Node
@@ -124,6 +125,12 @@ stream = ExtResource("13_exvlx")
 bus = &"Sfx"
 
 [node name="CanvasLayer" parent="." unique_id=2131017630 instance=ExtResource("14_exvlx")]
+
+[node name="ComboUI" parent="." unique_id=744159298 instance=ExtResource("14_ukfs3")]
+offset_left = 591.0
+offset_top = -14.0
+offset_right = 591.0
+offset_bottom = -14.0
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

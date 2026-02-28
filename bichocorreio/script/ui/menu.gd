@@ -2,7 +2,7 @@ extends Control
 @export var buttons: Array[Control]
 @export var buttons_text: Array[RichTextLabel]
 @onready var background: Parallax2D =$Parallax2D
-@onready var original_positions: Array[Vector2] = [Vector2(), Vector2(0, 192), Vector2(0, 384)]
+var original_positions: Array[Vector2] = []
 var viewport_size
 var can_click: bool = false
 var i: int = 0
@@ -13,6 +13,9 @@ func _process(delta: float) -> void:
 		
 func _ready() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
+	await get_tree().process_frame
+	for b in buttons:
+		original_positions.append(b.position)
 	print(original_positions)
 	Utils.set_cursor("res://assets/cursor.png")
 	TransitionScene.play_out()
@@ -87,6 +90,19 @@ func _on_play_gui_input(event: InputEvent) -> void:
 			tween.tween_property($Background, "volume_db", -45.0, 1.0)
 			await Utils.timer(1.7)
 			get_tree().change_scene_to_file("res://node/table.tscn")
+	pass # Replace with function body.
+
+
+func _on_credits_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_LEFT and event.pressed and can_click:
+			can_click = false
+			click_button(3)
+			TransitionScene.play_in()
+			var tween = create_tween()
+			tween.tween_property($Background, "volume_db", -45.0, 1.0)
+			await Utils.timer(1.7)
+			get_tree().change_scene_to_file("res://node/menu/credits.tscn")
 	pass # Replace with function body.
 
 
