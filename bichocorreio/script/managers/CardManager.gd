@@ -10,6 +10,9 @@ func can_accept(c: CardClass) -> bool:
 		if not c.is_anteat:
 			if not c.water_stamp and c.approved:
 				return true
+		if not c.is_crocs:
+			if c.water_stamp and c.disapproved:
+				return true
 		
 		c.print_all()
 		return false
