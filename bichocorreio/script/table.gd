@@ -94,8 +94,9 @@ func call_card():
 	
 	
 	var tween = create_tween()
+	var tween_paw = create_tween()
 	if current_paw:
-		tween.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween_paw.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	SignalManager.call_card.emit()
 
