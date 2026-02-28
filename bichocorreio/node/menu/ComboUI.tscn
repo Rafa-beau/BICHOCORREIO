@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://f7aekcl4st24"]
+
+[ext_resource type="Script" uid="uid://n2nu24oxt8e5" path="res://script/ui/combo.gd" id="1_1qjfr"]
+[ext_resource type="Texture2D" uid="uid://dewjjra3i1br" path="res://assets/combo.png" id="2_qhoqc"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_c5h5n"]
+
+[node name="ComboUI" type="Control" unique_id=744159298]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1qjfr")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1558438433]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -28.0
+offset_right = 525.0
+offset_bottom = 224.0
+texture = ExtResource("2_qhoqc")
+
+[node name="combo" type="RichTextLabel" parent="." unique_id=1718752307]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 17.0
+offset_right = 324.0
+offset_bottom = 103.0
+theme_override_colors/default_color = Color(0.9954261, 0.23991066, 0.99999994, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.8235294, 1, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("3_c5h5n")
+theme_override_font_sizes/normal_font_size = 75
+text = "COMBO!!!!"
+horizontal_alignment = 1
+
+[node name="cur_combo" type="RichTextLabel" parent="." unique_id=1503953914]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 78.0
+offset_right = 227.0
+offset_bottom = 165.0
+theme_override_colors/default_color = Color(0.97435886, 0.0007789481, 0.9743524, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.8862745, 1, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("3_c5h5n")
+theme_override_font_sizes/normal_font_size = 75
+text = "x0"
+horizontal_alignment = 1

@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b0ub8u5tdnd04" path="res://assets/sounds/start.wav" id="8_j8mup"]
 [ext_resource type="PackedScene" uid="uid://ciu4dsv3gx5oo" path="res://node/menu/options.tscn" id="9_fegjp"]
 [ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="9_td45c"]
+[ext_resource type="Texture2D" uid="uid://dtla2prbo0cle" path="res://assets/smallbutton.png" id="10_smallbutton"]
 
 [sub_resource type="Theme" id="Theme_td45c"]
 Button/colors/font_color = Color(0.7288213, 0.7288222, 0.7288216, 1)
@@ -24,8 +25,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_267q8")
-buttons = [NodePath("VBoxContainer/play"), NodePath("VBoxContainer/options"), NodePath("VBoxContainer/play3")]
-buttons_text = [NodePath("VBoxContainer/play/RichTextLabel"), NodePath("VBoxContainer/options/RichTextLabel"), NodePath("VBoxContainer/play3/RichTextLabel")]
+buttons = [NodePath("VBoxContainer/play"), NodePath("VBoxContainer/options"), NodePath("VBoxContainer/play3"), NodePath("credits")]
+buttons_text = [NodePath("VBoxContainer/play/RichTextLabel"), NodePath("VBoxContainer/options/RichTextLabel"), NodePath("VBoxContainer/play3/RichTextLabel"), NodePath("credits/RichTextLabel")]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1395805042]
 z_index = 7
@@ -238,6 +239,55 @@ theme = SubResource("Theme_td45c")
 text = "Não '-'"
 flat = true
 
+[node name="credits" type="Control" parent="." unique_id=12345678]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -142.0
+offset_right = 10.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(38, 38)
+
+[node name="TextureRect" type="TextureRect" parent="credits" unique_id=87654321]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 38)
+texture = ExtResource("10_smallbutton")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="credits" unique_id=11223344]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -2.0
+offset_right = -14.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.22352941, 0, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("6_wnt5d")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "👥"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="VBoxContainer/play" to="." method="_on_play_gui_input"]
 [connection signal="mouse_entered" from="VBoxContainer/play" to="." method="_on_mouse_entered" binds= [0]]
 [connection signal="mouse_exited" from="VBoxContainer/play" to="." method="_on_mouse_exited" binds= [0]]
@@ -251,3 +301,6 @@ flat = true
 [connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/sim" to="." method="_on_mouse_entered" binds= [-1]]
 [connection signal="gui_input" from="CanvasLayer/HBoxContainer/nao" to="." method="_on_click" binds= [2]]
 [connection signal="mouse_entered" from="CanvasLayer/HBoxContainer/nao" to="." method="_on_mouse_entered" binds= [-1]]
+[connection signal="gui_input" from="credits" to="." method="_on_credits_gui_input"]
+[connection signal="mouse_entered" from="credits" to="." method="_on_mouse_entered" binds= [3]]
+[connection signal="mouse_exited" from="credits" to="." method="_on_mouse_exited" binds= [3]]

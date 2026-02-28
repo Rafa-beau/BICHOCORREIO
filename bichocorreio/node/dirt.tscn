@@ -20,7 +20,7 @@ gravity = Vector2(0, 0)
 angular_velocity_min = 1.8
 angular_velocity_max = 1.8
 orbit_velocity_max = 0.05
-color = Color(0.8745098, 0.8509804, 0.5529412, 1)
+color = Color(0.32611886, 0.3100014, 0.12385077, 1)
 
 [node name="Dirt_area" type="Area2D" parent="Dirt_par" unique_id=1686523404]
 position = Vector2(-2, 1)

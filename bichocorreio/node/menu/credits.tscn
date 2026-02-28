@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://faclitugvvb0"]
+
+[ext_resource type="Script" uid="uid://d1c8v2bkd8ldl" path="res://credits.gd" id="1_ap7ik"]
+[ext_resource type="Texture2D" uid="uid://bxfjjk102sy4b" path="res://assets/credits.png" id="2_lluyw"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_8txil"]
+
+[sub_resource type="Theme" id="Theme_rkp0k"]
+Label/font_sizes/font_size = 75
+Label/fonts/font = ExtResource("3_8txil")
+
+[node name="Credits" type="Node2D" unique_id=867514513 node_paths=PackedStringArray("credits")]
+script = ExtResource("1_ap7ik")
+credits = NodePath("credits")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=414057966]
+position = Vector2(576, 323.99997)
+scale = Vector2(0.6, 0.59999996)
+texture = ExtResource("2_lluyw")
+
+[node name="credits" type="Label" parent="." unique_id=426436554]
+offset_left = -4.0
+offset_top = 641.0
+offset_right = 875.0
+offset_bottom = 3962.0
+theme = SubResource("Theme_rkp0k")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 60
+text = "OBRIGADO POR JOGAR!!
+
+Creditos
+
+ --- Arte --- 
+strawbpixel
+Vênus Beaumont
+
+ --- Programação --- 
+Vênus Beaumont
+Arthur (Thur) Alexandre
+
+ --- Música --- 
+Vênus Beaumont
+
+ --- Efeitos sonoros --- 
+Vênus Beaumont
+
+ --- Direção Criativa --- 
+Vênus Beaumont
+strawbpixel
+Arthur (Thur) Alexandre
+
+ --- Game Design --- 
+Vênus Beaumont
+strawbpixel
+Arthur (Thur) Alexandre
+
+ --- Shaders ---
+mreliptik
+GammaGames
+nojoule
+andich.xyz
+Geazu
+
+--- Agradecimentos ---
+Felipe \"Felps\" Zaghetti
+Comunidade da FelpoJam
+Amigos que testaram o jogo
+VOCÊ!! Por jogar nosso joguinho
+
+Desenvolvido com Godot Engine
+Para a FelpoJam 2026
+
+Versão 1.0.0
+27/02/2026 (horário)
+© 2026 (Nome do estudio)"
+horizontal_alignment = 1
