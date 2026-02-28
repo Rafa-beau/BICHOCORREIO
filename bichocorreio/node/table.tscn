@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://gc0n1hta60es" path="res://assets/sounds/carimbo_certo.wav" id="13_exvlx"]
 [ext_resource type="PackedScene" uid="uid://chml75h3i2q2x" path="res://enable_tutorial.tscn" id="14_exvlx"]
 [ext_resource type="PackedScene" uid="uid://f7aekcl4st24" path="res://node/menu/ComboUI.tscn" id="14_ukfs3"]
+[ext_resource type="PackedScene" uid="uid://hyx177njy3lv" path="res://pause.tscn" id="15_ukfs3"]
 
 [sub_resource type="GDScript" id="GDScript_qjd42"]
 script/source = "extends Node
@@ -128,11 +129,17 @@ bus = &"Sfx"
 
 [node name="ComboUI" parent="." unique_id=744159298 instance=ExtResource("14_ukfs3")]
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1345459482]
+layer = 22
+
+[node name="pause" parent="CanvasLayer2" unique_id=400001620 instance=ExtResource("15_ukfs3")]
+process_mode = 3
+
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]
-[connection signal="mouse_entered" from="accept" to="." method="_on_accept_mouse_entered"]
+[connection signal="mouse_entered" from="accept" to="." method="_on_mouse_entered"]
 [connection signal="body_shape_exited" from="confiscate" to="." method="_on_confiscate_body_shape_exited"]
 [connection signal="input_event" from="confiscate" to="." method="_on_confiscate_input_event"]
-[connection signal="mouse_entered" from="confiscate" to="." method="_on_confiscate_mouse_entered"]
+[connection signal="mouse_entered" from="confiscate" to="." method="_on_mouse_entered"]
 [connection signal="input_event" from="ball" to="." method="_on_ball_input_event"]
-[connection signal="mouse_entered" from="ball" to="." method="_on_ball_mouse_entered"]
+[connection signal="mouse_entered" from="ball" to="." method="_on_mouse_entered"]

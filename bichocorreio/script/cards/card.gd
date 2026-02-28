@@ -31,10 +31,17 @@ var parent = self
 @onready var card_frame: Sprite2D = $Card
 @onready var paw: Area2D = $Paws
 @onready var ball_text = $Ball
+@onready var node_2d: Node2D = $Node2D
+@onready var for_tuto: Node2D = $"for tuto"
 
 @export var coin: PackedScene
 @export var dirt_sc: PackedScene
 
+var balls_chance = 0.05
+var blue_chance = PlayerManager.water_card_chance
+var dirty_chance = 0.2
+var stamp_chance = 0.1
+var bribe_chance = 0.05
 
 func CardType(probability: float):
 	var random_value = rng.randf()
@@ -49,11 +56,6 @@ func _ready():
 	ball_text.hide()
 
 	card_frame.frame = 0
-	var blue_chance = PlayerManager.water_card_chance
-	var dirty_chance = 0.2
-	var stamp_chance = 0.1
-	var bribe_chance = 0.05
-	var balls_chance = 0.05
 
 
 	if CardType(balls_chance):
@@ -69,7 +71,7 @@ func _ready():
 		card_frame.show()
 		ball_text.hide()
 
-	if CardType(bribe_chance):
+	if CardType(bribe_chance) and not ball and for_tuto.visible == false:
 		bribe = true
 		for i in range(cur_c):
 			create_rand()

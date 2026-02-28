@@ -75,5 +75,6 @@ func _on_sim_pressed() -> void:
 	await Utils.timer(1)
 	TransitionScene.play_out()
 	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.emit()
+	SignalManager.step5.emit()
 	queue_free()
 	

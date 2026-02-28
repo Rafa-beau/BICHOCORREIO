@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="2_q03xa"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_ehn7p"]
 [ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="4_gm185"]
+[ext_resource type="AudioStream" uid="uid://dk3n5xa62gagq" path="res://assets/sounds/coin_up.wav" id="5_3v8bn"]
+[ext_resource type="AudioStream" uid="uid://d14k7m6lhksfo" path="res://assets/sounds/coin_down.wav" id="6_cr0cg"]
 
 [node name="Control2" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
 layout_mode = 3
@@ -72,4 +74,12 @@ texture = ExtResource("2_q03xa")
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=1779224747]
 stream = ExtResource("4_gm185")
 volume_db = -10.78
+bus = &"Sfx"
+
+[node name="coin_up" type="AudioStreamPlayer" parent="." unique_id=1650841677]
+stream = ExtResource("5_3v8bn")
+bus = &"Sfx"
+
+[node name="coin_down" type="AudioStreamPlayer" parent="." unique_id=69250727]
+stream = ExtResource("6_cr0cg")
 bus = &"Sfx"

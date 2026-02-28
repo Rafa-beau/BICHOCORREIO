@@ -6,8 +6,9 @@ extends Node2D
 @export var player: GDScript
 @export var transition: ColorRect
 @onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
+const TUTO = preload("uid://bkmmcqqu3qw8g")
 
-var err_pass
+var err_pass = 0
 @onready var combo_ui = $ComboUI
 
 var parent = self
@@ -16,12 +17,15 @@ var current_card: Node
 var current_paw: Node
 var current_upgrade_scene: Node
 var pull = false
+var tuto = false
 
 func _ready() -> void:
+	PlayerManager.reset()
+	SignalManager.coinchange.emit(0)
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
-	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
 	
+
 func tutorial():
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
@@ -29,8 +33,130 @@ func tutorial():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)
 	$Background.play()
-
+	Utils.spawn_scene(TUTO, parent, 0)
+	SignalManager.step.emit()
+	tuto = true
+	
+	var call_card = func(): 
+		current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, 85))
+		
+	var call_normal = func():
+		call_card.call()
+		current_card.balls_chance = 0
+		current_card.bribe_chance = 0
+		current_card.stamp_chance = 0
+		current_card.stamp.hide()
+		
+	var step2_confirm = func():
+		if not current_card.stamped:
+			call_normal.call()
+			return
+		SignalManager.step2_finish.emit()
+	
+	var step4_upgrade = func():
+		var up = Utils.spawn_scene(upgrade_scene, parent, 0)
+	
+	SignalManager.step2_finish.emit()
+	#signals
+	SignalManager.step2.connect(call_normal)
+	SignalManager.confiscar.connect(step2_confirm)
+	SignalManager.aceitar.connect(step2_confirm)
+	SignalManager.step3.connect(step3)
+	SignalManager.step4.connect(step4_upgrade)
+	SignalManager.dispause.connect(Utils.disable_cursor)
+func step3(i):
+	pull = true
+	match i:
+		0:
+			move_card(Vector2(198, 1000))
+			move_paw(Vector2(248, -1500))
+		1:
+			var des_summon = Vector2(198, 85)
+			current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+			current_card.stamp.hide()
+			current_card.card_frame.hide()
+			current_card.ball_text.show()
+			current_card.bribe_chance = 0
+			
+			var tween = create_tween()
+			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		2:
+			move_card(Vector2(198, 1000))
+			await Utils.timer(0.7)
+			current_card.queue_free()
+			var des_summon = Vector2(198, 85)
+			
+			current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+			current_card.stamp.show()
+			current_card.card_frame.show()
+			current_card.ball_text.hide()
+			current_card.bribe_chance = 0
+			
+			var tween = create_tween()
+			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		3:
+			move_card(Vector2(198, 1000))
+			await Utils.timer(0.7)
+			current_card.queue_free()
+			var des_summon = Vector2(198, 85)
+			var paw_summon = Vector2(248, -114)
+			
+			current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+			current_card.stamp.hide()
+			current_card.card_frame.show()
+			current_card.ball_text.hide()
+			current_card.card_frame.frame = 0
+			current_card.bribe_chance = 0
+			
+			current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
+			current_paw.paws_water.hide()
+			current_paw.paws.show()
+			current_paw.paws.frame = 4			
+			var tween = create_tween()
+			var tween_paw = create_tween()
+			tween_paw.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			SignalManager.call_card.emit()
+		4:
+			move_card(Vector2(198, 1000))
+			move_paw(Vector2(248, -1500))
+			await Utils.timer(0.7)
+			current_card.queue_free()
+			var des_summon = Vector2(198, 85)
+			
+			current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+			current_card.stamp.hide()
+			current_card.card_frame.show()
+			current_card.ball_text.hide()
+			current_card.for_tuto.visible = true
+			
+			var tween = create_tween()
+			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		5:
+			move_card(Vector2(198, 1000))
+			await Utils.timer(0.7)
+			current_card.queue_free()
+			var des_summon = Vector2(198, 85)
+			var paw_summon = Vector2(248, -114)
+			
+			current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
+			current_card.stamp.hide()
+			current_card.card_frame.show()
+			current_card.ball_text.hide()
+			current_card.card_frame.frame = 1
+			current_card.bribe_chance = 0
+			
+			current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
+			current_paw.paws_water.show()
+			current_paw.paws.hide()
+			current_paw.paws_water.frame = 4			
+			var tween = create_tween()
+			var tween_paw = create_tween()
+			tween_paw.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			SignalManager.call_card.emit()
 func no_tutorial():
+	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
 	TransitionScene.play_out()
@@ -38,7 +164,7 @@ func no_tutorial():
 	await Utils.timer(0.4)
 	$Background.play()
 	init_turn()
-	
+	SignalManager.dispause.connect(Utils.disable_cursor)
 	
 ### SISTEMA DE TURNO
 var turn_index: int
@@ -73,9 +199,6 @@ func exec_turn():
 func end_turn():
 
 	SignalManager.coinchange.emit(PlayerManager.coins_after_turno)
-	
-
-	
 	current_upgrade_scene = Utils.spawn_scene(upgrade_scene, parent, Vector2(0, 0))
 
 ### SPAWNAR CARTA
@@ -112,8 +235,7 @@ func reject():
 	can_pass_turn = true
 
 func accept():
-	SignalManager.accept.emit() 
-	PlayerManager.heal(1)
+	SignalManager.aceitar.emit() 
 	coin_up()
 	current_card.queue_free()
 	can_pass_turn = true
@@ -127,7 +249,6 @@ func next_card():
 		current_card.queue_free()
 		if current_paw:
 			current_paw.queue_free()
-		next_card()
 
 ### MOVIMENTO
 func move_card(des):
@@ -160,8 +281,11 @@ func confiscate_validate() -> bool:
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card:
 		if event.is_action_released("click"):
+			SignalManager.aceitar.emit()
 			current_card.dragging = true
 			await move_card(Vector2(1500, 85))
+			if tuto == true:
+				return
 			if current_paw:
 				await move_paw(Vector2(248, -1500))
 			if accept_validate() == true:
@@ -172,8 +296,11 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card :
 		if event.is_action_released("click"):
+			SignalManager.confiscar.emit()
 			current_card.dragging = true
 			await move_card(Vector2(198, 1000))
+			if tuto == true:
+				return
 			if current_paw:
 				await move_paw(Vector2(248, -1500))
 			if confiscate_validate() == true:
@@ -182,24 +309,10 @@ func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: in
 			reject()
 
 ### ACEITAR E CONFISCAR - MOUSE ENTERED
-func _on_accept_mouse_entered() -> void:
+func _on_mouse_entered() -> void:
 	if current_card:
 		if current_card.dragging == true:
 			pull = true
 			return
 		return
 			
-
-func _on_confiscate_mouse_entered() -> void:
-	if current_card:
-		if current_card.dragging == true:
-			pull = true
-			return
-		return
-
-func _on_ball_mouse_entered() -> void:
-	if current_card:
-		if current_card.dragging == true:
-			pull = true
-			return
-		return

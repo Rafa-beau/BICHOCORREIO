@@ -49,9 +49,17 @@ hframes = 4
 
 [node name="Dirt" parent="." unique_id=1041605790 instance=ExtResource("3_isbx4")]
 
-[node name="Coin" parent="." unique_id=914596379 instance=ExtResource("5_u8qiq")]
+[node name="for tuto" type="Node2D" parent="." unique_id=1167550446]
 visible = false
-position = Vector2(-119, -112)
+
+[node name="Coin" parent="for tuto" unique_id=914596379 instance=ExtResource("5_u8qiq")]
+position = Vector2(205, 286)
+
+[node name="Coin2" parent="for tuto" unique_id=400228536 instance=ExtResource("5_u8qiq")]
+position = Vector2(27, 166)
+
+[node name="Coin3" parent="for tuto" unique_id=1945484188 instance=ExtResource("5_u8qiq")]
+position = Vector2(232, 42)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="StampPlace" to="." method="_on_stamp_place_input_event"]

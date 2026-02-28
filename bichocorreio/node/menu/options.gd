@@ -62,10 +62,10 @@ func _on_mouse_exited() -> void:
 func _on_voltar_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			$".".visible = false
-			
 			save_options(vg,vm,vsfx,vsy,full)
 			$Click.play()
+			$".".visible = false
+			
 			
 
 func _on_value_changed(value: float, extra_arg_0: int) -> void:

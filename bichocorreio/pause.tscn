@@ -1,8 +1,14 @@
-[gd_scene format=3 uid="uid://01xymo1a2qre"]
+[gd_scene format=3 uid="uid://hyx177njy3lv"]
 
 [ext_resource type="PackedScene" uid="uid://ciu4dsv3gx5oo" path="res://node/menu/options.tscn" id="1_6eyaj"]
+[ext_resource type="Script" uid="uid://cwsi6ilumxewk" path="res://pause.gd" id="1_8u653"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="2_8u653"]
 [ext_resource type="FontFile" uid="uid://c8qjltbd1kdrf" path="res://tite.ttf" id="3_bwtow"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="5_05lnj"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="6_jg8ls"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05lnj"]
+bg_color = Color(0, 0, 0, 0.8666667)
 
 [sub_resource type="Theme" id="Theme_05lnj"]
 default_font = ExtResource("2_8u653")
@@ -13,6 +19,17 @@ Label/font_sizes/font_size = 78
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jg8ls"]
 draw_center = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u063c"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 0.78039217)
+
+[sub_resource type="Theme" id="Theme_56vcw"]
+Button/colors/font_color = Color(0.7288213, 0.7288222, 0.7288216, 1)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("2_8u653")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0a22"]
+draw_center = false
+
 [node name="pause" type="Control" unique_id=400001620]
 layout_mode = 3
 anchors_preset = 15
@@ -20,10 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Control2" parent="." unique_id=406482905 instance=ExtResource("1_6eyaj")]
-visible = false
-layout_mode = 1
+script = ExtResource("1_8u653")
 
 [node name="Panel" type="Panel" parent="." unique_id=104846408]
 layout_mode = 1
@@ -32,41 +46,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_05lnj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=990541654]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=990541654]
+z_index = 8
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -114.5
-offset_right = 114.5
+offset_left = -145.0
+offset_right = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer" unique_id=1341829157]
+[node name="resume" type="Button" parent="VBoxContainer" unique_id=1341829157]
 layout_mode = 2
 theme = SubResource("Theme_05lnj")
 theme_override_colors/font_color = Color(0.5211401, 0.5211409, 0.52114016, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jg8ls")
 text = "Voltar ao jogo"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" unique_id=803432933]
+[node name="options" type="Button" parent="VBoxContainer" unique_id=803432933]
 layout_mode = 2
 theme = SubResource("Theme_05lnj")
 theme_override_colors/font_color = Color(0.5211401, 0.5211409, 0.52114016, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jg8ls")
 text = "Opções"
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" unique_id=2145616292]
+[node name="leave" type="Button" parent="VBoxContainer" unique_id=2145616292]
 layout_mode = 2
 theme = SubResource("Theme_05lnj")
 theme_override_colors/font_color = Color(0.5211401, 0.5211409, 0.52114016, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jg8ls")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jg8ls")
 text = "Sair da Patida"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=157021030]
@@ -92,3 +120,103 @@ bbcode_enabled = true
 text = "[tornado]FormigaBarito"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="." unique_id=502968974]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="Control" unique_id=98264734]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u063c")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control" unique_id=1907985936]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_8u653")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[wave]Deseja sair da partida?
+Ela não será salva"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1754839878]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = 76.0
+offset_right = 139.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 159
+
+[node name="sim" type="Button" parent="Control/HBoxContainer" unique_id=175081]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_56vcw")
+text = "Sim"
+flat = true
+
+[node name="nao" type="Button" parent="Control/HBoxContainer" unique_id=1602548294]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_56vcw")
+text = "Não '-'"
+flat = true
+
+[node name="Hover" type="AudioStreamPlayer" parent="Control" unique_id=1328171241]
+stream = ExtResource("5_05lnj")
+volume_db = 4.439
+bus = &"Sfx"
+
+[node name="Click" type="AudioStreamPlayer" parent="Control" unique_id=837007766]
+stream = ExtResource("6_jg8ls")
+volume_db = 13.317
+bus = &"Sfx"
+
+[node name="Panel3" type="Panel" parent="Control" unique_id=708038534]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0a22")
+
+[node name="Control2" parent="." unique_id=406482905 instance=ExtResource("1_6eyaj")]
+visible = false
+z_index = 21
+layout_mode = 1
+
+[connection signal="mouse_entered" from="VBoxContainer/resume" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/options" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/leave" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/leave" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/sim" to="." method="_on_pressed" binds= [1]]
+[connection signal="pressed" from="Control/HBoxContainer/nao" to="." method="_on_pressed" binds= [0]]
