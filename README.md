@@ -1,2 +1,27 @@
 # BICHOCORREIO
-Felpojam oiii felps e jam
+
+
+
+
+
+
+
+
+## creditos
+
+###Shaders
+
+
+
+###Fontes:
+
+Fonte: Flavors
+Autor:  Sideshow(a DBA of Font Diner, Inc)
+License: SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+
+Fonte: Jersey 10
+Autor:  Sarah Cadigan-Fried
+License: SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+
+
+
