@@ -57,56 +57,56 @@ func _ready():
 
 	card_frame.frame = 0
 
+	if PlayerManager.tuto == false:
+		if CardType(balls_chance):
+			blue_chance = 0
+			dirty_chance = 0
+			stamp_chance = 0
+			bribe_chance = 0
+			ball = true
+			card_frame.hide()
+			ball_text.show()
+		else:
+			ball = false
+			card_frame.show()
+			ball_text.hide()
 
-	if CardType(balls_chance):
-		blue_chance = 0
-		dirty_chance = 0
-		stamp_chance = 0
-		bribe_chance = 0
-		ball = true
-		card_frame.hide()
-		ball_text.show()
-	else:
-		ball = false
-		card_frame.show()
-		ball_text.hide()
+		if CardType(bribe_chance) and not ball and for_tuto.visible == false:
+			bribe = true
+			for i in range(cur_c):
+				create_rand()
+				print("teste")
+	#
+		#if CardType(dirty_chance):
+			#dirty = true
+			#for i in range(cur_c):
+				#create_rand()
+				#print("teste")
 
-	if CardType(bribe_chance) and not ball and for_tuto.visible == false:
-		bribe = true
-		for i in range(cur_c):
-			create_rand()
-			print("teste")
-#
-	#if CardType(dirty_chance):
-		#dirty = true
-		#for i in range(cur_c):
-			#create_rand()
-			#print("teste")
+		if CardType(blue_chance):
+			card_frame.frame = 1
+			water = true
+			coins = PlayerManager.water_card_coins
+			SignalManager.is_water.emit(true)
+		else:
+			card_frame.frame = 0
+			water = false
+			coins = 1
+			SignalManager.is_water.emit(false)
 
-	if CardType(blue_chance):
-		card_frame.frame = 1
-		water = true
-		coins = PlayerManager.water_card_coins
-		SignalManager.is_water.emit(true)
-	else:
-		card_frame.frame = 0
-		water = false
-		coins = 1
-		SignalManager.is_water.emit(false)
-
-	if CardType(stamp_chance):
-		if water == false:
-			stamped = true
-			approved = true
-			stamp_fake = true
-			stamp.frame = 0
-			stamp.show()
-		if water == true:
-			stamped = true
-			approved = true
-			stamp_fake = true
-			stamp.frame = 1
-			stamp.show()
+		if CardType(stamp_chance):
+			if water == false:
+				stamped = true
+				approved = true
+				stamp_fake = true
+				stamp.frame = 0
+				stamp.show()
+			if water == true:
+				stamped = true
+				approved = true
+				stamp_fake = true
+				stamp.frame = 1
+				stamp.show()
 
 func create_rand():
 	pos_x = randi_range(0, max_x)

@@ -15,7 +15,7 @@ var can_heal_end_turn: bool
 var accept_q: int = 0
 var reject_q: int = 0
 var start_time: int = 0
-
+var tuto: bool = false
 # coins
 var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
 
@@ -47,6 +47,7 @@ func reset():
 	water_card_coins = 2
 	wears_stamp_chance = 0.45
 	start_time = Time.get_ticks_msec()
+	tuto = false
 
 func _ready() -> void:
 	reset()

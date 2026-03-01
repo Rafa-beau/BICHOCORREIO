@@ -51,6 +51,7 @@ func cancel_card_timer():
 	current_timer_id += 1
 
 func tutorial():
+	PlayerManager.tuto = true
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
 	TransitionScene.play_out()
@@ -174,14 +175,15 @@ func step3(i):
 			current_paw = Utils.spawn_scene(paw, parent, Vector2(198, -2000))
 			current_paw.paws_water.show()
 			current_paw.paws.hide()
-			current_paw.paws_water.frame = 4			
+			current_paw.paws_water.frame = 0			
 			var tween = create_tween()
 			var tween_paw = create_tween()
 			tween_paw.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			SignalManager.call_card.emit()
 func no_tutorial():
-	SignalManager.life_changed.emit()
+	PlayerManager.tuto = false
+	
 	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
@@ -189,6 +191,7 @@ func no_tutorial():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)
 	$Background.play()
+	SignalManager.life_changed.emit(PlayerManager.current_life)
 	init_turn()
 	SignalManager.dispause.connect(Utils.disable_cursor)
 	

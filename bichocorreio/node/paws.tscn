@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cu2r0r2oayspb" path="res://assets/maos_agua.png" id="4_8h0cl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4l3xd"]
-radius = 88.0
-height = 530.0
+radius = 94.0
+height = 572.0
 
 [node name="Paws" type="Area2D" unique_id=2096880879]
 script = ExtResource("1_4l3xd")
@@ -28,6 +28,7 @@ hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1201682298]
+z_index = 25
 position = Vector2(254, 99)
 scale = Vector2(0.99999994, 1)
 shape = SubResource("CapsuleShape2D_4l3xd")
