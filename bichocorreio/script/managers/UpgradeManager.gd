@@ -5,7 +5,7 @@ var pm = PlayerManager
 var test : Dictionary = {
 	0: { # louco
 		"normal": {
-			1: func(): change_coins_after_turn(-1),
+			1: func(): change_coins_after_turn(1),
 			2: func(): change_time_per_prova(-2)
 		},
 		"inverted": {
@@ -16,6 +16,7 @@ var test : Dictionary = {
 			1: func(): change_error_ignored(1)
 		}
 		},
+
 	1: { # mago
 		"normal": {
 			1: func(): change_coins_after_turn(1),
@@ -92,6 +93,8 @@ var test : Dictionary = {
 			1: func(): change_time_per_prova(-0.5),
 			2: func(): change_water_card_chance(PlayerManager.water_card_chance * 0.04)
 		},
+		"enchanted":{
+		}
 		},
 	8: { # diabo
 		"normal": {
@@ -109,16 +112,15 @@ var test : Dictionary = {
 		},
 	9: { # a torre
 		"normal": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): change_water_card_chance(0.15),
+			2: func(): change_time_per_prova(-0.15)
 		},
 		"inverted": {
-			1: func(): pass,
-			2: func(): pass
+			1: func(): change_water_card_chance(-0.15),
+			2: func(): change_time_per_prova(0.15)
 		},
 		"enchanted":{
-			1: func(): pass,
-			2: func(): pass
+			1: func(): pm.combo_bonus()
 		}
 		}
 }
@@ -156,21 +158,26 @@ func change_coins_after_turn(value):
 	
 func change_time_per_prova(value):
 	pm.time_per_prova += value
-	
+	clamp(pm.time_per_prova, 3, 9999)
+
 func change_cards_per_turn(value):
 	pm.cards_per_turno += value
+	clamp(pm.water_card_chance, 3, 50)
 
 func change_water_card_chance(value):
 	pm.water_card_chance += value
+	clamp(pm.water_card_chance, 0.15, 0.85)
 	
 func change_water_card_coins(value):
 	pm.water_card_coins += value
-	
+
 func change_wears_stamp_chance(value):
 	pm.wears_stamp_chance += value
+	clamp(pm.wears_stamp_chance, 0.05, 1)
 
 func change_error_ignored(value):
 	pm.error_ignored += value
+
 func change_max_life(value):
 	PlayerManager.max_life += value
 	PlayerManager.heal(value)
