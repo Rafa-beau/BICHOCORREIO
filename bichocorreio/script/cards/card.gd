@@ -73,7 +73,6 @@ func _ready():
 		bribe = true
 		for i in range(cur_c):
 			create_rand()
-			print("teste")
 #
 	#if CardType(dirty_chance):
 		#dirty = true
