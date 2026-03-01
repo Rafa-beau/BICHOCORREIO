@@ -260,9 +260,7 @@ func reject():
 	can_pass_turn = true
 
 func accept():
-	SignalManager.aceitar.emit() 
 	cancel_card_timer()
-	PlayerManager.heal(1)
 	coin_up()
 	can_pass_turn = true
 	PlayerManager.accept_q += 1
