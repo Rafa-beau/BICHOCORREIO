@@ -6,7 +6,7 @@ extends Node2D
 @export var player: GDScript
 @export var transition: ColorRect
 @onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
-const TUTO = preload("uid://bkmmcqqu3qw8g")
+const TUTO = preload("res://tuto.tscn")
 
 var err_pass = 0
 @onready var combo_ui = $ComboUI
@@ -25,7 +25,10 @@ func _ready() -> void:
 	SignalManager.coinchange.emit(0)
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
+	SignalManager.died.connect(_on_died)
 	
+func _on_died():
+	get_tree().change_scene_to_file("res://node/menu/died.tscn")
 
 func start_card_timer():
 	current_timer_id += 1
@@ -263,6 +266,8 @@ func reject():
 	if current_paw:
 		current_paw.queue_free()
 		current_paw = null
+	current_card.queue_free()
+	PlayerManager.reject_q += 1
 	can_pass_turn = true
 
 func accept():
@@ -278,6 +283,7 @@ func accept():
 		current_paw.queue_free()
 		current_paw = null
 	can_pass_turn = true
+	PlayerManager.accept_q += 1
 	_on_card_validated_correctly()
 
 func coin_up():
