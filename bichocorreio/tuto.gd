@@ -23,7 +23,7 @@ var msg_queue2: Array = [
 ]
 
 var msg_queue3: Array = [
-	"Boaaaa!!",
+	"Olá, eu sou a [wave]Fumiga Barito da Silva Felps II '-'",
 	"E só pra avisar, cada prova terá um tempo para você carimba-la e arrasta-la, se fizer corretamente e no tempo certo, irá ganha moedas que poderá trocar por upgrades no fim do turno! Caso erre, perde vida, e se sua vida acabar, sua partida se vai '-'",
 	
 	"Agora, sobre quais cartas voce deve reprovar!",
@@ -53,18 +53,18 @@ var msg_queue5: Array = [
 ]
 
 var kk = 0
-var step = 1
+var step = 4
 @onready var timer: Timer = $Timer
 
 var in_tuto = false
 
 func _ready() -> void:
 	hide()
-	show_message_step1()
-	
+	SignalManager.step.connect(show_message_step1)
 	SignalManager.stamp_pick.connect(change_step)
 	SignalManager.stamp_pick.connect(show_message_step2)
 	SignalManager.step2_finish.connect(show_message_step3)
+	SignalManager.step2_finish.connect(change_step)
 	SignalManager.upgrade_clicked.connect(change_step)
 	SignalManager.upgrade_clicked.connect(show_message_step5)
 func resetk():
@@ -72,6 +72,9 @@ func resetk():
 
 func change_step(c:=):
 	resetk()
+	if in_tuto == false:
+		return
+		
 	step += 1
 	in_tuto = false
 func _input(event: InputEvent) -> void:
@@ -141,14 +144,11 @@ func show_message_step2(c):
 			
 func show_message_step3():
 	$"../Panel".visible = true
-	if step == 2:
-		step += 1
 	if msg_queue3.size() == 0:
 		SignalManager.step3.emit(0)
 		change_step(1)
 		show_message_step4()
 		in_tuto = false
-		
 		return
 		
 	var  _msg: String = msg_queue3.pop_front()
