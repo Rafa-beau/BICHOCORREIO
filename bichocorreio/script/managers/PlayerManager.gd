@@ -20,7 +20,7 @@ var start_time: int = 0
 var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
 
 # turno
-var time_per_prova: float = 8.0
+var time_per_prova: float = 15.0
 var cards_per_turno: int = 8
 var error_ignored: int
 
@@ -41,7 +41,6 @@ func reset():
 	already_enchanted_cards_purchased = []
 	can_heal_end_turn = false
 	coins_after_turno = 0
-	time_per_prova = 3.0
 	cards_per_turno = 8
 	error_ignored = 0
 	water_card_chance = 0.2
