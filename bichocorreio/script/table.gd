@@ -11,6 +11,7 @@ const TUTO = preload("uid://bkmmcqqu3qw8g")
 var err_pass = 0
 @onready var combo_ui = $ComboUI
 
+var current_timer_id: int = 0
 var parent = self
 var vel = 15
 var current_card: Node
@@ -25,6 +26,28 @@ func _ready() -> void:
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
 	
+
+func start_card_timer():
+	current_timer_id += 1
+	var timer_id = current_timer_id
+	await Utils.timer(PlayerManager.time_per_prova)
+	if timer_id == current_timer_id and current_card:
+		# Animação de voltar para cima
+		var card_des = Vector2(198, -2000)
+		var paw_des = Vector2(248, -1500)
+		
+		# Movemos ambos simultaneamente ou sequencialmente dependendo da preferência, 
+		# mas await move_card já espera o tempo.
+		if current_paw:
+			move_paw(paw_des) # Não damos await aqui para irem juntos
+		await move_card(card_des)
+		
+		# Verifica se ainda é o mesmo timer (segurança extra após o await da animação)
+		if timer_id == current_timer_id:
+			reject()
+
+func cancel_card_timer():
+	current_timer_id += 1
 
 func tutorial():
 	await Utils.timer(1.2)
@@ -222,6 +245,7 @@ func call_card():
 		tween_paw.tween_property(current_paw, "position", paw_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	SignalManager.call_card.emit()
+	start_card_timer()
 
 ### AÇÔES DA CARTA
 func reject():
@@ -230,14 +254,29 @@ func reject():
 		current_card.queue_free()
 		can_pass_turn = true
 		return
+	cancel_card_timer()
+	SignalManager.reject.emit() 
 	PlayerManager.take_damage(1)
-	current_card.queue_free()
+	if current_card:
+		current_card.queue_free()
+		current_card = null
+	if current_paw:
+		current_paw.queue_free()
+		current_paw = null
 	can_pass_turn = true
 
 func accept():
 	SignalManager.aceitar.emit() 
+	cancel_card_timer()
+	SignalManager.accept.emit() 
+	PlayerManager.heal(1)
 	coin_up()
-	current_card.queue_free()
+	if current_card:
+		current_card.queue_free()
+		current_card = null
+	if current_paw:
+		current_paw.queue_free()
+		current_paw = null
 	can_pass_turn = true
 	_on_card_validated_correctly()
 
@@ -283,6 +322,8 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 		if event.is_action_released("click"):
 			SignalManager.aceitar.emit()
 			current_card.dragging = true
+			cancel_card_timer()
+			pull = false
 			await move_card(Vector2(1500, 85))
 			if tuto == true:
 				return
@@ -298,9 +339,19 @@ func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: in
 		if event.is_action_released("click"):
 			SignalManager.confiscar.emit()
 			current_card.dragging = true
+			cancel_card_timer()
+			pull = false
 			await move_card(Vector2(198, 1000))
 			if tuto == true:
 				return
+			reject()
+
+func _on_ball_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if pull == true and current_card.ball == true:
+		if event.is_action_released("click"):
+			cancel_card_timer()
+			pull = false
+			await move_card(Vector2(198, -1000))
 			if current_paw:
 				await move_paw(Vector2(248, -1500))
 			if confiscate_validate() == true:
