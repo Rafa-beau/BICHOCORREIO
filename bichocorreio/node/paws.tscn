@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cu2r0r2oayspb" path="res://assets/maos_agua.png" id="4_8h0cl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4l3xd"]
-radius = 62.0
+radius = 88.0
 height = 530.0
 
 [node name="Paws" type="Area2D" unique_id=2096880879]
@@ -33,11 +33,10 @@ scale = Vector2(0.99999994, 1)
 shape = SubResource("CapsuleShape2D_4l3xd")
 
 [node name="Stamp" type="Sprite2D" parent="." unique_id=1842096532]
-position = Vector2(257.99997, 187)
+position = Vector2(270, 201.00002)
 rotation = 1.1693707
-scale = Vector2(0.1236217, 0.10705491)
+scale = Vector2(0.120342135, 0.09879906)
 texture = ExtResource("3_fhehl")
 hframes = 4
-frame = 2
 
 [connection signal="input_event" from="." to="." method="_on_stamp_place_input_event"]
