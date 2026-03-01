@@ -64,7 +64,6 @@ func _ready() -> void:
 	
 	SignalManager.stamp_pick.connect(change_step)
 	SignalManager.stamp_pick.connect(show_message_step2)
-	SignalManager.step2_finish.connect(change_step)
 	SignalManager.step2_finish.connect(show_message_step3)
 	SignalManager.upgrade_clicked.connect(change_step)
 	SignalManager.upgrade_clicked.connect(show_message_step5)
@@ -142,39 +141,40 @@ func show_message_step2(c):
 			
 func show_message_step3():
 	$"../Panel".visible = true
-	if step == 3:
-		if msg_queue3.size() == 0:
-			SignalManager.step3.emit(0)
-			change_step(1)
-			show_message_step4()
-			in_tuto = false
-			
+	if step == 2:
+		step += 1
+	if msg_queue3.size() == 0:
+		SignalManager.step3.emit(0)
+		change_step(1)
+		show_message_step4()
+		in_tuto = false
+		
+		return
+		
+	var  _msg: String = msg_queue3.pop_front()
+	
+	match msg_queue3.size():
+		4:
+			SignalManager.step3.emit(1)
+		3:
+			SignalManager.step3.emit(2)
+		2:
+			SignalManager.step3.emit(3)
+		1:
+			SignalManager.step3.emit(4)
+		0:
+			SignalManager.step3.emit(5)
+	
+	rich_text_label.visible_characters = 0
+	rich_text_label.text = _msg
+	timer.start()
+	if kk < 1:
+		show()
+		animation_player.play("oi")
+		kk = 1
+	if not timer.is_stopped():
+			rich_text_label.visible_characters = rich_text_label.text.length()
 			return
-			
-		var  _msg: String = msg_queue3.pop_front()
-		
-		match msg_queue3.size():
-			4:
-				SignalManager.step3.emit(1)
-			3:
-				SignalManager.step3.emit(2)
-			2:
-				SignalManager.step3.emit(3)
-			1:
-				SignalManager.step3.emit(4)
-			0:
-				SignalManager.step3.emit(5)
-		
-		rich_text_label.visible_characters = 0
-		rich_text_label.text = _msg
-		timer.start()
-		if kk < 1:
-			show()
-			animation_player.play("oi")
-			kk = 1
-		if not timer.is_stopped():
-				rich_text_label.visible_characters = rich_text_label.text.length()
-				return
 
 func show_message_step4():
 	$"../Panel".visible = true

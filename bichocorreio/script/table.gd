@@ -19,7 +19,7 @@ var current_paw: Node
 var current_upgrade_scene: Node
 var pull = false
 var tuto = false
-
+var can_move = true
 func _ready() -> void:
 	PlayerManager.reset()
 	SignalManager.coinchange.emit(0)
@@ -37,6 +37,7 @@ func start_card_timer():
 	var timer_id = current_timer_id
 	await Utils.timer(PlayerManager.time_per_prova)
 	if timer_id == current_timer_id and current_card:
+		can_move = false
 		var card_des = Vector2(198, -2000)
 		var paw_des = Vector2(248, -1500)
 		
@@ -61,32 +62,21 @@ func tutorial():
 	Utils.spawn_scene(TUTO, parent, 0)
 	SignalManager.step.emit()
 	tuto = true
-	
-	var call_card = func(): 
-		current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, 85))
 		
 	var call_normal = func():
-		call_card.call()
+		current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, 85))
 		current_card.card_frame.show()
 		current_card.ball_text.hide()
 		current_card.bribe_chance = 0
 		current_card.stamp.hide()
 		current_card.stamped = false
-		
-	var step2_confirm = func():
-		if not current_card.stamped:
-			call_normal.call()
-			return
-		SignalManager.step2_finish.emit()
-	
+
 	var step4_upgrade = func():
 		var up = Utils.spawn_scene(upgrade_scene, parent, 0)
 	
 	SignalManager.step2_finish.emit()
 	#signals
 	SignalManager.step2.connect(call_normal)
-	SignalManager.confiscar.connect(step2_confirm)
-	SignalManager.aceitar.connect(step2_confirm)
 	SignalManager.step3.connect(step3)
 	SignalManager.step4.connect(step4_upgrade)
 	SignalManager.dispause.connect(Utils.disable_cursor)
@@ -234,7 +224,7 @@ func end_turn():
 func call_card():
 	var des_summon = Vector2(198, 85)
 	var paw_summon = Vector2(248, -114)
-	
+	can_move = true
 	current_card = Utils.spawn_scene(card_scene, parent, Vector2(198, -2000))
 	if current_paw:
 		current_paw.queue_free()
@@ -303,9 +293,13 @@ func confiscate_validate() -> bool:
 
 ### ACEITAR E CONFISCAR - CLICK
 func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if pull == true and current_card:
+	if pull == true and current_card and can_move:
 		if event.is_action_released("click"):
-			SignalManager.aceitar.emit()
+			if tuto and not current_card.stamped:
+				return
+			else:
+				SignalManager.step2_finish.emit()
+			
 			current_card.dragging = true
 			cancel_card_timer()
 			pull = false
@@ -322,7 +316,10 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card :
 		if event.is_action_released("click"):
-			SignalManager.confiscar.emit()
+			if tuto and not current_card.stamped:
+				return
+			else:
+				SignalManager.step2_finish.emit()
 			current_card.dragging = true
 			cancel_card_timer()
 			pull = false
