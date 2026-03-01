@@ -7,7 +7,7 @@ var msg_queue1: Array = [
 	"Eu vim te ensinar como vc vai [wave]trabalhar comigo[/wave] nesse departamento!!",
 	"Pra [wave]começar[/wave], você me [wave]controla[/wave] com o seu [color=green][wave]MOUSE[/wave][/color]",
 	"Ao clicar com o [color=green][wave]BOTÃO ESQUERDO[/wave][/color] em cima do [wave]refil de tinta[/wave](Parte inferior direita), voce recarrega a [wave]tinta do carimbo",
-	"[wave]Tente!!!"
+	"[wave]Tente!!! CLIQUE EM ENTER PARA IR AO TESTE"
 ]
 
 var msg_queue2: Array = [
@@ -19,7 +19,7 @@ var msg_queue2: Array = [
 	"Apenas [color=green][wave]APROVE[/wave][/color] e [color=green][wave]ACEITE[/wave][/color] se ela estiver correta",
 	"Ao arrastar a prova para [color=green][wave]BAIXO[/wave][/color], você irá [color=red][wave]CONFISCAR[/wave][/color] a prova",
 	"Apenas [color=red][wave]REPROVE[/wave][/color] e [color=red][wave]CONSFISQUE[/wave][/color] se ela estiver errada",
-	"Tente carimbar a prova!"
+	"Tente carimbar e arrastar a prova! CLIQUE EM ENTER PARA IR AO TESTE"
 ]
 
 var msg_queue3: Array = [
@@ -40,7 +40,7 @@ var msg_queue4: Array = [
 	"Cada uma delas te darão [color=green]HABILIDADES[/color] diferentes, e que, alguns podem ser somados infinitamente",
 	"Podendo fazer sua partida ser um grande caos DIVERTIDASSO, como por exemplo ganhar [color=green]MOEDAS INFINITAS[/color]",
 	"Cada uma delas tem um custo, ou você pode pular a compra",
-	"Tente comprar ou pular!!"
+	"Tente comprar ou pular!! CLIQUE EM ENTER PARA IR AO TESTE"
 ]
 
 var msg_queue5: Array = [

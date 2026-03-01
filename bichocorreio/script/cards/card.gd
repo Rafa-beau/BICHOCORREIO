@@ -97,13 +97,13 @@ func _ready():
 	if CardType(stamp_chance):
 		if water == false:
 			stamped = true
-			approved = false
+			approved = true
 			stamp_fake = true
 			stamp.frame = 0
 			stamp.show()
 		if water == true:
 			stamped = true
-			approved = false
+			approved = true
 			stamp_fake = true
 			stamp.frame = 1
 			stamp.show()
@@ -144,6 +144,7 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 0
+						water_stamp = false
 						approved = true
 						stamped = true
 						SignalManager.stamp.emit()
@@ -151,6 +152,7 @@ func _on_stamp_place_input_event(viewport: Node, event: InputEvent, shape_idx: i
 						stamp.modulate.a = StampManager.get_next_opacity()
 						stamp.show()
 						stamp.frame = 2
+						water_stamp = false
 						disapproved = true
 						stamped = true
 						SignalManager.stamp.emit()

@@ -66,10 +66,11 @@ func tutorial():
 		
 	var call_normal = func():
 		call_card.call()
-		current_card.balls_chance = 0
+		current_card.card_frame.show()
+		current_card.ball_text.hide()
 		current_card.bribe_chance = 0
-		current_card.stamp_chance = 0
 		current_card.stamp.hide()
+		current_card.stamped = false
 		
 	var step2_confirm = func():
 		if not current_card.stamped:
@@ -180,6 +181,7 @@ func step3(i):
 			tween.tween_property(current_card, "position", des_summon, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			SignalManager.call_card.emit()
 func no_tutorial():
+	SignalManager.life_changed.emit()
 	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
@@ -304,15 +306,15 @@ func _on_accept_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 			current_card.dragging = true
 			cancel_card_timer()
 			pull = false
-			await move_card(Vector2(1500, 85))
+			move_card(Vector2(1500, 85))
+			if current_paw:
+				move_paw(Vector2(248, -1500))
 			if tuto == true:
 				return
-			if current_paw:
-				await move_paw(Vector2(248, -1500))
 			if accept_validate() == true:
 				accept()
-				return
-			reject()
+			else:
+				reject()
 
 func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card :
@@ -321,19 +323,24 @@ func _on_confiscate_input_event(viewport: Node, event: InputEvent, shape_idx: in
 			current_card.dragging = true
 			cancel_card_timer()
 			pull = false
-			await move_card(Vector2(198, 1000))
+			move_card(Vector2(198, 1000))
+			if current_paw:
+				move_paw(Vector2(248, -1500))
 			if tuto == true:
 				return
-			reject()
+			if confiscate_validate() == true:
+				accept()
+			else:
+				reject()
 
 func _on_ball_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if pull == true and current_card.ball == true:
 		if event.is_action_released("click"):
 			cancel_card_timer()
 			pull = false
-			await move_card(Vector2(198, -1000))
+			move_card(Vector2(198, -1000))
 			if current_paw:
-				await move_paw(Vector2(248, -1500))
+				move_paw(Vector2(248, -1500))
 			if confiscate_validate() == true:
 				accept()
 				return
