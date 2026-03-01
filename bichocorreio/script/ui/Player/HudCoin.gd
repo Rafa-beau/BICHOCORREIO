@@ -4,7 +4,7 @@ extends Control
 @export var HudCoin: RichTextLabel
 @export var HudLife: HBoxContainer
 var base_current_life = 3
-
+var base_current_coins = 0
 var player = PlayerManager
 
 func _ready() -> void:
@@ -16,7 +16,12 @@ func _ready() -> void:
 
 func upd_display_coin(a: int):
 	HudCoin.text = "[shake][img]res://assets/moeda.png[/img]x[wave]" + str(player.coins) + " "
-	
+	if player.coins < base_current_coins:
+		$coin_down.play()
+	if player.coins > base_current_coins:
+		$coin_up.play()
+		
+	base_current_coins = player.coins
 func upd_display_life(a: int):
 	for i in range(HudLife.get_children().size()):
 		HudLife.get_children()[i].visible = i < player.current_life

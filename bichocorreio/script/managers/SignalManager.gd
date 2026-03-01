@@ -1,8 +1,10 @@
 extends Node
 signal call_card
-signal pause
+signal dispause
 signal tutorial
 signal no_tutorial
+
+signal AAAAAAANAOAGUENTOMAISSSSSSSSSSAS
 
 signal is_water(isw: bool)
 signal AntEat
@@ -12,8 +14,17 @@ signal CrocsHead
 signal life_changed(life)
 signal died
 signal coinchange(coin_int: int)
-signal accept
-signal reject
+
+
+# TUTORIAL
+signal confiscar
+signal aceitar
+signal step2
+signal step2_finish
+signal step3(i: int)
+signal step4
+signal step5
+signal step
 
 ### Signais do carimbor (saber se tem cor ainda, etc)
 signal stamp_pick(color: Color) #signal para pegar carimbo verde
@@ -25,7 +36,7 @@ signal stamp
 
 signal upgrade_purchased(upgrade_index: int, inverted: bool, enchanted: bool)
 signal upgrade_clicked(upgrade_index: int)
-signal upgrade_hovered(upgrade_name: String, upgrade_desc: String)
+signal upgrade_hovered(upgrade_name: String, upgrade_desc: String, coins)
 signal upgrade_dishovered
 signal upgrade_blocked
 
