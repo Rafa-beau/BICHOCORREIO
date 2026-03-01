@@ -28,6 +28,8 @@ func _ready() -> void:
 	SignalManager.died.connect(_on_died)
 	
 func _on_died():
+	TransitionScene.play_in()
+	await Utils.timer(1.4)
 	get_tree().change_scene_to_file("res://node/menu/died.tscn")
 
 func start_card_timer():
@@ -35,17 +37,13 @@ func start_card_timer():
 	var timer_id = current_timer_id
 	await Utils.timer(PlayerManager.time_per_prova)
 	if timer_id == current_timer_id and current_card:
-		# Animação de voltar para cima
 		var card_des = Vector2(198, -2000)
 		var paw_des = Vector2(248, -1500)
 		
-		# Movemos ambos simultaneamente ou sequencialmente dependendo da preferência, 
-		# mas await move_card já espera o tempo.
 		if current_paw:
-			move_paw(paw_des) # Não damos await aqui para irem juntos
+			move_paw(paw_des)
 		await move_card(card_des)
 		
-		# Verifica se ainda é o mesmo timer (segurança extra após o await da animação)
 		if timer_id == current_timer_id:
 			reject()
 
@@ -254,59 +252,37 @@ func call_card():
 func reject():
 	if err_pass < PlayerManager.error_ignored:
 		err_pass += 1
-		current_card.queue_free()
 		can_pass_turn = true
 		return
 	cancel_card_timer()
-	SignalManager.reject.emit() 
 	PlayerManager.take_damage(1)
-	if current_card:
-		current_card.queue_free()
-		current_card = null
-	if current_paw:
-		current_paw.queue_free()
-		current_paw = null
-	current_card.queue_free()
 	PlayerManager.reject_q += 1
 	can_pass_turn = true
 
 func accept():
 	SignalManager.aceitar.emit() 
 	cancel_card_timer()
-	SignalManager.accept.emit() 
 	PlayerManager.heal(1)
 	coin_up()
-	if current_card:
-		current_card.queue_free()
-		current_card = null
-	if current_paw:
-		current_paw.queue_free()
-		current_paw = null
 	can_pass_turn = true
 	PlayerManager.accept_q += 1
 	_on_card_validated_correctly()
 
 func coin_up():
 	SignalManager.coinchange.emit(current_card.coins)
-	
-func next_card():
-	if current_card:
-		current_card.queue_free()
-		if current_paw:
-			current_paw.queue_free()
+
 
 ### MOVIMENTO
 func move_card(des):
-	if pull == true:
-		pull = false
-		var tween = create_tween()
-		if current_card.ball == false:
-			tween.tween_property(current_card, "position", des, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-		if current_card.ball == true:
-			tween.tween_property(current_card, "position", des, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-			
-		await Utils.timer(0.6)
-		return
+	pull = false
+	var tween = create_tween()
+	if current_card.ball == false:
+		tween.tween_property(current_card, "position", des, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	if current_card.ball == true:
+		tween.tween_property(current_card, "position", des, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		
+	await Utils.timer(0.6)
+	return
 
 func move_paw(des):
 	var tween = create_tween()

@@ -96,10 +96,14 @@ func _ready():
 
 	if CardType(stamp_chance):
 		if water == false:
+			stamped = true
+			approved = false
 			stamp_fake = true
 			stamp.frame = 0
 			stamp.show()
 		if water == true:
+			stamped = true
+			approved = false
 			stamp_fake = true
 			stamp.frame = 1
 			stamp.show()

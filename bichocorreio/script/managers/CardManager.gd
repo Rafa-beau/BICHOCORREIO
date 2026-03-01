@@ -35,7 +35,10 @@ func can_confiscate(c: CardClass) -> bool:
 	# BOOOOOOOOOOOOOLAAAAAAAAAAAAAAAAAAAS???!!!???
 	if c.ball:
 		return true
-	
+		
+	if c.bribe:
+			return true
+			
 	if c.stamp_fake:
 		if (c.is_anteat or c.is_crocs) and c.paw_stamped and c.paw_disapproved:
 			return true
@@ -44,8 +47,7 @@ func can_confiscate(c: CardClass) -> bool:
 	if c.stamped and c.disapproved:
 		if (c.is_anteat or c.is_crocs) and c.paw_stamped and c.paw_disapproved:
 			return true
-		if c.bribe:
-			return true
+		
 		
 		c.print_all()
 		return false

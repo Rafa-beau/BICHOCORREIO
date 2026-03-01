@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dyhmg88pihd2n" path="res://script/died.gd" id="1_p4cyl"]
 [ext_resource type="Texture2D" uid="uid://b6y54bxw7v2c8" path="res://assets/button.png" id="3_button"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="4_text"]
+[ext_resource type="AudioStream" uid="uid://cw4ogcvt4il2p" path="res://assets/sounds/hover.wav" id="5_c46e3"]
+[ext_resource type="AudioStream" uid="uid://b7bbbb60u0l2n" path="res://assets/sounds/click.mp3" id="6_mukt3"]
 
 [node name="Died" type="Control" unique_id=1131949171]
 layout_mode = 3
@@ -14,24 +16,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p4cyl")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=681853898]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12549, 0, 0, 0.745098)
+color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=440828523]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -584.0
-offset_top = 20.0
-offset_right = 584.0
-offset_bottom = 241.0
+offset_left = -569.0
+offset_top = 21.0
+offset_right = 599.0
+offset_bottom = 242.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 32
@@ -39,11 +42,13 @@ theme_override_constants/shadow_offset_x = 20
 theme_override_constants/shadow_offset_y = 6
 theme_override_fonts/normal_font = ExtResource("1_b2u30")
 theme_override_font_sizes/normal_font_size = 175
-text = "DEMITIDA!!!"
+bbcode_enabled = true
+text = "[shake]DEMITIDA!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="stats1" type="RichTextLabel" parent="." unique_id=397094985]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,12 +64,13 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_text")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]Acertos: 0
-Erros: 0
-Moedas: 0
-Tempo: 00:00[/center]"
+text = "[wave][color=green]Acertos[/color][/wave] 0
+[shake][color=red]Erros:[/color][/shake] 0
+[wave freq=2][color=yellow]Moedas[/color][/wave]: 0
+Tempo: 00:00"
+horizontal_alignment = 1
 
-[node name="MenuButton" type="Control" parent="."]
+[node name="MenuButton" type="Control" parent="." unique_id=527346328]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -78,7 +84,7 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="MenuButton"]
+[node name="TextureRect" type="TextureRect" parent="MenuButton" unique_id=2107939568]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -89,7 +95,7 @@ grow_vertical = 2
 texture = ExtResource("3_button")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuButton" unique_id=2132995378]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -105,4 +111,16 @@ bbcode_enabled = true
 text = "[center]Menu[/center]"
 vertical_alignment = 1
 
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=1074235923]
+stream = ExtResource("5_c46e3")
+volume_db = 4.439
+bus = &"Sfx"
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=675252076]
+stream = ExtResource("6_mukt3")
+volume_db = 13.317
+bus = &"Sfx"
+
 [connection signal="gui_input" from="MenuButton" to="." method="_on_menu_button_gui_input"]
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_menu_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuButton" to="." method="_on_menu_button_mouse_exited"]

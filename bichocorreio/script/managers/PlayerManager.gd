@@ -20,7 +20,7 @@ var start_time: int = 0
 var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
 
 # turno
-var time_per_prova: float = 5.0
+var time_per_prova: float = 8.0
 var cards_per_turno: int = 8
 var error_ignored: int
 
