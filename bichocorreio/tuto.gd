@@ -53,7 +53,7 @@ var msg_queue5: Array = [
 ]
 
 var kk = 0
-var step = 4
+var step = 1
 @onready var timer: Timer = $Timer
 
 var in_tuto = false
@@ -72,9 +72,6 @@ func resetk():
 
 func change_step(c:=):
 	resetk()
-	if in_tuto == false:
-		return
-		
 	step += 1
 	in_tuto = false
 func _input(event: InputEvent) -> void:
@@ -146,9 +143,8 @@ func show_message_step3():
 	$"../Panel".visible = true
 	if msg_queue3.size() == 0:
 		SignalManager.step3.emit(0)
-		change_step(1)
+		step = 4
 		show_message_step4()
-		in_tuto = false
 		return
 		
 	var  _msg: String = msg_queue3.pop_front()
