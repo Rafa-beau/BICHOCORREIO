@@ -15,7 +15,7 @@ func _ready() -> void:
 	upd_display_life(1)
 
 func upd_display_coin(a: int):
-	HudCoin.text = "[shake][img]res://assets/moeda.png[/img]x[wave]" + str(player.coins) + " "
+	HudCoin.text = "[shake][img]res://assets/game/moeda.png[/img]x[wave]" + str(player.coins) + " "
 	if player.coins < base_current_coins:
 		$coin_down.play()
 	if player.coins > base_current_coins:

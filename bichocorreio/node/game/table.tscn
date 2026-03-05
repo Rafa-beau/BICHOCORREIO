@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://dvvt4w2yisrts"]
+
+[ext_resource type="Script" uid="uid://xiw65vp3v28v" path="res://script/game/table.gd" id="1_bgsm5"]
+[ext_resource type="PackedScene" uid="uid://cb0on76tdbam5" path="res://node/game/card.tscn" id="2_axvdw"]
+[ext_resource type="PackedScene" uid="uid://dpwuw2kawmdui" path="res://node/upgrades/upgrade_menu.tscn" id="3_fjj7o"]
+[ext_resource type="PackedScene" uid="uid://dd3cvs462sw3g" path="res://node/game/paws.tscn" id="4_33wkr"]
+[ext_resource type="Texture2D" uid="uid://ce2wl3s4gvjwj" path="res://assets/game/table.png" id="5_2kgcp"]
+[ext_resource type="PackedScene" uid="uid://dshim37dpnki" path="res://node/game/Stamp.tscn" id="6_egxkp"]
+[ext_resource type="Texture2D" uid="uid://c18tbhs1q1f36" path="res://assets/game/formiga.png" id="7_65xdc"]
+[ext_resource type="Script" uid="uid://j2bltq1pds3x" path="res://script/ui/fumiga.gd" id="8_ql0n2"]
+[ext_resource type="PackedScene" uid="uid://bsvmq3ogivp7m" path="res://node/ui/Hud.tscn" id="9_0sl8h"]
+[ext_resource type="AudioStream" uid="uid://b6j2cko28mvva" path="res://assets/sounds/menu_music.mp3" id="10_kio7s"]
+[ext_resource type="AudioStream" uid="uid://chq5qn7ftoyq0" path="res://assets/sounds/sem tinta.wav" id="11_oj1qi"]
+[ext_resource type="AudioStream" uid="uid://gc0n1hta60es" path="res://assets/sounds/carimbo_certo.wav" id="12_bssyc"]
+[ext_resource type="PackedScene" uid="uid://chml75h3i2q2x" path="res://node/ui/enable_tutorial.tscn" id="13_li1og"]
+[ext_resource type="PackedScene" uid="uid://f7aekcl4st24" path="res://node/menu/ComboUI.tscn" id="14_6m27c"]
+[ext_resource type="PackedScene" uid="uid://hyx177njy3lv" path="res://node/ui/pause.tscn" id="15_tc68a"]
+
+[sub_resource type="GDScript" id="GDScript_qjd42"]
+script/source = "extends Node
+
+var max_life = 3
+var current_life = max_life
+var coin = 0
+
+signal life_changed(current_life)
+signal died
+
+func _ready() -> void:
+	SignalManager.coinup.connect(coinup)
+
+# tomar dano
+func take_damage(amount):
+	current_life -= amount
+	current_life = max(current_life, 0)
+	
+	emit_signal(\"life_changed\", current_life)
+	
+	if current_life == 0:
+		die()
+		
+
+#morrer
+
+func die():
+	emit_signal(\"died\")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action(\"ui_accept\"):
+		take_damage(1)
+
+func coinup():
+	coin += 1
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
+size = Vector2(551, 387)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
+size = Vector2(655, 235)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brvwj"]
+size = Vector2(622, 156)
+
+[node name="Table" type="Node2D" unique_id=1511156028]
+script = ExtResource("1_bgsm5")
+card_scene = ExtResource("2_axvdw")
+upgrade_scene = ExtResource("3_fjj7o")
+paw = ExtResource("4_33wkr")
+player = SubResource("GDScript_qjd42")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=616938938]
+offset_right = 1151.0
+offset_bottom = 649.0
+mouse_filter = 2
+color = Color(0.2397204, 0.47731286, 0.015974116, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
+position = Vector2(567.99994, 285.5)
+scale = Vector2(0.90714276, 1.0693215)
+texture = ExtResource("5_2kgcp")
+
+[node name="accept" type="Area2D" parent="." unique_id=578764493]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="accept" unique_id=1061130770]
+position = Vector2(883.5, 174.5)
+shape = SubResource("RectangleShape2D_e76hu")
+
+[node name="confiscate" type="Area2D" parent="." unique_id=1006347816]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="confiscate" unique_id=19972230]
+position = Vector2(309.5, 540.5)
+shape = SubResource("RectangleShape2D_7w2ib")
+
+[node name="ball" type="Area2D" parent="." unique_id=402927387]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=381510262]
+position = Vector2(294, 65)
+shape = SubResource("RectangleShape2D_brvwj")
+
+[node name="Stamp" parent="." unique_id=1663195992 instance=ExtResource("6_egxkp")]
+position = Vector2(645, 449)
+
+[node name="Fumiga" type="Node2D" parent="." unique_id=1884845610]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fumiga" unique_id=1912067527]
+position = Vector2(-24.000006, -60.000004)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("7_65xdc")
+script = ExtResource("8_ql0n2")
+
+[node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_0sl8h")]
+z_index = 100
+
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1784291314]
+stream = ExtResource("10_kio7s")
+bus = &"Music"
+
+[node name="BadStamp" type="AudioStreamPlayer" parent="." unique_id=1897063896]
+stream = ExtResource("11_oj1qi")
+volume_db = -7.61
+bus = &"Sfx"
+
+[node name="Stamp2" type="AudioStreamPlayer" parent="." unique_id=1776239401]
+stream = ExtResource("12_bssyc")
+bus = &"Sfx"
+
+[node name="CanvasLayer" parent="." unique_id=2131017630 instance=ExtResource("13_li1og")]
+
+[node name="ComboUI" parent="." unique_id=744159298 instance=ExtResource("14_6m27c")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1345459482]
+layer = 22
+
+[node name="pause" parent="CanvasLayer2" unique_id=400001620 instance=ExtResource("15_tc68a")]
+process_mode = 3
+
+[connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
+[connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]
+[connection signal="mouse_entered" from="accept" to="." method="_on_mouse_entered"]
+[connection signal="body_shape_exited" from="confiscate" to="." method="_on_confiscate_body_shape_exited"]
+[connection signal="input_event" from="confiscate" to="." method="_on_confiscate_input_event"]
+[connection signal="mouse_entered" from="confiscate" to="." method="_on_mouse_entered"]
+[connection signal="input_event" from="ball" to="." method="_on_ball_input_event"]
+[connection signal="mouse_entered" from="ball" to="." method="_on_mouse_entered"]

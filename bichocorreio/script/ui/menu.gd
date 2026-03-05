@@ -17,7 +17,7 @@ func _ready() -> void:
 	for b in buttons:
 		original_positions.append(b.position)
 	print(original_positions)
-	Utils.set_cursor("res://assets/cursor.png")
+	Utils.set_cursor("res://assets/ui/cursor.png")
 	TransitionScene.play_out()
 	await Utils.timer(0.4)
 	Utils.enable_cursor()
@@ -89,7 +89,7 @@ func _on_play_gui_input(event: InputEvent) -> void:
 			var tween = create_tween()
 			tween.tween_property($Background, "volume_db", -45.0, 1.0)
 			await Utils.timer(1.7)
-			get_tree().change_scene_to_file("res://node/table.tscn")
+			get_tree().change_scene_to_file("res://node/game/table.tscn")
 	pass # Replace with function body.
 
 

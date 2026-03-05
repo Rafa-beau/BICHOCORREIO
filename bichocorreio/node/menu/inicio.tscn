@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bv5fa212gpqnl"]
 
-[ext_resource type="FontFile" uid="uid://c8qjltbd1kdrf" path="res://tite.ttf" id="1_1uhff"]
-[ext_resource type="Script" uid="uid://cifgq58cckpg0" path="res://node/menu/inicio.gd" id="1_kiwql"]
+[ext_resource type="FontFile" uid="uid://c8qjltbd1kdrf" path="res://fonts/tite.ttf" id="1_1uhff"]
+[ext_resource type="Script" uid="uid://cifgq58cckpg0" path="res://script/utils/inicio.gd" id="1_kiwql"]
+
 
 [sub_resource type="Animation" id="Animation_ly7kv"]
 length = 0.001
