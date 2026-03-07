@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bsvmq3ogivp7m"]
 
 [ext_resource type="Script" uid="uid://dbtxhugwtxln2" path="res://script/ui/Player/HudCoin.gd" id="2_cqo1h"]
-[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="2_q03xa"]
-[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_ehn7p"]
+[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/ui/vida.png" id="2_q03xa"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://fonts/text.ttf" id="3_ehn7p"]
 [ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="4_gm185"]
 [ext_resource type="AudioStream" uid="uid://dk3n5xa62gagq" path="res://assets/sounds/coin_up.wav" id="5_3v8bn"]
 [ext_resource type="AudioStream" uid="uid://d14k7m6lhksfo" path="res://assets/sounds/coin_down.wav" id="6_cr0cg"]
@@ -41,7 +41,7 @@ theme_override_constants/outline_size = 23
 theme_override_fonts/normal_font = ExtResource("3_ehn7p")
 theme_override_font_sizes/normal_font_size = 77
 bbcode_enabled = true
-text = "[shake][img]res://assets/moeda.png[/img]x[wave]0 "
+text = "[shake][img]res://assets/game/moeda.png[/img]x[wave]0 "
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false

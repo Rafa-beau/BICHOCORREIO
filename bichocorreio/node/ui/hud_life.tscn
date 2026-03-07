@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://df2jd7f2jojet"]
 
-[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/vida.png" id="1_r543v"]
+[ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/ui/vida.png" id="1_r543v"]
 
 [node name="HudLife" type="HBoxContainer" unique_id=1856103720]
 offset_right = 40.0

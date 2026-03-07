@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://f7aekcl4st24"]
 
 [ext_resource type="Script" uid="uid://n2nu24oxt8e5" path="res://script/ui/combo.gd" id="1_1qjfr"]
-[ext_resource type="Texture2D" uid="uid://dewjjra3i1br" path="res://assets/combo.png" id="2_qhoqc"]
-[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_c5h5n"]
+[ext_resource type="Texture2D" uid="uid://dewjjra3i1br" path="res://assets/ui/combo.png" id="2_qhoqc"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://fonts/text.ttf" id="3_c5h5n"]
 
 [sub_resource type="Animation" id="Animation_1qjfr"]
 length = 0.001

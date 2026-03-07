@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://faclitugvvb0"]
 
-[ext_resource type="Script" uid="uid://d1c8v2bkd8ldl" path="res://credits.gd" id="1_ap7ik"]
-[ext_resource type="Texture2D" uid="uid://bxfjjk102sy4b" path="res://assets/credits.png" id="2_lluyw"]
-[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://text.ttf" id="3_8txil"]
+[ext_resource type="Script" uid="uid://d1c8v2bkd8ldl" path="res://script/ui/credits.gd" id="1_ap7ik"]
+[ext_resource type="Texture2D" uid="uid://bxfjjk102sy4b" path="res://assets/ui/credits.png" id="2_lluyw"]
+[ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://fonts/text.ttf" id="3_8txil"]
 
 [sub_resource type="Theme" id="Theme_rkp0k"]
 Label/font_sizes/font_size = 75
