@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var life_icon = Image
 @export var HudCoin: RichTextLabel
@@ -25,7 +25,8 @@ func upd_display_coin(a: int):
 func upd_display_life(a: int):
 	for i in range(HudLife.get_children().size()):
 		HudLife.get_children()[i].visible = i < player.current_life
-		if player.current_life < base_current_life:
-			$Hit.play()
-		
-		base_current_life = player.current_life
+	
+	if player.current_life < base_current_life:
+		$Hit.play()
+	
+	base_current_life = player.current_life

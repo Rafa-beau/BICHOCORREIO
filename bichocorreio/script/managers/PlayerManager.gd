@@ -16,6 +16,8 @@ var accept_q: int = 0
 var reject_q: int = 0
 var start_time: int = 0
 var tuto: bool = false
+var skip_tutorial_prompt: bool = false
+
 # coins
 var coins_after_turno: int # carrega quantas moedas o jogador vai perder no final do turno
 
@@ -30,6 +32,8 @@ var water_card_coins: int = 2 # controla a quantidade de coins q uma carta azul 
 
 # carimbo
 var wears_stamp_chance: float = 0.45 # controla a chance do carimbo ir apagando
+
+const CONFIG_PATH = "user://config.cfg"
 
 func reset():
 	max_life = 3
@@ -50,8 +54,20 @@ func reset():
 	tuto = false
 
 func _ready() -> void:
+	load_config()
 	reset()
 	SignalManager.coinchange.connect(coinchange)
+
+func save_config():
+	var config = ConfigFile.new()
+	config.set_value("settings", "skip_tutorial_prompt", skip_tutorial_prompt)
+	config.save(CONFIG_PATH)
+
+func load_config():
+	var config = ConfigFile.new()
+	var err = config.load(CONFIG_PATH)
+	if err == OK:
+		skip_tutorial_prompt = config.get_value("settings", "skip_tutorial_prompt", false)
 
 func change_can_heal_end_turn():
 	can_heal_end_turn = not can_heal_end_turn

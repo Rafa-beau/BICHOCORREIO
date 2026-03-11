@@ -54,10 +54,10 @@ func coinup():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
-size = Vector2(551, 387)
+size = Vector2(591, 425)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
-size = Vector2(655, 235)
+size = Vector2(634, 235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brvwj"]
 size = Vector2(622, 156)
@@ -83,13 +83,13 @@ texture = ExtResource("5_2kgcp")
 [node name="accept" type="Area2D" parent="." unique_id=578764493]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="accept" unique_id=1061130770]
-position = Vector2(883.5, 174.5)
+position = Vector2(903.5, 193.5)
 shape = SubResource("RectangleShape2D_e76hu")
 
 [node name="confiscate" type="Area2D" parent="." unique_id=1006347816]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="confiscate" unique_id=19972230]
-position = Vector2(309.5, 540.5)
+position = Vector2(299, 540.5)
 shape = SubResource("RectangleShape2D_7w2ib")
 
 [node name="ball" type="Area2D" parent="." unique_id=402927387]
@@ -99,7 +99,7 @@ position = Vector2(294, 65)
 shape = SubResource("RectangleShape2D_brvwj")
 
 [node name="Stamp" parent="." unique_id=1663195992 instance=ExtResource("6_egxkp")]
-position = Vector2(645, 449)
+position = Vector2(806, 500)
 
 [node name="Fumiga" type="Node2D" parent="." unique_id=1884845610]
 
@@ -110,7 +110,7 @@ texture = ExtResource("7_65xdc")
 script = ExtResource("8_ql0n2")
 
 [node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_0sl8h")]
-z_index = 100
+visible = false
 
 [node name="Background" type="AudioStreamPlayer" parent="." unique_id=1784291314]
 stream = ExtResource("10_kio7s")
@@ -128,12 +128,17 @@ bus = &"Sfx"
 [node name="CanvasLayer" parent="." unique_id=2131017630 instance=ExtResource("13_li1og")]
 
 [node name="ComboUI" parent="." unique_id=744159298 instance=ExtResource("14_6m27c")]
+offset_left = 566.0
+offset_top = 2.0
+offset_right = 566.0
+offset_bottom = 2.0
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1345459482]
 layer = 22
 
 [node name="pause" parent="CanvasLayer2" unique_id=400001620 instance=ExtResource("15_tc68a")]
 process_mode = 3
+visible = false
 
 [connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]

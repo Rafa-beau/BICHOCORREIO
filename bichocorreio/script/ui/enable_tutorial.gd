@@ -15,6 +15,8 @@ func _on_pressed(extra_arg_0: int) -> void:
 			animation_player.play("tchau")
 
 		1:
+			PlayerManager.skip_tutorial_prompt = true
+			PlayerManager.save_config()
 			SignalManager.no_tutorial.emit()
 			sim.disabled = true
 			nao.disabled = true

@@ -15,7 +15,7 @@ func can_accept(c: CardClass) -> bool:
 		return false
 	if c.water and c.water_stamp and c.approved:
 		return true
-	if not c.water and c.stamped and c.approved:
+	if not c.water and not c.water_stamp and c.stamped and c.approved:
 		return true
 	return false
 

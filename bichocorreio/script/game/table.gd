@@ -5,7 +5,6 @@ extends Node2D
 @export var paw: PackedScene
 @export var player: GDScript
 @export var transition: ColorRect
-@onready var fumiga_layer: CanvasLayer = $Fumiga/FumigaCanvasLayer
 const TUTO = preload("res://node/ui/tuto.tscn")
 
 var err_pass = 0
@@ -21,11 +20,16 @@ var pull = false
 var tuto = false
 var can_move = true
 func _ready() -> void:
+	$Hud.hide()
 	PlayerManager.reset()
 	SignalManager.coinchange.emit(0)
 	SignalManager.no_tutorial.connect(no_tutorial)
 	SignalManager.tutorial.connect(tutorial)
 	SignalManager.died.connect(_on_died)
+	
+	if PlayerManager.skip_tutorial_prompt:
+		$CanvasLayer.hide()
+		no_tutorial()
 	
 func _on_died():
 	TransitionScene.play_in()
@@ -55,6 +59,7 @@ func tutorial():
 	PlayerManager.tuto = true
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
+	$Hud.show()
 	TransitionScene.play_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)
@@ -177,6 +182,7 @@ func no_tutorial():
 	SignalManager.AAAAAAANAOAGUENTOMAISSSSSSSSSSAS.connect(init_turn_from_upgrade)
 	await Utils.timer(1.2)
 	$CanvasLayer.hide()
+	$Hud.show()
 	TransitionScene.play_out()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	await Utils.timer(0.4)

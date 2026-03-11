@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@onready var paw: Sprite2D = $Sprite2D
+@onready var paw: Sprite2D
 @onready var stamp: Sprite2D = $Stamp
 
 

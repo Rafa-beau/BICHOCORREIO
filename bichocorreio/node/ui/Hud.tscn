@@ -2,25 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dbtxhugwtxln2" path="res://script/ui/Player/HudCoin.gd" id="2_cqo1h"]
 [ext_resource type="Texture2D" uid="uid://63bw5gqnyjt5" path="res://assets/ui/vida.png" id="2_q03xa"]
+[ext_resource type="Texture2D" uid="uid://hcwvsf8bjyga" path="res://assets/ui/icons.png" id="3_cr0cg"]
 [ext_resource type="FontFile" uid="uid://1hb44e2rjfae" path="res://fonts/text.ttf" id="3_ehn7p"]
 [ext_resource type="AudioStream" uid="uid://frhq2tjdsych" path="res://assets/sounds/perder_vida.wav" id="4_gm185"]
 [ext_resource type="AudioStream" uid="uid://dk3n5xa62gagq" path="res://assets/sounds/coin_up.wav" id="5_3v8bn"]
 [ext_resource type="AudioStream" uid="uid://d14k7m6lhksfo" path="res://assets/sounds/coin_down.wav" id="6_cr0cg"]
 
-[node name="Control2" type="Control" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Hud" type="CanvasLayer" unique_id=1947126241 node_paths=PackedStringArray("HudCoin", "HudLife")]
+layer = 1000
 script = ExtResource("2_cqo1h")
 life_icon = ExtResource("2_q03xa")
-HudCoin = NodePath("CanvasLayer/HBoxContainer/Node2D/RichTextLabel")
+HudCoin = NodePath("HBoxContainer/Node2D/RichTextLabel")
 HudLife = NodePath("HudLife")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=174549277]
-layer = 1000
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1861047960]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1861047960]
 layout_direction = 2
 anchors_preset = 1
 anchor_left = 1.0
@@ -30,16 +25,22 @@ offset_right = -91.0
 offset_bottom = 88.0
 grow_horizontal = 0
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer/HBoxContainer" unique_id=719777327]
+[node name="Node2D" type="Node2D" parent="HBoxContainer" unique_id=719777327]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/Node2D" unique_id=1935960929]
-offset_left = -462.0
-offset_right = 175.0
-offset_bottom = 89.0
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/Node2D" unique_id=1346547389]
+position = Vector2(54.999992, 75.75)
+scale = Vector2(0.1608333, 0.243)
+texture = ExtResource("3_cr0cg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Node2D" unique_id=1935960929]
+offset_left = -567.0
+offset_top = 20.0
+offset_right = 70.0
+offset_bottom = 121.0
 mouse_filter = 2
 theme_override_constants/outline_size = 23
 theme_override_fonts/normal_font = ExtResource("3_ehn7p")
-theme_override_font_sizes/normal_font_size = 77
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[shake][img]res://assets/game/moeda.png[/img]x[wave]0 "
 fit_content = true
@@ -50,25 +51,35 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1348329046]
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959591808]
+position = Vector2(118.50001, 82.50001)
+scale = Vector2(0.19583331, 0.24599999)
+texture = ExtResource("3_cr0cg")
+
 [node name="HudLife" type="HBoxContainer" parent="." unique_id=1890122312]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 31.0
+offset_top = 48.0
+offset_right = 350.0
+offset_bottom = 126.0
 
 [node name="Sprite2D" type="Sprite2D" parent="HudLife" unique_id=2021246440]
-position = Vector2(44, 44)
+position = Vector2(15.999999, 31)
+scale = Vector2(0.070666656, 0.07333333)
 texture = ExtResource("2_q03xa")
 
-[node name="Sprite2D2" type="Sprite2D" parent="HudLife" unique_id=1158600146]
-position = Vector2(132, 44)
+[node name="Sprite2D2" type="Sprite2D" parent="HudLife" unique_id=20053383]
+position = Vector2(65, 31.999998)
+scale = Vector2(0.06800001, 0.071666665)
 texture = ExtResource("2_q03xa")
 
-[node name="Sprite2D3" type="Sprite2D" parent="HudLife" unique_id=1083251597]
-position = Vector2(220, 44)
+[node name="Sprite2D3" type="Sprite2D" parent="HudLife" unique_id=318296854]
+position = Vector2(114.00001, 31.999998)
+scale = Vector2(0.06533333, 0.07)
 texture = ExtResource("2_q03xa")
 
-[node name="Sprite2D4" type="Sprite2D" parent="HudLife" unique_id=1881661864]
-position = Vector2(308, 44)
+[node name="Sprite2D4" type="Sprite2D" parent="HudLife" unique_id=1008785796]
+position = Vector2(163, 32.015625)
+scale = Vector2(0.06900001, 0.06994791)
 texture = ExtResource("2_q03xa")
 
 [node name="Hit" type="AudioStreamPlayer" parent="." unique_id=1779224747]

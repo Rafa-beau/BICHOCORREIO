@@ -29,9 +29,8 @@ var parent = self
 @onready var dirt: Node2D = $Dirt
 @onready var stamp: Sprite2D = $Stamp
 @onready var card_frame: Sprite2D = $Card
-@onready var paw: Area2D = $Paws
+@onready var paw: Area2D
 @onready var ball_text = $Ball
-@onready var node_2d: Node2D = $Node2D
 @onready var for_tuto: Node2D = $"for tuto"
 
 @export var coin: PackedScene

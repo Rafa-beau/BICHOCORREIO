@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"id":"839a7831a637f7dc","type":"text","text":"UPDATE 1","x":-600,"y":-200,"width":130,"height":60},
+		{"id":"9fca634d7d710bf9","type":"text","text":"ROGUE-LITE","x":-880,"y":-370,"width":150,"height":60,"color":"4"},
+		{"id":"c9fc1b6b33fea1ed","type":"text","text":"HUD","x":-315,"y":-40,"width":150,"height":50,"color":"3"},
+		{"id":"0b6c3abd656cc4d0","type":"text","text":"SEED","x":-315,"y":-370,"width":150,"height":60,"color":"1"},
+		{"id":"acc49070cad447bb","type":"text","text":"LOJA","x":-880,"y":-40,"width":150,"height":50,"color":"5"},
+		{"id":"3f7b8d0f3fa473aa","type":"file","file":"Future Updates/1.1.0, Lojarcana/coisas/Formigas.md","x":-1110,"y":-635,"width":170,"height":50,"color":"4"}
+	],
+	"edges":[
+		{"id":"160eee462197559a","fromNode":"839a7831a637f7dc","fromSide":"right","toNode":"c9fc1b6b33fea1ed","toSide":"top","color":"3"},
+		{"id":"29c71c9dd689d1b0","fromNode":"839a7831a637f7dc","fromSide":"left","toNode":"9fca634d7d710bf9","toSide":"bottom","color":"4"},
+		{"id":"a77803d1b0be9dc4","fromNode":"839a7831a637f7dc","fromSide":"left","toNode":"acc49070cad447bb","toSide":"top","color":"5"},
+		{"id":"9ad70234a7078dd3","fromNode":"839a7831a637f7dc","fromSide":"right","toNode":"0b6c3abd656cc4d0","toSide":"bottom","color":"1"},
+		{"id":"978bed8afd81c34e","fromNode":"9fca634d7d710bf9","fromSide":"left","toNode":"3f7b8d0f3fa473aa","toSide":"bottom","color":"4"}
+	]
+}

@@ -33,9 +33,10 @@ func _on_blue_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> 
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(232.4375, 144.5)
+size = Vector2(237.21875, 105.25)
 
 [node name="Node2D" type="Node2D" unique_id=1663195992]
+position = Vector2(-4, 102)
 script = SubResource("GDScript_de3tt")
 
 [node name="Green" type="Node2D" parent="." unique_id=1131314628]
@@ -43,12 +44,12 @@ script = SubResource("GDScript_de3tt")
 [node name="Green" type="Area2D" parent="Green" unique_id=517625865]
 
 [node name="Sprite2D" type="Sprite2D" parent="Green/Green" unique_id=852020454]
-position = Vector2(108.99999, 68)
-scale = Vector2(0.84507036, 1.0116279)
+position = Vector2(132, 88.00001)
+scale = Vector2(0.890845, 0.7093023)
 texture = ExtResource("1_fr017")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Green/Green" unique_id=2043167398]
-position = Vector2(113, 72)
+position = Vector2(131, 89)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="Blue" type="Node2D" parent="." unique_id=267827425]
@@ -58,12 +59,12 @@ position = Vector2(204, 0)
 position = Vector2(-2, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Blue/Blue" unique_id=1625286610]
-position = Vector2(165.99998, 68)
-scale = Vector2(0.8732393, 1.0116279)
+position = Vector2(-72, -48)
+scale = Vector2(0.809859, 0.64534885)
 texture = ExtResource("2_fk8ll")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blue/Blue" unique_id=1808835465]
-position = Vector2(167, 72)
+position = Vector2(-73.609375, -43.625)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="Stamp2" type="AudioStreamPlayer" parent="." unique_id=2066197482]
