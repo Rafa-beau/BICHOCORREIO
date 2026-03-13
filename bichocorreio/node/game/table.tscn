@@ -54,7 +54,7 @@ func coinup():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e76hu"]
-size = Vector2(591, 425)
+size = Vector2(591, 489)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w2ib"]
 size = Vector2(634, 235)
@@ -76,14 +76,58 @@ mouse_filter = 2
 color = Color(0.2397204, 0.47731286, 0.015974116, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497459559]
-position = Vector2(567.99994, 285.5)
-scale = Vector2(0.90714276, 1.0693215)
+position = Vector2(413, 285.5)
+scale = Vector2(0.68571424, 1.0693215)
 texture = ExtResource("5_2kgcp")
+
+[node name="GameplayLayer" type="CanvasLayer" parent="."]
+layer = 80
+
+[node name="CardParent" type="Node2D" parent="GameplayLayer"]
+unique_name_in_owner = true
+
+[node name="PawParent" type="Node2D" parent="GameplayLayer"]
+unique_name_in_owner = true
+
+[node name="SpriteLayer" type="CanvasLayer" parent="."]
+layer = 90
+
+[node name="Sprite2D2" type="Sprite2D" parent="SpriteLayer" unique_id=823755755]
+position = Vector2(1097, 237.99998)
+rotation = -0.27925268
+scale = Vector2(0.48024714, 1.2107786)
+skew = 0.15574408
+texture = ExtResource("5_2kgcp")
+
+[node name="Stamp" parent="SpriteLayer" unique_id=1663195992 instance=ExtResource("6_egxkp")]
+position = Vector2(890, 568)
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Hud" parent="HudLayer" unique_id=1077457220 instance=ExtResource("9_0sl8h")]
+layer = 100
+
+[node name="ComboUI" parent="HudLayer" unique_id=744159298 instance=ExtResource("14_6m27c")]
+offset_right = 566.0
+offset_bottom = 2.0
+
+[node name="AntLayer" type="CanvasLayer" parent="."]
+layer = 110
+
+[node name="Fumiga" type="Node2D" parent="AntLayer" unique_id=1884845610]
+
+[node name="Sprite2D" type="Sprite2D" parent="AntLayer/Fumiga" unique_id=1912067527]
+z_index = 4096
+position = Vector2(-24.000006, -60.000004)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("7_65xdc")
+script = ExtResource("8_ql0n2")
 
 [node name="accept" type="Area2D" parent="." unique_id=578764493]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="accept" unique_id=1061130770]
-position = Vector2(903.5, 193.5)
+position = Vector2(903.5, 225.5)
 shape = SubResource("RectangleShape2D_e76hu")
 
 [node name="confiscate" type="Area2D" parent="." unique_id=1006347816]
@@ -98,19 +142,13 @@ shape = SubResource("RectangleShape2D_7w2ib")
 position = Vector2(294, 65)
 shape = SubResource("RectangleShape2D_brvwj")
 
-[node name="Stamp" parent="." unique_id=1663195992 instance=ExtResource("6_egxkp")]
-position = Vector2(806, 500)
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1345459482]
+layer = 128
 
-[node name="Fumiga" type="Node2D" parent="." unique_id=1884845610]
-
-[node name="Sprite2D" type="Sprite2D" parent="Fumiga" unique_id=1912067527]
-position = Vector2(-24.000006, -60.000004)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("7_65xdc")
-script = ExtResource("8_ql0n2")
-
-[node name="Hud" parent="." unique_id=1077457220 instance=ExtResource("9_0sl8h")]
+[node name="pause" parent="CanvasLayer2" unique_id=400001620 instance=ExtResource("15_tc68a")]
+process_mode = 3
 visible = false
+z_index = 2000
 
 [node name="Background" type="AudioStreamPlayer" parent="." unique_id=1784291314]
 stream = ExtResource("10_kio7s")
@@ -127,23 +165,8 @@ bus = &"Sfx"
 
 [node name="CanvasLayer" parent="." unique_id=2131017630 instance=ExtResource("13_li1og")]
 
-[node name="ComboUI" parent="." unique_id=744159298 instance=ExtResource("14_6m27c")]
-offset_left = 566.0
-offset_top = 2.0
-offset_right = 566.0
-offset_bottom = 2.0
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1345459482]
-layer = 22
-
-[node name="pause" parent="CanvasLayer2" unique_id=400001620 instance=ExtResource("15_tc68a")]
-process_mode = 3
-visible = false
-
-[connection signal="body_shape_exited" from="accept" to="." method="_on_accept_body_shape_exited"]
 [connection signal="input_event" from="accept" to="." method="_on_accept_input_event"]
 [connection signal="mouse_entered" from="accept" to="." method="_on_mouse_entered"]
-[connection signal="body_shape_exited" from="confiscate" to="." method="_on_confiscate_body_shape_exited"]
 [connection signal="input_event" from="confiscate" to="." method="_on_confiscate_input_event"]
 [connection signal="mouse_entered" from="confiscate" to="." method="_on_mouse_entered"]
 [connection signal="input_event" from="ball" to="." method="_on_ball_input_event"]

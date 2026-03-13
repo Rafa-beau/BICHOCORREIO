@@ -22,7 +22,7 @@ func _ready() -> void:
 	SignalManager.upgrade_clicked.connect(move_card_purchased)
 	SignalManager.upgrade_hovered.connect(call_desc)
 	SignalManager.upgrade_dishovered.connect(free_text)
-	TransitionScene.play_in()
+	TransitionScene.play_out()
 	await Utils.timer(1.2849)
 	Utils.enable_cursor()
 	

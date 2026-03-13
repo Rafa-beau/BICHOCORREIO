@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhymqlj7u4ny5" path="res://node/game/coin.tscn" id="5_u8qiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgdm"]
-size = Vector2(348, 476)
+size = Vector2(391, 534)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b70dl"]
 size = Vector2(188, 135)
@@ -30,7 +30,7 @@ scale = Vector2(0.36953124, 0.43981484)
 texture = ExtResource("4_isbx4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552224773]
-position = Vector2(178, 227)
+position = Vector2(177.5, 232)
 shape = SubResource("RectangleShape2D_rjgdm")
 debug_color = Color(0.9825526, 0, 0.36536703, 0.41960785)
 

@@ -25,8 +25,9 @@ func _ready() -> void:
 	paws_water.hide()
 	paws.hide()
 	
-	if get_parent() and "current_card" in get_parent() and get_parent().current_card:
-		change_sprite(get_parent().current_card.water)
+	var table = get_tree().current_scene
+	if table and "current_card" in table and table.current_card:
+		change_sprite(table.current_card.water)
 		
 	SignalManager.is_water.connect(change_sprite) 
 

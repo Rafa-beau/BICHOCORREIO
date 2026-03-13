@@ -122,9 +122,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			if event.pressed:
 				dragging = true
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if dragging:
-		if event is InputEventMouseButton and not event.pressed:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			dragging = false
 
 func is_ant():

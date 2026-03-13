@@ -1,11 +1,11 @@
 extends Sprite2D
-@onready var bad_stamp: AudioStreamPlayer = $"../../BadStamp"
-@onready var stamp_2: AudioStreamPlayer = $"../../Stamp2"
+@onready var bad_stamp: AudioStreamPlayer = $"../../../BadStamp"
+@onready var stamp_2: AudioStreamPlayer = $"../../../Stamp2"
 
 var can_follow = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	z_index = 1000
+	z_index = 4096
 	visible = true
 	
 
